@@ -8,7 +8,7 @@
               <b-icon icon="hands" pack="fas" size="is-medium"> </b-icon>
               <hr />
               <h4 class="dashb has-text-weight-light">
-                {{ submittedApplications.length }} IPR Ditawarkan
+                8 IPR Ditawarkan
               </h4>
             </div>
           </div>
@@ -89,6 +89,83 @@
           </div>
         </a>
 
+        <br />
+        <a>
+          <div class="card" aria-id="contentIdForA11y3" @click="linkKISS()">
+            <div class="card-header" role="button">
+              <p class="card-header-title">
+                Kasih Ibu Smart Selangor (KISS)
+              </p>
+            </div>
+          </div>
+        </a>
+
+        <br />
+        <a>
+          <div class="card" aria-id="contentIdForA11y3">
+            <div class="card-header" role="button">
+              <p class="card-header-title">
+                Tabung Warisan Anak Selangor (TAWAS)
+              </p>
+            </div>
+          </div>
+        </a>
+
+        <br />
+        <a>
+          <div class="card" aria-id="contentIdForA11y3">
+            <div class="card-header" role="button">
+              <p class="card-header-title">
+                Skim Mesra Usia Emas (SMUE)
+              </p>
+            </div>
+          </div>
+        </a>
+
+        <br />
+        <a>
+          <div class="card" aria-id="contentIdForA11y3">
+            <div class="card-header" role="button">
+              <p class="card-header-title">
+                Skim Kesihatan Wanita (Mammosel)
+              </p>
+            </div>
+          </div>
+        </a>
+
+        <br />
+        <a>
+          <div class="card" aria-id="contentIdForA11y3">
+            <div class="card-header" role="button">
+              <p class="card-header-title">
+                Bantuan Sihat Selangor
+              </p>
+            </div>
+          </div>
+        </a>
+
+        <br />
+        <a>
+          <div class="card" aria-id="contentIdForA11y3">
+            <div class="card-header" role="button">
+              <p class="card-header-title">
+                Skim Rumah Selangorku
+              </p>
+            </div>
+          </div>
+        </a>
+
+        <br />
+        <a>
+          <div class="card" aria-id="contentIdForA11y3">
+            <div class="card-header" role="button">
+              <p class="card-header-title">
+                Skim Peduli Sihat (SPS)
+              </p>
+            </div>
+          </div>
+        </a>
+
         <b-modal :active.sync="isCardModalActive" :width="640" scroll="keep">
           <div class="card">
             <div class="card-image">
@@ -162,7 +239,9 @@
         >
           <div class="card-header" role="button">
             <p class="card-header-title level">
-              <span class="level-left">Skim Air Darul Ehsan</span>
+              <span class="level-left">
+                {{ iprList.find(item => ipr.ipr_code === item.id).name }}</span
+              >
               <span class="tag is-info level-right">Dalam Proses</span>
             </p>
           </div>
@@ -183,7 +262,16 @@ export default {
   data() {
     return {
       isCardModalActive: false,
-      submittedApplications: this.currentUser.dockets
+      submittedApplications: this.currentUser.dockets,
+      iprList: [
+        { id: 'KISS', name: 'Kasih Ibu Smart Selangor' },
+        { id: 'AIR_SELANGOR', name: 'Skim Air Darul Ehsan' }
+      ]
+    }
+  },
+  methods: {
+    linkKISS() {
+      this.$router.push('/ipr/KISS')
     }
   }
 }

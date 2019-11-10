@@ -6,7 +6,7 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'SSIPR',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -87,7 +87,7 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
-    '@nuxtjs/eslint-module',
+    // '@nuxtjs/eslint-module',
     [
       'nuxt-i18n',
       {
@@ -105,6 +105,7 @@ export default {
       }
     ]
   ],
+  devModules: ['@nuxtjs/eslint-module'],
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
@@ -112,11 +113,12 @@ export default {
   axios: {
     // proxy: true,
     // baseURL: 'https://ssipr-daftar.selangor.gov.my'
-    baseURL: 'http://localhost:4000'
+    // baseURL: 'http://localhost:4000'
+    baseURL: process.env.API_URL || 'http://18.139.224.38/'
   },
 
   proxy: {
-    '/api/': process.env.API_URL
+    // '/api/': process.env.API_URL
   },
   /*
    ** Build configuration

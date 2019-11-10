@@ -1,7 +1,9 @@
 <template>
   <div class="columns">
     <div class="column">
-      <h1 class="has-text-weight-semibold is-size-4">Skim Air Darul Ehsan</h1>
+      <h1 class="has-text-weight-semibold is-size-4">
+        Kasih Ibu Smart Selangor
+      </h1>
 
       <br />
 

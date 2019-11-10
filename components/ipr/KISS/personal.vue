@@ -4,36 +4,6 @@
       <p>Maklumat Peribadi</p>
     </div>
     <div class="message-body has-background-white">
-      <div class="columns">
-        <div class="column is-half">
-          <b-field
-            :label="$t('f.meterType')"
-            :type="{ 'is-danger': errors.has('residenceMeterType') }"
-            :message="errors.first('residenceMeterType')"
-          >
-            <div>
-              <b-radio
-                v-model="residence.meter_type"
-                v-validate="'required'"
-                native-value="individu"
-                name="residenceMeterType"
-                @input="resetValue('meter_type')"
-              >
-                Individu
-              </b-radio>
-              <b-radio
-                v-model="residence.meter_type"
-                v-validate="'required'"
-                native-value="pukal"
-                name="residenceMeterType"
-                @input="resetValue('meter_type')"
-              >
-                Pukal
-              </b-radio>
-            </div>
-          </b-field>
-        </div>
-      </div>
       <fieldset :disabled="true">
         <div class="columns">
           <div class="column is-half">
