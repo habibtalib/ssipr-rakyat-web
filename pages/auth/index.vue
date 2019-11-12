@@ -66,7 +66,7 @@ export default {
             const errors = []
 
             for (const k in res.errors) {
-              if (res.errors.hasOwnProperty.call(k)) {
+              if ({}.hasOwnProperty.call(res.errors, k)) {
                 errors.push(k + ' ' + res.errors[k].join(', '))
               }
             }
