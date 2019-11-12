@@ -113,8 +113,8 @@ export default {
   axios: {
     // proxy: true,
     // baseURL: 'https://ssipr-daftar.selangor.gov.my'
-    baseURL: 'http://localhost:4000'
-    // baseURL: process.env.API_URL || 'http://18.139.224.38/'
+    // baseURL: 'http://localhost:4000'
+    baseURL: process.env.API_URL || 'http://18.139.224.38/'
   },
 
   proxy: {

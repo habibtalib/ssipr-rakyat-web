@@ -14,6 +14,12 @@
           :reset-value="resetValue"
         ></personal-fields>
 
+        <residence-fields
+          :current-user="currentUser"
+          :residence="residence"
+          :applicant="applicant"
+        ></residence-fields>
+
         <spouses-fields
           v-if="currentUser.marital_status == 'Berkahwin'"
           :current-user="currentUser"
@@ -27,12 +33,59 @@
           <div class="message-body has-background-white">
             <div class="columns">
               <div class="column is-4">
-                <b-field label="Jumlah Pendapatan Pemohon">
-                  <b-input disabled :value="currentUser.income"></b-input>
+                <b-field label="Jenis Pekerjaan">
+                  <b-input></b-input>
                 </b-field>
               </div>
               <div class="column is-4">
-                <b-field label="Jumlah Pendapatan Pasangan">
+                <b-field label="Nama Majikan">
+                  <b-input></b-input>
+                </b-field>
+              </div>
+              <div class="column is-4">
+                <b-field label="No Telefon Majikan">
+                  <b-input></b-input>
+                </b-field>
+              </div>
+            </div>
+            <div class="columns">
+              <div class="column is-4">
+                <b-field label="Jumlah Pendapatan Pemohon">
+                  <b-input
+                    disabled
+                    :value="fixedTwoDecimal(parseFloat(currentUser.income))"
+                  ></b-input>
+                </b-field>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="message is-dark">
+          <div class="message-header">
+            <p>Maklumat Pendapatan Suami</p>
+          </div>
+          <div class="message-body has-background-white">
+            <div class="columns">
+              <div class="column is-4">
+                <b-field label="Jenis Pekerjaan">
+                  <b-input></b-input>
+                </b-field>
+              </div>
+              <div class="column is-4">
+                <b-field label="Nama Majikan">
+                  <b-input></b-input>
+                </b-field>
+              </div>
+              <div class="column is-4">
+                <b-field label="No Telefon Majikan">
+                  <b-input></b-input>
+                </b-field>
+              </div>
+            </div>
+            <div class="columns">
+              <div class="column is-4">
+                <b-field label="Jumlah Pendapatan">
                   <b-input
                     disabled
                     :value="
@@ -43,34 +96,81 @@
                   ></b-input>
                 </b-field>
               </div>
-              <div class="column is-4">
-                <b-field label="Jumlah Pendapatan Isi Rumah (RM)">
-                  <b-input
-                    disabled
-                    :value="
-                      fixedTwoDecimal(
-                        parseFloat(currentUser.income) +
-                          sumSpousesSalaries(currentUser.spouses, 'income')
-                      )
-                    "
-                  ></b-input>
-                </b-field>
-              </div>
             </div>
           </div>
         </article>
 
-        <residence-fields
-          :current-user="currentUser"
-          :residence="residence"
-          :applicant="applicant"
-        ></residence-fields>
+        <article class="message is-dark">
+          <div class="message-header">
+            <p>
+              MAKLUMAT ANAK-ANAK/TANGGUNGAN (berumur kurang daripada 21 tahun)
+            </p>
+          </div>
+          <div class="message-body has-background-white">
+            <div class="columns">
+              <div class="column is-full">
+                <a class="button is-primary is-pulled-right" @click="addChild()"
+                  >Tambah</a
+                >
+              </div>
+            </div>
+            <fieldset v-for="child in childrens" :key="child.idx">
+              <div class="columns">
+                <div class="column is-4">
+                  <b-field label="Nama Penuh">
+                    <b-input></b-input>
+                  </b-field>
+                </div>
+                <div class="column is-4">
+                  <b-field label="No KP/Sijil Kelahiran">
+                    <b-input></b-input>
+                  </b-field>
+                </div>
+                <div class="column is-4">
+                  <b-field label="Hubungan">
+                    <b-input></b-input>
+                  </b-field>
+                </div>
+              </div>
+              <div class="columns">
+                <div class="column is-4">
+                  <b-field label="Umur">
+                    <b-input></b-input>
+                  </b-field>
+                </div>
+                <div class="column is-4">
+                  <b-field label="Pendapatan Bulanan (RM) jika ada">
+                    <b-input></b-input>
+                  </b-field>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </article>
 
-        <jmb-fields
-          v-if="residence.meter_type == 'pukal'"
-          :jmb-confirmation="jmb_confirmation"
-          :residence="residence"
-        ></jmb-fields>
+        <article class="message is-dark">
+          <div class="message-header">
+            <p>Jumlah Pendapatan Keseluruhan Isi Rumah</p>
+          </div>
+          <div class="message-body has-background-white">
+            <fieldse>
+              <div class="columns">
+                <div class="column is-4">
+                  <b-field label="Jumlah Pendapatan (RM)">
+                    <b-input
+                      :value="
+                        fixedTwoDecimal(
+                          parseFloat(currentUser.income) +
+                            sumSpousesSalaries(currentUser.spouses, 'income')
+                        )
+                      "
+                    ></b-input>
+                  </b-field>
+                </div>
+              </div>
+            </fieldse>
+          </div>
+        </article>
 
         <hr />
 
@@ -135,9 +235,8 @@
                     Saya dengan ini mengakui bahawa segala maklumat yang
                     dinyatakan di dalam Borang Permohonan ini adalah
                     <strong>BENAR</strong> dan memberikan kebenaran kepada
-                    Kerajaan Negeri Selangor dan pihak Air Selangor untuk
-                    membuat semakan data butir-butir peribadi saya bagi
-                    memproses permohonan ini.
+                    Kerajaan Negeri Selangor untuk membuat semakan data
+                    butir-butir peribadi saya bagi memproses permohonan ini.
                   </div>
                 </article>
 
@@ -174,21 +273,20 @@ import FormSummary from '~/components/ipr/KISS/summary.vue'
 import PersonalFields from '~/components/ipr/KISS/personal.vue'
 import SpousesFields from '~/components/ipr/KISS/spouses.vue'
 import ResidenceFields from '~/components/ipr/KISS/residence.vue'
-import JmbFields from '~/components/ipr/KISS/jmb.vue'
-
+let idx = 1
 export default {
   middleware: ['check_applicant_auth', 'applicant_auth'],
   components: {
     FormSummary,
     PersonalFields,
     SpousesFields,
-    ResidenceFields,
-    JmbFields
+    ResidenceFields
   },
   data() {
     return {
       setuju1: null,
       setuju2: null,
+      childrens: [],
       applicant: {
         address_1: null,
         address_2: null,
@@ -212,7 +310,13 @@ export default {
   },
   computed: {
     ...mapGetters({
-      currentUser: 'applicant/currentUser'
+      currentUser: 'applicant/currentUser',
+      genders: 'lookup/genders',
+      religions: 'lookup/religions',
+      maritalStatuses: 'lookup/maritalStatuses',
+      schoolingStatuses: 'lookup/schoolingStatuses',
+      districts: 'lookup/districts',
+      countryStates: 'lookup/countryStates'
     })
   },
   fetch({ store, params }) {
@@ -243,6 +347,21 @@ export default {
           })
         }
       })
+    },
+    addChild() {
+      const newChild = {
+        idx: idx,
+        ic: null,
+        name: null,
+        income: null,
+        tele_no: null,
+        email: null
+      }
+      this.childrens.push(newChild)
+      idx++
+    },
+    removeChild(child) {
+      this.childrens.splice(this.childrens.indexOf(child), 1)
     },
     create() {
       this.setIsLoading(true)

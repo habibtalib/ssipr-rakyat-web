@@ -192,6 +192,7 @@ export default {
           id: 'SPS',
           name: 'Skim Peduli Sihat (SPS)',
           requireForm: false,
+          url: 'https://www.pedulisihat.com/pendaftaran.html',
           available: true,
           body:
             '<p class="title is-5">Syarat Permohonan</p>' +
@@ -213,6 +214,7 @@ export default {
         {
           id: 'SRS',
           name: 'Skim Rumah Selangorku',
+          url: ' https://ehartanah.lphs.gov.my/index.php?opt=newuser_new',
           requireForm: false,
           available: true,
           body:
@@ -265,6 +267,7 @@ export default {
           name: 'Bantuan Sihat Selangor',
           requireForm: false,
           available: true,
+          url: 'http://bantuansihat.selangor.gov.my/',
           body:
             '<p class="title is-5">Syarat Permohonan</p>' +
             '  <ul>' +
@@ -285,7 +288,7 @@ export default {
           id: 'MAMMOSEL',
           name: 'Skim Kesihatan Wanita (Mammosel)',
           requireForm: false,
-          available: true,
+          available: false,
           body:
             '<p class="title is-5">Syarat Permohonan</p>' +
             '  <ul>' +
@@ -303,7 +306,7 @@ export default {
           id: 'SMUE',
           name: 'Skim Mesra Usia Emas (SMUE)',
           requireForm: false,
-          available: true,
+          available: false,
           body:
             '<p class="title is-5">Syarat Permohonan</p>' +
             '  <ul>' +
@@ -409,7 +412,8 @@ export default {
       if (item.requireForm) {
         this.$router.push(item.formRoute)
       } else {
-        this.create(item)
+        // this.create(item)
+        window.open(item.url, '_blank')
       }
     },
     openModal(item) {

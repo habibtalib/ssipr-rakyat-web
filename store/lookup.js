@@ -3,6 +3,8 @@ export const state = () => ({
   maritalStatuses: ['Bujang', 'Berkahwin', 'Duda / Janda'],
   schoolingStatuses: ['Rendah', 'Menengah', 'Universiti', 'Lain-lain'],
   genders: ['Lelaki', 'Perempuan'],
+  race: ['Bumiputera', 'Melayu', 'Cina', 'India'],
+  citizenship: ['Malaysia', 'Indonesia', 'Singapura', 'Thailand'],
   districts: [
     'Gombak',
     'Hulu Langat',

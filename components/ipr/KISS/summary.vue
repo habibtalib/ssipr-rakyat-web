@@ -110,6 +110,10 @@
 
           <div class="columns">
             <div class="column is-full">
+              <b-field label="Jenis Pendapatan">
+                {{ totalSpousesSalaries }}
+              </b-field>
+
               <b-field label="Jumlah Pendapatan Pemohon">
                 {{ currentUser.income }}
               </b-field>
@@ -151,31 +155,6 @@
                     .filter(x => x)
                     .join(', ')
                 }}
-              </b-field>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div v-if="residence.meter_type == 'pukal'" class="columns">
-        <div class="column is-full">
-          <div
-            class="is-divider"
-            data-content="Maklumat Badan Pengurusan Bersama (JMB) / Perbadanan Pengurusan (MC)"
-          ></div>
-
-          <div class="columns">
-            <div class="column is-full">
-              <b-field :label="$t('f.jmbEmail')">
-                {{ jmbConfirmation.jmb_email }}
-              </b-field>
-
-              <b-field :label="$t('f.jmbName')">
-                {{ jmbConfirmation.jmb_name }}
-              </b-field>
-
-              <b-field :label="$t('f.noTeleJMB')">
-                {{ jmbConfirmation.tele_no }}
               </b-field>
             </div>
           </div>

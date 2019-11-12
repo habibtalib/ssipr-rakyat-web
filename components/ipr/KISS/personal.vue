@@ -4,32 +4,35 @@
       <p>Maklumat Peribadi</p>
     </div>
     <div class="message-body has-background-white">
-      <fieldset :disabled="true">
+      <fieldset>
         <div class="columns">
           <div class="column is-half">
             <b-field :label="$t('f.name')">
-              <b-input :value="currentUser.name"></b-input>
+              <b-input :value="currentUser.name" disabled></b-input>
             </b-field>
 
             <b-field :label="$t('f.all_id_wo_passport')">
-              <b-input :value="currentUser.ic"></b-input>
+              <b-input :value="currentUser.ic" disabled></b-input>
             </b-field>
 
             <b-field :label="$t('f.email')">
-              <b-input :value="currentUser.email"></b-input>
+              <b-input :value="currentUser.email" disabled></b-input>
             </b-field>
           </div>
           <div class="column is-half">
             <b-field :label="$t('f.maritalStatus')">
-              <b-input :value="currentUser.marital_status"></b-input>
+              <b-input :value="currentUser.marital_status" disabled></b-input>
             </b-field>
 
             <b-field :label="$t('f.income')">
-              <b-input v-model="currentUser.income"></b-input>
+              <b-input v-model="currentUser.income" disabled></b-input>
             </b-field>
 
             <b-field :label="$t('f.pNo')">
-              <b-input :value="currentUser.phone_no"></b-input>
+              <b-input :value="currentUser.phone_no" disabled></b-input>
+            </b-field>
+            <b-field label="Warganegara">
+              <b-input v-model="currentUser.citizen"></b-input>
             </b-field>
           </div>
         </div>
