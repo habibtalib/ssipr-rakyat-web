@@ -34,17 +34,17 @@
             <div class="columns">
               <div class="column is-4">
                 <b-field label="Jenis Pekerjaan">
-                  <b-input></b-input>
+                  <b-inpu v-model="income.employment_type"></b-inpu>
                 </b-field>
               </div>
               <div class="column is-4">
                 <b-field label="Nama Majikan">
-                  <b-input></b-input>
+                  <b-input v-model="income.employer_name"></b-input>
                 </b-field>
               </div>
               <div class="column is-4">
                 <b-field label="No Telefon Majikan">
-                  <b-input></b-input>
+                  <b-input v-model="income.employer_phone"></b-input>
                 </b-field>
               </div>
             </div>
@@ -69,17 +69,17 @@
             <div class="columns">
               <div class="column is-4">
                 <b-field label="Jenis Pekerjaan">
-                  <b-input></b-input>
+                  <b-input v-model="spouse.employment_type"></b-input>
                 </b-field>
               </div>
               <div class="column is-4">
                 <b-field label="Nama Majikan">
-                  <b-input></b-input>
+                  <b-input v-model="spouse.employer_name"></b-input>
                 </b-field>
               </div>
               <div class="column is-4">
                 <b-field label="No Telefon Majikan">
-                  <b-input></b-input>
+                  <b-input v-model="spouse.employer_phone"></b-input>
                 </b-field>
               </div>
             </div>
@@ -118,29 +118,29 @@
               <div class="columns">
                 <div class="column is-4">
                   <b-field label="Nama Penuh">
-                    <b-input></b-input>
+                    <b-input v-model="child.name"></b-input>
                   </b-field>
                 </div>
                 <div class="column is-4">
                   <b-field label="No KP/Sijil Kelahiran">
-                    <b-input></b-input>
+                    <b-input v-model="child.ic"></b-input>
                   </b-field>
                 </div>
                 <div class="column is-4">
                   <b-field label="Hubungan">
-                    <b-input></b-input>
+                    <b-input v-model="child.relationship"></b-input>
                   </b-field>
                 </div>
               </div>
               <div class="columns">
                 <div class="column is-4">
                   <b-field label="Umur">
-                    <b-input></b-input>
+                    <b-input v-model="child.age"></b-input>
                   </b-field>
                 </div>
                 <div class="column is-4">
                   <b-field label="Pendapatan Bulanan (RM) jika ada">
-                    <b-input></b-input>
+                    <b-input v-model="child.income"></b-input>
                   </b-field>
                 </div>
               </div>
@@ -158,6 +158,7 @@
                 <div class="column is-4">
                   <b-field label="Jumlah Pendapatan (RM)">
                     <b-input
+                      v-model="income.total_income"
                       :value="
                         fixedTwoDecimal(
                           parseFloat(currentUser.income) +
@@ -209,20 +210,19 @@
                   <div class="message-body">
                     Sila ambil perhatian bahawa Akta Perlindungan Data Peribadi
                     2010 memberi anda hak tertentu ke atas penggunaan data
-                    peribadi anda oleh pihak kami. Kerajaan Negeri Selangor dan
-                    Pengurusan Air Selangor Sdn. Bhd. memberi keutamaan dalam
-                    hal melindungi data peribadi anda dan memastikan ianya
+                    peribadi anda oleh pihak kami. Program Kasih Ibu Smart
+                    Selangor dan SELCARE Management Sdn. Bhd. memberi keutamaan
+                    dalam hal melindungi data peribadi anda dan memastikan ianya
                     terpelihara dengan mengambil langkah tertentu seperti yang
-                    termaktub di dalam akta tersebut. Dengan mengemukakan dan
-                    menyediakan maklumat anda kepada kami di dalam borang
-                    pendaftaran ini, anda membenarkan penggunaan maklumat
-                    peribadi yang dikumpulkan untuk memberikan perkhidmatan
-                    kami, mengikut cara dan tujuan yang dinyatakan dalam nota
-                    privasi kami. Sila rujuk nota privasi di laman sesawang
-                    <a href="https://www.airselangor.com" target="_blank"
-                      >www.airselangor.com</a
-                    >
-                    .
+                    termaktub di dalam akta tersebut. Maklumat lanjut berkenaan
+                    kenapa, apa dan bagaimana pengumpulan maklumat dan
+                    penggunaannya dijelaskan didalam pernyataan privasi kami.
+                    Dengan mengemukakan dan menyediakan maklumat kepada kami di
+                    dalam borang pendaftaran ini, anda membenarkan penggunaan
+                    maklumat peribadi yang dikumpulkan untuk memberikan
+                    perkhidmatan kami, mengikut cara dan tujuan yang dinyatakan
+                    dalam nota privasi kami. Sila rujuk kepada nota privasi kami
+                    di laman web kiss.com.my untuk maklumat lanjut.
                   </div>
                 </article>
 
@@ -232,11 +232,10 @@
 
                 <article class="message is-warning">
                   <div class="message-body">
-                    Saya dengan ini mengakui bahawa segala maklumat yang
-                    dinyatakan di dalam Borang Permohonan ini adalah
-                    <strong>BENAR</strong> dan memberikan kebenaran kepada
-                    Kerajaan Negeri Selangor untuk membuat semakan data
-                    butir-butir peribadi saya bagi memproses permohonan ini.
+                    Saya mengaku bahawa segala maklumat di atas adalah
+                    <strong>BENAR</strong> . Sekiranya didapati
+                    <strong>TIDAK BENAR</strong> , Program Kasih Ibu Smart
+                    Selangor berhak menarik balik bantuan yang telah diluluskan.
                   </div>
                 </article>
 
@@ -286,6 +285,13 @@ export default {
     return {
       setuju1: null,
       setuju2: null,
+      spouse: {
+        employer_name: null,
+        employment_type: null
+      },
+      income: {
+        employer_name: null
+      },
       childrens: [],
       applicant: {
         address_1: null,
@@ -369,6 +375,10 @@ export default {
         .dispatch('ipr_application/create', {
           docket: {
             ipr_code: 'KISS',
+            data: {
+              childrens: this.childrens,
+              spouse: this.spouse
+            },
             residence: {
               meter_type: this.residence.meter_type,
               individual_meter_acc_no: this.residence.individual_meter_acc_no,
