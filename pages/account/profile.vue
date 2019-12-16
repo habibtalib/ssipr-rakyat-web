@@ -123,6 +123,7 @@ export default {
       this.$validator.validateAll().then(result => {
         if (result) {
           this.setIsLoading(true)
+          this.applicant.dob.setDate(this.applicant.dob.getDate() + 1)
           this.$store
             .dispatch('applicant/update', {
               applicant: this.applicant

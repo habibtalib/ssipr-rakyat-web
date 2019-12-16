@@ -117,6 +117,7 @@
                 <b-datepicker
                   v-model="applicant.dob"
                   v-validate="'required'"
+                  :date-formatter="dobFormatter"
                   icon="calendar-today"
                   name="applicantDob"
                 ></b-datepicker>
@@ -319,6 +320,7 @@
 </template>
 
 <script>
+// import moment from 'moment'
 import { mapGetters } from 'vuex'
 import SpousesFields from '~/components/account/forms/spouses.vue'
 import ChildrensFields from '~/components/account/forms/childs.vue'
@@ -353,6 +355,20 @@ export default {
     })
   },
   methods: {
+    formatDate(date) {
+      const d = new Date(date)
+      let month = '' + (d.getMonth() + 1)
+      let day = '' + d.getDate()
+      const year = d.getFullYear()
+
+      if (month.length < 2) month = '0' + month
+      if (day.length < 2) day = '0' + day
+
+      return [day, month, year].join('/')
+    },
+    dobFormatter(dt) {
+      return this.formatDate(dt)
+    },
     resetValue(field) {
       switch (field) {
         case 'marital_status':
