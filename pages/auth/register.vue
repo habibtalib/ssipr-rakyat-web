@@ -103,7 +103,6 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { Dialog } from 'buefy/dist/components/dialog'
 
 export default {
   layout: 'auth',
@@ -153,7 +152,7 @@ export default {
                   }
                 }
 
-                Dialog.alert({
+                this.$buefy.dialog.alert({
                   message: errors.join(', '),
                   type: 'is-danger',
                   hasIcon: true,
@@ -161,7 +160,7 @@ export default {
                   iconPack: 'fa'
                 })
               } else {
-                Dialog.alert({
+                this.$buefy.dialog.alert({
                   message:
                     'Pendaftaran akaun telah berjaya. Sila semak e-mel anda untuk membuat pengesahan pendaftaran.',
                   type: 'is-success',

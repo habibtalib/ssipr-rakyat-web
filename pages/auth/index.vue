@@ -35,8 +35,6 @@
 </template>
 
 <script>
-import { Dialog } from 'buefy/dist/components/dialog'
-
 export default {
   layout: 'auth',
   data() {
@@ -71,7 +69,7 @@ export default {
               }
             }
 
-            Dialog.alert({
+            this.$buefy.dialog.alert({
               message: errors.join(', '),
               type: 'is-danger',
               hasIcon: true,

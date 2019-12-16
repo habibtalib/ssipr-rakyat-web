@@ -272,7 +272,6 @@
 
 <script>
 import stepper from 'bulma-extensions/bulma-steps/dist/js/bulma-steps.js'
-import { Dialog } from 'buefy/dist/components/dialog'
 
 export default {
   data() {
@@ -365,7 +364,7 @@ export default {
         .then(res => {
           this.isLoading = false
           if (res.error) {
-            Dialog.alert('Maklumat tidak lengkap.')
+            this.$buefy.dialog.alert('Maklumat tidak lengkap.')
           } else {
             this.$router.push('/account')
           }

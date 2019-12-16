@@ -28,8 +28,6 @@
 </template>
 
 <script>
-import { Dialog } from 'buefy/dist/components/dialog'
-
 export default {
   layout: 'auth',
   components: {},
@@ -62,7 +60,7 @@ export default {
                   }
                 }
 
-                Dialog.alert({
+                this.$buefy.dialog.alert({
                   message: errors.join(', '),
                   type: 'is-danger',
                   hasIcon: true,
@@ -70,7 +68,7 @@ export default {
                   iconPack: 'fa'
                 })
               } else {
-                Dialog.alert({
+                this.$buefy.dialog.alert({
                   message:
                     'Permintaan untuk membuat tetapan semula kata laluan telah berjaya disahkan. Sila semak e-mel anda untuk langkah seterusnya.',
                   type: 'is-success',

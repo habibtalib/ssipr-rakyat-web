@@ -267,7 +267,6 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { Dialog } from 'buefy/dist/components/dialog'
 import FormSummary from '~/components/ipr/KISS/summary.vue'
 import PersonalFields from '~/components/ipr/KISS/personal.vue'
 import SpousesFields from '~/components/ipr/KISS/spouses.vue'
@@ -344,7 +343,7 @@ export default {
         if (result) {
           this.isSummaryModalActive = true
         } else {
-          Dialog.alert({
+          this.$buefy.dialog.alert({
             message: 'Maklumat tidak lengkap. Sila semak.',
             type: 'is-danger',
             hasIcon: true,
@@ -414,7 +413,7 @@ export default {
               }
             }
 
-            Dialog.alert({
+            this.$buefy.dialog.alert({
               message: errors.join(', '),
               type: 'is-danger',
               hasIcon: true,
@@ -422,7 +421,7 @@ export default {
               iconPack: 'fa'
             })
           } else {
-            Dialog.alert({
+            this.$buefy.dialog.alert({
               message: this.jmb_confirmation.jmb_email
                 ? 'Permohonan anda telah diterima dan sedang menunggu semakan daripada pihak JMB.'
                 : 'Permohonan anda telah diterima dan sedang diproses.',
