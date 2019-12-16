@@ -18,6 +18,10 @@ export default {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
+  server: {
+    port: process.env.PORT || 3001, // default: 3000
+    host: process.env.HOST || 'localhost' // default: localhost
+  },
   /*
    ** Customize the progress-bar color
    */
