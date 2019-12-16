@@ -3,6 +3,6 @@ import * as Sentry from '@sentry/browser'
 import * as Integrations from '@sentry/integrations'
 
 Sentry.init({
-  dsn: 'https://f34b00c59e5a491380c6df1001792552@sentry.io/1766485',
+  dsn: 'https://2b0fc92058b2403ea3966965499c8b60@sentry.io/1857681',
   integrations: [new Integrations.Vue({ Vue, attachProps: true })]
 })
