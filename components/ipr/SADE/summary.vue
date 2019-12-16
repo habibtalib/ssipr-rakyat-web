@@ -6,6 +6,13 @@
           <h1 class="title is-5">Rumusan Permohonan</h1>
         </div>
       </div>
+      <div class="columns">
+        <div class="column is-half">
+          <h4 class="title is-6">
+            Tarik Permohonan : {{ applicationDate | formatDate }}
+          </h4>
+        </div>
+      </div>
 
       <div class="columns">
         <div class="column is-full">
@@ -186,6 +193,7 @@
 </template>
 
 <script>
+import moment from 'moment'
 export default {
   props: {
     applicant: {
@@ -211,6 +219,11 @@ export default {
     totalSalaries: {
       type: Number,
       required: true
+    }
+  },
+  computed: {
+    applicationDate() {
+      return moment(Date.now()).format('DD/MM/YYYY')
     }
   }
 }
