@@ -19,7 +19,7 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
   server: {
-    port: process.env.PORT || 8081, // default: 3000
+    port: process.env.PORT || 3001, // default: 3000
     host: process.env.HOST || 'localhost' // default: localhost
   },
   /*
