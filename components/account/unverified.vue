@@ -49,7 +49,6 @@
 </template>
 
 <script>
-import { Dialog } from 'buefy/dist/components/dialog'
 import AccountForm from '~/components/account/form.vue'
 
 export default {
@@ -113,7 +112,7 @@ export default {
                   }
                 }
 
-                Dialog.alert({
+                this.$buefy.dialog.alert({
                   message: errors.join(', '),
                   type: 'is-danger',
                   hasIcon: true,
@@ -121,7 +120,7 @@ export default {
                   iconPack: 'fa'
                 })
               } else {
-                Dialog.alert({
+                this.$buefy.dialog.alert({
                   message: 'Maklumat profil berjaya dihantar untuk disemak.',
                   type: 'is-success',
                   hasIcon: true,
@@ -132,7 +131,7 @@ export default {
               }
             })
         } else {
-          Dialog.alert({
+          this.$buefy.dialog.alert({
             message: 'Maklumat tidak lengkap. Sila semak.',
             type: 'is-danger',
             hasIcon: true,
