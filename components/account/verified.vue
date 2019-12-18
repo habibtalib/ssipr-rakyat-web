@@ -8,7 +8,7 @@
               <b-icon icon="hands" pack="fas" size="is-medium"> </b-icon>
               <hr />
               <h4 class="dashb has-text-weight-light">
-                8 IPR Ditawarkan
+                1 IPR Ditawarkan
               </h4>
             </div>
           </div>
