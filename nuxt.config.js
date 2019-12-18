@@ -20,7 +20,7 @@ export default {
   },
   server: {
     port: process.env.PORT || 3001, // default: 3000
-    host: process.env.HOST || 'localhost' // default: localhost
+    host: process.env.HOST || '0.0.0.0' // default: localhost
   },
   /*
    ** Customize the progress-bar color
