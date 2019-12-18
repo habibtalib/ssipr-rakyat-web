@@ -79,7 +79,7 @@
     </div>
     <div class="columns">
       <div class="column">
-        <div v-for="(ipr, index) in iprList" :key="index">
+        <div v-for="(ipr, index) in iprList.slice(0, 1)" :key="index">
           <div
             v-if="!checkApplication(ipr, submittedApplications)"
             @click="openModal(ipr)"
@@ -187,6 +187,38 @@ export default {
       submittedApplications: this.currentUser.dockets,
       activeIPR: null,
       iprList: [
+        {
+          id: 'AIR_SELANGOR',
+          name: 'Skim Air Darul Ehsan',
+          requireForm: true,
+          formRoute: '/ipr/SADE',
+          available: true,
+          body:
+            '<p class="title is-5">Syarat Permohonan</p>' +
+            '  <ul>' +
+            '    <li>' +
+            '      Pemohon mestilah warganegara Malaysia dan menetap di Negeri' +
+            '      Selangor.' +
+            '    </li>' +
+            '    <li>' +
+            '      Pendapatan bulanan isi rumah RM4,000.00 dan ke bawah' +
+            '      (pendapatan suami dan isteri, tiada pasangan, atau bujang).' +
+            '    </li>' +
+            '    <li>' +
+            '      Premis kediaman adalah meter individu dan meter pukal' +
+            '      (Pangsapuri Kos Rendah)' +
+            '    </li>' +
+            '    <li>' +
+            '      Penghuni Pangsapuri Kos Rendah yang menerima bekalan air' +
+            '      melalui meter pukal perlu mendapat pengesahan Badan' +
+            '      Pengurusan Bersama (JMB) / Perbadanan Pengurusan (MC)' +
+            '    </li>' +
+            '    <li>' +
+            '      Pemohon hanya layak memohon satu akaun/premis sahaja' +
+            '    </li>' +
+            '  </ul>',
+          img: '_nuxt/assets/img/SADE_banner.jpg'
+        },
         {
           id: 'SPS',
           name: 'Skim Peduli Sihat (SPS)',
@@ -370,38 +402,6 @@ export default {
             '      atau tersenarai sebagai golongan miskin atau miskin tegar di pengkalan data eKasih.' +
             '    </li>' +
             '  </ul>'
-        },
-        {
-          id: 'AIR_SELANGOR',
-          name: 'Skim Air Darul Ehsan',
-          requireForm: true,
-          formRoute: '/ipr/SADE',
-          available: true,
-          body:
-            '<p class="title is-5">Syarat Permohonan</p>' +
-            '  <ul>' +
-            '    <li>' +
-            '      Pemohon mestilah warganegara Malaysia dan menetap di Negeri' +
-            '      Selangor.' +
-            '    </li>' +
-            '    <li>' +
-            '      Pendapatan bulanan isi rumah RM4,000.00 dan ke bawah' +
-            '      (pendapatan suami dan isteri, tiada pasangan, atau bujang).' +
-            '    </li>' +
-            '    <li>' +
-            '      Premis kediaman adalah meter individu dan meter pukal' +
-            '      (Pangsapuri Kos Rendah)' +
-            '    </li>' +
-            '    <li>' +
-            '      Penghuni Pangsapuri Kos Rendah yang menerima bekalan air' +
-            '      melalui meter pukal perlu mendapat pengesahan Badan' +
-            '      Pengurusan Bersama (JMB) / Perbadanan Pengurusan (MC)' +
-            '    </li>' +
-            '    <li>' +
-            '      Pemohon hanya layak memohon satu akaun/premis sahaja' +
-            '    </li>' +
-            '  </ul>',
-          img: '_nuxt/assets/img/SADE_banner.jpg'
         }
       ]
     }
