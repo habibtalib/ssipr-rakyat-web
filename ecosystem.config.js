@@ -31,7 +31,7 @@ module.exports = {
       user: 'deploy',
       host: '13.251.234.31',
       ref: 'origin/master',
-      repo: 'git@github.com:habibtalib/ssipr-rakyat-web.git',
+      repo: 'git@github.com:smarttechtank/ssipr-rakyat-web.git',
       path: '/home/deploy/apps/ipr_web',
       ssh_options: 'ForwardAgent=yes',
       'post-deploy':
