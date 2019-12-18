@@ -107,11 +107,7 @@
           <div class="card">
             <div class="card-image">
               <figure class="image">
-                <img
-                  v-if="activeIPR && activeIPR.img"
-                  :src="activeIPR.img"
-                  alt="Image"
-                />
+                <img src="~assets/img/SADE_banner.jpg" alt="Image" />
               </figure>
             </div>
             <div v-if="activeIPR" class="card-content">
