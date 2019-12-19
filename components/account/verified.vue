@@ -170,6 +170,7 @@
 </template>
 
 <script>
+import { Dialog } from 'buefy/dist/components/dialog'
 export default {
   props: {
     currentUser: {
@@ -454,7 +455,7 @@ export default {
               }
             }
 
-            this.$buefy.dialog.alert({
+            Dialog.alert({
               message: errors.join(', '),
               type: 'is-danger',
               hasIcon: true,
@@ -462,7 +463,7 @@ export default {
               iconPack: 'fa'
             })
           } else {
-            this.$buefy.dialog.alert({
+            Dialog.alert({
               message: 'Permohonan anda telah diterima dan sedang diproses.',
               type: 'is-success',
               hasIcon: true,

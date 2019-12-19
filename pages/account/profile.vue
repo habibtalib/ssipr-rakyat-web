@@ -68,6 +68,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { Dialog } from 'buefy/dist/components/dialog'
 import AccountForm from '~/components/account/form.vue'
 
 export default {
@@ -145,7 +146,7 @@ export default {
                   }
                 }
 
-                this.$buefy.dialog.alert({
+                Dialog.alert({
                   message: errors.join(', '),
                   type: 'is-danger',
                   hasIcon: true,
@@ -153,7 +154,7 @@ export default {
                   iconPack: 'fa'
                 })
               } else {
-                this.$buefy.dialog.alert({
+                Dialog.alert({
                   message: 'Maklumat profil berjaya dikemaskini.',
                   type: 'is-success',
                   hasIcon: true,
@@ -165,7 +166,7 @@ export default {
               }
             })
         } else {
-          this.$buefy.dialog.alert({
+          Dialog.alert({
             message: 'Maklumat tidak lengkap. Sila semak.',
             type: 'is-danger',
             hasIcon: true,
