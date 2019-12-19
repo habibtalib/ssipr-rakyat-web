@@ -79,7 +79,7 @@
     </div>
     <div class="columns">
       <div class="column">
-        <div v-for="(ipr, index) in iprList.slice(0, 1)" :key="index">
+        <div v-for="(ipr, index) in iprList" :key="index">
           <div
             v-if="!checkApplication(ipr, submittedApplications)"
             @click="openModal(ipr)"
