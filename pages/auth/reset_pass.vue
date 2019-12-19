@@ -45,6 +45,8 @@
 </template>
 
 <script>
+import { Dialog } from 'buefy/dist/components/dialog'
+
 export default {
   layout: 'auth',
   components: {},
@@ -82,7 +84,7 @@ export default {
                   }
                 }
 
-                this.$buefy.dialog.alert({
+                Dialog.alert({
                   message: errors.join(', '),
                   type: 'is-danger',
                   hasIcon: true,
@@ -90,7 +92,7 @@ export default {
                   iconPack: 'fa'
                 })
               } else {
-                this.$buefy.dialog.alert({
+                Dialog.alert({
                   message: 'Kata Laluan telah berjaya dikemas kini.',
                   type: 'is-success',
                   hasIcon: true,
