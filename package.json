@@ -24,7 +24,7 @@
     "jwt-decode": "^2.2.0",
     "moment": "^2.24.0",
     "nuxt": "^2.0.0",
-    "nuxt-buefy": "^0.3.2",
+    "nuxt-buefy": "0.3.2",
     "nuxt-i18n": "^5.12.5",
     "vee-validate": "^2.2.11"
   },
