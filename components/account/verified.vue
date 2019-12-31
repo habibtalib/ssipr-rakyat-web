@@ -107,12 +107,12 @@
           <div class="card">
             <div class="card-image">
               <figure class="image">
-                <img src="~assets/img/SADE_banner.jpg" alt="Image" />
+                <img src="~assets/img/PopupBanner_31.12.png" alt="Image" />
               </figure>
             </div>
             <div v-if="activeIPR" class="card-content">
               <div class="content" style="max-height: 300px; overflow: auto;">
-                <span v-html="activeIPR.body"></span>
+                <!-- <span v-html="activeIPR.body"></span> -->
               </div>
             </div>
             <footer class="card-footer">
@@ -127,12 +127,12 @@
                 to="/ipr/SADE"
               >
               </nuxt-link> -->
-              <a
+              <!-- <a
                 v-if="activeIPR && activeIPR.available"
                 class="card-footer-item"
                 @click="apply(activeIPR)"
                 >Mohon</a
-              >
+              > -->
             </footer>
           </div>
         </b-modal>
