@@ -8,7 +8,7 @@
               <b-icon icon="hands" pack="fas" size="is-medium"> </b-icon>
               <hr />
               <h4 class="dashb has-text-weight-light">
-                1 IPR Ditawarkan
+                8 IPR Ditawarkan
               </h4>
             </div>
           </div>
@@ -79,7 +79,7 @@
     </div>
     <div class="columns">
       <div class="column">
-        <div v-for="(ipr, index) in iprList.slice(0, 1)" :key="index">
+        <div v-for="(ipr, index) in iprList" :key="index">
           <div
             v-if="!checkApplication(ipr, submittedApplications)"
             @click="openModal(ipr)"
@@ -107,12 +107,16 @@
           <div class="card">
             <div class="card-image">
               <figure class="image">
-                <img src="~assets/img/PopupBanner_31.12.png" alt="Image" />
+                <img
+                  v-if="activeIPR && activeIPR.id === AIR_SELANGOR"
+                  src="~assets/img/PopupBanner_31.12.png"
+                  alt="Image"
+                />
               </figure>
             </div>
             <div v-if="activeIPR" class="card-content">
               <div class="content" style="max-height: 300px; overflow: auto;">
-                <!-- <span v-html="activeIPR.body"></span> -->
+                <span v-html="activeIPR.body"></span>
               </div>
             </div>
             <footer class="card-footer">
@@ -127,12 +131,12 @@
                 to="/ipr/SADE"
               >
               </nuxt-link> -->
-              <!-- <a
+              <a
                 v-if="activeIPR && activeIPR.available"
                 class="card-footer-item"
                 @click="apply(activeIPR)"
                 >Mohon</a
-              > -->
+              >
             </footer>
           </div>
         </b-modal>
