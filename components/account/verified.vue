@@ -107,7 +107,11 @@
           <div class="card">
             <div class="card-image">
               <figure class="image">
-                <img src="~assets/img/SADE_banner.jpg" alt="Image" />
+                <img
+                  v-if="activeIPR && activeIPR.id === 'AIR_SELANGOR'"
+                  src="~assets/img/SADE_banner.jpg"
+                  alt="Image"
+                />
               </figure>
             </div>
             <div v-if="activeIPR" class="card-content">
