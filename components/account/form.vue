@@ -7,6 +7,9 @@
       <div class="message-body has-background-white">
         <div class="columns">
           <div class="column is-half">
+            <b-field label="Nama">
+              <b-input v-model="applicant.name"></b-input>
+            </b-field>
             <b-field
               :label="$t('f.gender')"
               :type="{ 'is-danger': errors.has('applicantGender') }"
