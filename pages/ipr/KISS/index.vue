@@ -239,7 +239,7 @@
                       <a
                         v-if="i != 0"
                         class="button is-warning"
-                        @click="removeChildren(children)"
+                        @click="removeChild(children)"
                       >
                         Padam
                       </a>
