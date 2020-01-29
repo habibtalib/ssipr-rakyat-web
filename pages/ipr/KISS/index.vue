@@ -34,7 +34,14 @@
             <div class="columns">
               <div class="column is-4">
                 <b-field label="Jenis Pekerjaan">
-                  <b-inpu v-model="income.employment_type"></b-inpu>
+                  <!-- <b-input v-model="income.employment_type"></b-input> -->
+                  <b-select model="income.employment_type">
+                    <option value="Sektor Kerajaan">Sektor Kerajaan</option>
+                    <option value="Sektor Swasta">Sektor Swasta</option>
+                    <option value="Bekerja Sendiri">Bekerja Sendiri</option>
+                    <option value="Pesara">Pesara</option>
+                    <option value="Tidak Bekerja">Tidak Bekerja</option>
+                  </b-select>
                 </b-field>
               </div>
               <div class="column is-4">
@@ -69,7 +76,14 @@
             <div class="columns">
               <div class="column is-4">
                 <b-field label="Jenis Pekerjaan">
-                  <b-input v-model="spouse.employment_type"></b-input>
+                  <!-- <b-input v-model="spouse.employment_type"></b-input> -->
+                  <b-select model="spouse.employment_type">
+                    <option value="Sektor Kerajaan">Sektor Kerajaan</option>
+                    <option value="Sektor Swasta">Sektor Swasta</option>
+                    <option value="Bekerja Sendiri">Bekerja Sendiri</option>
+                    <option value="Pesara">Pesara</option>
+                    <option value="Tidak Bekerja">Tidak Bekerja</option>
+                  </b-select>
                 </b-field>
               </div>
               <div class="column is-4">
@@ -114,8 +128,129 @@
                 >
               </div>
             </div>
-            <fieldset v-for="child in childrens" :key="child.idx">
-              <div class="columns">
+            <fieldset>
+              <table class="table is-fullwidth is-bordered">
+                <thead>
+                  <tr>
+                    <th>Nama Penuh</th>
+                    <th>No KP/Sijil Kelahir</th>
+                    <th>Hubungan</th>
+                    <th>Umur</th>
+                    <th>Pendapatan Bulanan (RM) jika ada</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(children, i) in childrens" :key="children.idx">
+                    <td>
+                      <b-field
+                        :type="{
+                          'is-danger': errors.has(`Nama Penuh ${children.idx}`)
+                        }"
+                        :message="errors.first(`Nama Penuh ${children.idx}`)"
+                      >
+                        <b-input
+                          v-model="children.name"
+                          v-validate="'required|alpha_num'"
+                          :name="`Nama Penuh ${children.idx}`"
+                        ></b-input>
+                      </b-field>
+                    </td>
+                    <td>
+                      <b-field
+                        :type="{
+                          'is-danger': errors.has(
+                            `No KP/Sijil Kelahir ${children.idx}`
+                          )
+                        }"
+                        :message="
+                          errors.first(`No KP/Sijil Kelahir ${children.idx}`)
+                        "
+                      >
+                        <b-input
+                          v-model="children.ic"
+                          v-validate="{
+                            required: true,
+                            regex: /^[ A-Za-z@'/-]*$/
+                          }"
+                          :name="`No KP/Sijil Kelahir ${children.idx}`"
+                        ></b-input>
+                      </b-field>
+                    </td>
+                    <td>
+                      <b-field
+                        :type="{
+                          'is-danger': errors.has(`Hubungan ${children.idx}`)
+                        }"
+                        :message="errors.first(`Hubungan ${children.idx}`)"
+                      >
+                        <b-input
+                          v-model="children.email"
+                          v-validate="{
+                            required: true,
+                            regex: /^[ A-Za-z@'/-]*$/
+                          }"
+                          :name="`Hubungan ${children.idx}`"
+                        ></b-input>
+                      </b-field>
+                    </td>
+                    <td>
+                      <b-field
+                        :type="{
+                          'is-danger': errors.has(
+                            `${$t('f.spouseTeleNo')} ${children.idx}`
+                          )
+                        }"
+                        :message="
+                          errors.first(`
+                          ${$t('f.spouseTeleNo')} ${children.idx}`)
+                        "
+                      >
+                        <b-input
+                          v-model="children.tele_no"
+                          v-validate="'numeric'"
+                          :name="`${$t('f.spouseTeleNo')} ${children.idx}`"
+                          placeholder="0123456789"
+                        ></b-input>
+                      </b-field>
+                    </td>
+                    <td>
+                      <b-field
+                        :type="{
+                          'is-danger': errors.has(
+                            `${$t('f.spouseIncome')} ${children.idx}`
+                          )
+                        }"
+                        :message="
+                          errors.first(`
+                          ${$t('f.spouseIncome')} ${children.idx}`)
+                        "
+                      >
+                        <b-input
+                          v-model="children.income"
+                          v-validate="'required|decimal:2|min_value:0'"
+                          :name="`${$t('f.spouseIncome')} ${children.idx}`"
+                          step="0.01"
+                          type="number"
+                        ></b-input>
+                      </b-field>
+                    </td>
+                    <td class="has-text-centered">
+                      <a
+                        v-if="i != 0"
+                        class="button is-warning"
+                        @click="removeChildren(children)"
+                      >
+                        Padam
+                      </a>
+                      <a v-else class="button is-warning" disabled>
+                        Padam
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <!-- <div class="columns">
                 <div class="column is-4">
                   <b-field label="Nama Penuh">
                     <b-input v-model="child.name"></b-input>
@@ -143,7 +278,7 @@
                     <b-input v-model="child.income"></b-input>
                   </b-field>
                 </div>
-              </div>
+              </div> -->
             </fieldset>
           </div>
         </article>
@@ -153,7 +288,7 @@
             <p>Jumlah Pendapatan Keseluruhan Isi Rumah</p>
           </div>
           <div class="message-body has-background-white">
-            <fieldse>
+            <fieldset>
               <div class="columns">
                 <div class="column is-4">
                   <b-field label="Jumlah Pendapatan (RM)">
@@ -169,7 +304,7 @@
                   </b-field>
                 </div>
               </div>
-            </fieldse>
+            </fieldset>
           </div>
         </article>
 

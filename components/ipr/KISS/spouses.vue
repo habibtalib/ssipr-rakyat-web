@@ -43,10 +43,23 @@
               <b-input v-model="spouse.tempoh_tinggal"></b-input>
             </b-field>
             <b-field label="Warganegara">
-              <b-input v-model="spouse.citizen"></b-input>
+              <!-- <b-input v-model="spouse.citizen"></b-input> -->
+              <b-select model="spouse.citizen">
+                <option value="Ya">Ya</option>
+                <option value="Tidak">Tidak</option>
+              </b-select>
             </b-field>
             <b-field label="Bangsa">
-              <b-input v-model="spouse.tempoh_tinggal"></b-input>
+              <!-- <b-input v-model="spouse.race"></b-input> -->
+              <b-select model="spouse.race">
+                <option value="Melayu">Melayu</option>
+                <option value="Cina">Cina</option>
+                <option value="India">India</option>
+                <option value="Others">Lain-lain</option>
+              </b-select>
+            </b-field>
+            <b-field v-show="spouse.race === 'Others'" label="Sila nyatakan">
+              <b-input v-model="spouse.race"></b-input>
             </b-field>
           </div>
         </div>
@@ -66,7 +79,6 @@ export default {
   },
   computed: {
     ...mapGetters({
-      currentUser: 'applicant/currentUser',
       genders: 'lookup/genders',
       religions: 'lookup/religions',
       maritalStatuses: 'lookup/maritalStatuses',
