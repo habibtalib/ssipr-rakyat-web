@@ -18,6 +18,13 @@
             <b-field :label="$t('f.email')">
               <b-input :value="currentUser.email" disabled></b-input>
             </b-field>
+            <b-field label="Warganegara">
+              <!-- <b-input v-model="currentUser.citizen"></b-input> -->
+              <b-select model="currentUser.citizen" required>
+                <option value="Ya">Ya</option>
+                <option value="Tidak">Tidak</option>
+              </b-select>
+            </b-field>
           </div>
           <div class="column is-half">
             <b-field :label="$t('f.maritalStatus')">
@@ -31,16 +38,9 @@
             <b-field :label="$t('f.pNo')">
               <b-input :value="currentUser.phone_no" disabled></b-input>
             </b-field>
-            <b-field label="Warganegara">
-              <!-- <b-input v-model="currentUser.citizen"></b-input> -->
-              <b-select model="currentUser.citizen">
-                <option value="Ya">Ya</option>
-                <option value="Tidak">Tidak</option>
-              </b-select>
-            </b-field>
             <b-field label="Bangsa">
               <!-- <b-input v-model="spouse.race"></b-input> -->
-              <b-select model="currentUser.race">
+              <b-select model="currentUser.race" required>
                 <option value="Melayu">Melayu</option>
                 <option value="Cina">Cina</option>
                 <option value="India">India</option>
@@ -57,7 +57,7 @@
         </div>
       </fieldset>
       <br />
-      <div class="columns">
+      <!-- <div class="columns">
         <div v-if="residence.meter_type == 'individu'" class="column is-half">
           <p class="help has-text-primary is-size-6">
             * 10 digit no. akaun air seperti yang tertera di dalam bil air
@@ -87,7 +87,7 @@
             ></b-input>
           </b-field>
         </div>
-      </div>
+      </div> -->
     </div>
   </article>
 </template>

@@ -8,6 +8,26 @@
       <br />
 
       <form @submit.prevent="finalize()">
+        <article class="message is-dark">
+          <div class="message-header">
+            <p>Maklumat ADUN</p>
+          </div>
+          <div class="message-body has-background-white">
+            <div class="columns">
+              <div class="column is-4">
+                <b-field
+                  label="Pejabat Ahli Dewan Negeri atau Pejabat Penyelaras Ahli Dewan Negeri"
+                >
+                  <!-- <b-input v-model="spouse.employment_type"></b-input> -->
+                  <b-select v-model="currentUser.adun" required>
+                    <option value="Hulu Langat">Hulu Langat</option>
+                  </b-select>
+                </b-field>
+              </div>
+            </div>
+          </div>
+        </article>
+
         <personal-fields
           :current-user="currentUser"
           :residence="residence"
@@ -77,7 +97,7 @@
               <div class="column is-4">
                 <b-field label="Jenis Pekerjaan">
                   <!-- <b-input v-model="spouse.employment_type"></b-input> -->
-                  <b-select model="spouse.employment_type">
+                  <b-select v-model="spouse.employment_type" required>
                     <option value="Sektor Kerajaan">Sektor Kerajaan</option>
                     <option value="Sektor Swasta">Sektor Swasta</option>
                     <option value="Bekerja Sendiri">Bekerja Sendiri</option>
@@ -88,26 +108,19 @@
               </div>
               <div class="column is-4">
                 <b-field label="Nama Majikan">
-                  <b-input v-model="spouse.employer_name"></b-input>
+                  <b-input v-model="spouse.employer_name" required></b-input>
                 </b-field>
               </div>
               <div class="column is-4">
                 <b-field label="No Telefon Majikan">
-                  <b-input v-model="spouse.employer_phone"></b-input>
+                  <b-input v-model="spouse.employer_phone" required></b-input>
                 </b-field>
               </div>
             </div>
             <div class="columns">
               <div class="column is-4">
                 <b-field label="Jumlah Pendapatan">
-                  <b-input
-                    disabled
-                    :value="
-                      fixedTwoDecimal(
-                        sumSpousesSalaries(currentUser.spouses, 'income')
-                      )
-                    "
-                  ></b-input>
+                  <b-input v-model="spouse.income" required></b-input>
                 </b-field>
               </div>
             </div>
@@ -170,8 +183,7 @@
                         <b-input
                           v-model="children.ic"
                           v-validate="{
-                            required: true,
-                            regex: /^[ A-Za-z@'/-]*$/
+                            required: true
                           }"
                           :name="`No KP/Sijil Kelahir ${children.idx}`"
                         ></b-input>
@@ -197,39 +209,32 @@
                     <td>
                       <b-field
                         :type="{
-                          'is-danger': errors.has(
-                            `${$t('f.spouseTeleNo')} ${children.idx}`
-                          )
+                          'is-danger': errors.has(`Umur ${children.idx}`)
                         }"
-                        :message="
-                          errors.first(`
-                          ${$t('f.spouseTeleNo')} ${children.idx}`)
-                        "
+                        :message="errors.first(`Umur ${children.idx}`)"
                       >
                         <b-input
                           v-model="children.tele_no"
                           v-validate="'numeric'"
-                          :name="`${$t('f.spouseTeleNo')} ${children.idx}`"
-                          placeholder="0123456789"
+                          :name="`Umur ${children.idx}`"
+                          placeholder="18"
                         ></b-input>
                       </b-field>
                     </td>
                     <td>
                       <b-field
                         :type="{
-                          'is-danger': errors.has(
-                            `${$t('f.spouseIncome')} ${children.idx}`
-                          )
+                          'is-danger': errors.has(`Pendapatan ${children.idx}`)
                         }"
                         :message="
                           errors.first(`
-                          ${$t('f.spouseIncome')} ${children.idx}`)
+                          Pendapatan ${children.idx}`)
                         "
                       >
                         <b-input
                           v-model="children.income"
                           v-validate="'required|decimal:2|min_value:0'"
-                          :name="`${$t('f.spouseIncome')} ${children.idx}`"
+                          :name="`Pendapatan ${children.idx}`"
                           step="0.01"
                           type="number"
                         ></b-input>
@@ -297,9 +302,10 @@
                       :value="
                         fixedTwoDecimal(
                           parseFloat(currentUser.income) +
-                            sumSpousesSalaries(currentUser.spouses, 'income')
+                            parseFloat(spouse.income)
                         )
                       "
+                      disabled
                     ></b-input>
                   </b-field>
                 </div>
@@ -326,15 +332,10 @@
                   :applicant="applicant"
                   :jmb-confirmation="jmb_confirmation"
                   :residence="residence"
-                  :total-spouses-salaries="
-                    fixedTwoDecimal(
-                      sumSpousesSalaries(currentUser.spouses, 'income')
-                    )
-                  "
+                  :total-spouses-salaries="spouse.income"
                   :total-salaries="
                     fixedTwoDecimal(
-                      parseFloat(currentUser.income) +
-                        sumSpousesSalaries(currentUser.spouses, 'income')
+                      parseFloat(currentUser.income) + parseFloat(spouse.income)
                     )
                   "
                 ></form-summary>
@@ -422,7 +423,8 @@ export default {
       setuju2: null,
       spouse: {
         employer_name: null,
-        employment_type: null
+        employment_type: null,
+        income: null
       },
       income: {
         employer_name: null
