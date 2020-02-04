@@ -24,23 +24,16 @@
                 {{ currentUser.name }}
               </b-field>
 
+              <b-field label="Jantina">
+                {{ currentUser.gender }}
+              </b-field>
+
               <b-field :label="$t('f.all_id')">
                 {{ currentUser.ic }}
               </b-field>
 
               <b-field :label="$t('f.email')">
                 {{ currentUser.email }}
-              </b-field>
-
-              <b-field :label="$t('f.meterType')">
-                {{ residence.meter_type }}
-              </b-field>
-
-              <b-field
-                v-if="residence.meter_type == 'individu'"
-                :label="$t('f.waterAccNo')"
-              >
-                {{ residence.individual_meter_acc_no }}
               </b-field>
             </div>
             <div class="column is-half">
@@ -54,6 +47,10 @@
 
               <b-field :label="$t('f.pNo')">
                 {{ currentUser.phone_no }}
+              </b-field>
+
+              <b-field :label="$t('f.hNo')">
+                {{ currentUser.home_no }}
               </b-field>
             </div>
           </div>
@@ -143,10 +140,6 @@
 
           <div class="columns">
             <div class="column is-full">
-              <b-field :label="$t('f.premisOwnershipStatus')">
-                {{ residence.ownership_status }}
-              </b-field>
-
               <b-field :label="other_district">
                 {{
                   [
