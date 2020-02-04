@@ -1,7 +1,7 @@
 <template>
   <article class="message is-dark">
     <div class="message-header">
-      <p>Maklumat Suami</p>
+      <p>MAKLUMAT SUAMI</p>
     </div>
     <div class="message-body has-background-white">
       <fieldset v-for="spouse in currentUser.spouses" :key="spouse.idx">

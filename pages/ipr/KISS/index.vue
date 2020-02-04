@@ -34,21 +34,21 @@
           :reset-value="resetValue"
         ></personal-fields>
 
-        <residence-fields
-          :current-user="currentUser"
-          :residence="residence"
-          :applicant="applicant"
-        ></residence-fields>
-
         <spouses-fields
           v-if="currentUser.marital_status == 'Berkahwin'"
           :current-user="currentUser"
           :residence="residence"
         ></spouses-fields>
 
+        <residence-fields
+          :current-user="currentUser"
+          :residence="residence"
+          :applicant="applicant"
+        ></residence-fields>
+
         <article class="message is-dark">
           <div class="message-header">
-            <p>Maklumat Pendapatan</p>
+            <p>MAKLUMAT PENDAPATAN PEMOHON</p>
           </div>
           <div class="message-body has-background-white">
             <div class="columns">
@@ -90,7 +90,7 @@
 
         <article class="message is-dark">
           <div class="message-header">
-            <p>Maklumat Pendapatan Suami</p>
+            <p>MAKLUMAT PENDAPATAN SUAMI</p>
           </div>
           <div class="message-body has-background-white">
             <div class="columns">
@@ -130,7 +130,7 @@
         <article class="message is-dark">
           <div class="message-header">
             <p>
-              MAKLUMAT ANAK-ANAK/TANGGUNGAN (berumur kurang daripada 21 tahun)
+              MAKLUMAT ANAK-ANAK/TANGGUNGAN (berumur kurang daripada 21 Tahun)
             </p>
           </div>
           <div class="message-body has-background-white">
@@ -290,7 +290,7 @@
 
         <article class="message is-dark">
           <div class="message-header">
-            <p>Jumlah Pendapatan Keseluruhan Isi Rumah</p>
+            <p>JUMLAH PENDAPATAN KESELURUHAN ISI RUMAH (RM)</p>
           </div>
           <div class="message-body has-background-white">
             <fieldset>

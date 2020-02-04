@@ -1,7 +1,7 @@
 <template>
   <article class="message is-dark">
     <div class="message-header">
-      <p>Maklumat Peribadi</p>
+      <p>MAKLUMAT PEMOHON</p>
     </div>
     <div class="message-body has-background-white">
       <fieldset>
@@ -11,6 +11,17 @@
               <b-input :value="currentUser.name" disabled></b-input>
             </b-field>
 
+            <b-field label="Jantina">
+              <div class="block">
+                <b-radio v-model="currentUser.gender" native-value="lelaki">
+                  Lelaki
+                </b-radio>
+                <b-radio v-model="currentUser.gender" native-value="perempuan">
+                  Perempuan
+                </b-radio>
+              </div>
+            </b-field>
+
             <b-field :label="$t('f.all_id_wo_passport')">
               <b-input :value="currentUser.ic" disabled></b-input>
             </b-field>
@@ -18,6 +29,15 @@
             <b-field :label="$t('f.email')">
               <b-input :value="currentUser.email" disabled></b-input>
             </b-field>
+            <b-field label="Tarikh Lahir">
+              <b-datepicker v-model="dob" icon="calendar-today"></b-datepicker>
+            </b-field>
+
+            <b-field label="Tempat Lahir">
+              <b-input v-model="currentUser.pob"></b-input>
+            </b-field>
+          </div>
+          <div class="column is-half">
             <b-field label="Warganegara">
               <!-- <b-input v-model="currentUser.citizen"></b-input> -->
               <b-select model="currentUser.citizen" required>
@@ -25,8 +45,15 @@
                 <option value="Tidak">Tidak</option>
               </b-select>
             </b-field>
-          </div>
-          <div class="column is-half">
+            <b-field label="Bangsa">
+              <!-- <b-input v-model="spouse.race"></b-input> -->
+              <b-select model="currentUser.race" required>
+                <option value="Melayu">Melayu</option>
+                <option value="Cina">Cina</option>
+                <option value="India">India</option>
+                <option value="Others">Lain-lain</option>
+              </b-select>
+            </b-field>
             <b-field :label="$t('f.maritalStatus')">
               <b-input :value="currentUser.marital_status" disabled></b-input>
             </b-field>
@@ -38,14 +65,8 @@
             <b-field :label="$t('f.pNo')">
               <b-input :value="currentUser.phone_no" disabled></b-input>
             </b-field>
-            <b-field label="Bangsa">
-              <!-- <b-input v-model="spouse.race"></b-input> -->
-              <b-select model="currentUser.race" required>
-                <option value="Melayu">Melayu</option>
-                <option value="Cina">Cina</option>
-                <option value="India">India</option>
-                <option value="Others">Lain-lain</option>
-              </b-select>
+            <b-field label="No Telefon Rumah">
+              <b-input :value="currentUser.home_no" disabled></b-input>
             </b-field>
             <b-field
               v-show="currentUser.race === 'Others'"
@@ -109,6 +130,11 @@ export default {
     resetValue: {
       type: Function,
       required: true
+    }
+  },
+  data() {
+    return {
+      dob: new Date(this.currentUser.dob)
     }
   }
 }

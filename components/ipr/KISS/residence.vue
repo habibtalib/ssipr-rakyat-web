@@ -1,7 +1,7 @@
 <template>
   <article class="message is-dark">
     <div class="message-header">
-      <p>Maklumat Tempat Tinggal</p>
+      <p>MAKLUMAT TEMPAT TINGGAL</p>
     </div>
     <div class="message-body has-background-white">
       <fieldset disabled>
