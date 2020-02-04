@@ -55,7 +55,7 @@
               <div class="column is-4">
                 <b-field label="Jenis Pekerjaan">
                   <!-- <b-input v-model="income.employment_type"></b-input> -->
-                  <b-select model="income.employment_type">
+                  <b-select v-model="income.employment_type">
                     <option value="Sektor Kerajaan">Sektor Kerajaan</option>
                     <option value="Sektor Swasta">Sektor Swasta</option>
                     <option value="Bekerja Sendiri">Bekerja Sendiri</option>
@@ -66,12 +66,26 @@
               </div>
               <div class="column is-4">
                 <b-field label="Nama Majikan">
-                  <b-input v-model="income.employer_name"></b-input>
+                  <b-input
+                    v-model="income.employer_name"
+                    :disabled="
+                      income.employment_type === 'Tidak Bekerja' ||
+                        income.employment_type === 'Pesara' ||
+                        income.employment_type === 'Bekerja Sendiri'
+                    "
+                  ></b-input>
                 </b-field>
               </div>
               <div class="column is-4">
                 <b-field label="No Telefon Majikan">
-                  <b-input v-model="income.employer_phone"></b-input>
+                  <b-input
+                    v-model="income.employer_phone"
+                    :disabled="
+                      income.employment_type === 'Tidak Bekerja' ||
+                        income.employment_type === 'Pesara' ||
+                        income.employment_type === 'Bekerja Sendiri'
+                    "
+                  ></b-input>
                 </b-field>
               </div>
             </div>
@@ -108,12 +122,26 @@
               </div>
               <div class="column is-4">
                 <b-field label="Nama Majikan">
-                  <b-input v-model="spouse.employer_name" required></b-input>
+                  <b-input
+                    v-model="spouse.employer_name"
+                    :disabled="
+                      spouse.employment_type === 'Tidak Bekerja' ||
+                        spouse.employment_type === 'Pesara' ||
+                        spouse.employment_type === 'Bekerja Sendiri'
+                    "
+                  ></b-input>
                 </b-field>
               </div>
               <div class="column is-4">
                 <b-field label="No Telefon Majikan">
-                  <b-input v-model="spouse.employer_phone" required></b-input>
+                  <b-input
+                    v-model="spouse.employer_phone"
+                    :disabled="
+                      spouse.employment_type === 'Tidak Bekerja' ||
+                        spouse.employment_type === 'Pesara' ||
+                        spouse.employment_type === 'Bekerja Sendiri'
+                    "
+                  ></b-input>
                 </b-field>
               </div>
             </div>
@@ -141,12 +169,12 @@
                 >
               </div>
             </div>
-            <fieldset>
+            <fieldset v-if="childrens.length > 0">
               <table class="table is-fullwidth is-bordered">
                 <thead>
                   <tr>
                     <th>Nama Penuh</th>
-                    <th>No KP/Sijil Kelahir</th>
+                    <th>No KP/Sijil Kelahiran</th>
                     <th>Hubungan</th>
                     <th>Umur</th>
                     <th>Pendapatan Bulanan (RM) jika ada</th>
