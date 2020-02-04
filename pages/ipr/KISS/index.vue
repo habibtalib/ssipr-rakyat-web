@@ -19,7 +19,7 @@
                   label="Pejabat Ahli Dewan Negeri atau Pejabat Penyelaras Ahli Dewan Negeri"
                 >
                   <!-- <b-input v-model="spouse.employment_type"></b-input> -->
-                  <b-select v-model="currentUser.adun" required>
+                  <b-select v-model="adun">
                     <option value="Hulu Langat">Hulu Langat</option>
                   </b-select>
                 </b-field>
@@ -29,19 +29,19 @@
         </article>
 
         <personal-fields
-          :current-user="currentUser"
+          :current-user="applicant"
           :residence="residence"
           :reset-value="resetValue"
         ></personal-fields>
 
         <spouses-fields
-          v-if="currentUser.marital_status == 'Berkahwin'"
-          :current-user="currentUser"
+          v-if="applicant.marital_status == 'Berkahwin'"
+          :current-user="applicant"
           :residence="residence"
         ></spouses-fields>
 
         <residence-fields
-          :current-user="currentUser"
+          :current-user="applicant"
           :residence="residence"
           :applicant="applicant"
         ></residence-fields>
@@ -94,7 +94,7 @@
                 <b-field label="Jumlah Pendapatan Pemohon">
                   <b-input
                     disabled
-                    :value="fixedTwoDecimal(parseFloat(currentUser.income))"
+                    :value="fixedTwoDecimal(parseFloat(applicant.income))"
                   ></b-input>
                 </b-field>
               </div>
@@ -102,7 +102,10 @@
           </div>
         </article>
 
-        <article class="message is-dark">
+        <article
+          v-if="applicant.marital_status == 'Berkahwin'"
+          class="message is-dark"
+        >
           <div class="message-header">
             <p>MAKLUMAT PENDAPATAN SUAMI</p>
           </div>
@@ -111,7 +114,7 @@
               <div class="column is-4">
                 <b-field label="Jenis Pekerjaan">
                   <!-- <b-input v-model="spouse.employment_type"></b-input> -->
-                  <b-select v-model="spouse.employment_type" required>
+                  <b-select v-model="spouse.employment_type">
                     <option value="Sektor Kerajaan">Sektor Kerajaan</option>
                     <option value="Sektor Swasta">Sektor Swasta</option>
                     <option value="Bekerja Sendiri">Bekerja Sendiri</option>
@@ -329,7 +332,7 @@
                       v-model="income.total_income"
                       :value="
                         fixedTwoDecimal(
-                          parseFloat(currentUser.income) +
+                          parseFloat(applicant.income) +
                             parseFloat(spouse.income)
                         )
                       "
@@ -356,14 +359,14 @@
             <div class="card-content">
               <div class="content">
                 <form-summary
-                  :current-user="currentUser"
+                  :current-user="applicant"
                   :applicant="applicant"
                   :jmb-confirmation="jmb_confirmation"
                   :residence="residence"
                   :total-spouses-salaries="spouse.income"
                   :total-salaries="
                     fixedTwoDecimal(
-                      parseFloat(currentUser.income) + parseFloat(spouse.income)
+                      parseFloat(applicant.income) + parseFloat(spouse.income)
                     )
                   "
                 ></form-summary>
@@ -449,6 +452,7 @@ export default {
     return {
       setuju1: null,
       setuju2: null,
+      adun: null,
       spouse: {
         employer_name: null,
         employment_type: null,
@@ -458,14 +462,7 @@ export default {
         employer_name: null
       },
       childrens: [],
-      applicant: {
-        address_1: null,
-        address_2: null,
-        address_3: null,
-        postcode: null,
-        district: null,
-        state: null
-      },
+      applicant: {},
       residence: {
         individual_meter_acc_no: null,
         ownership_status: null,
@@ -494,14 +491,7 @@ export default {
     return store.dispatch('applicant/setCurrentUser')
   },
   created() {
-    this.applicant = {
-      address_1: this.currentUser.address_1,
-      address_2: this.currentUser.address_2,
-      address_3: this.currentUser.address_3,
-      postcode: this.currentUser.postcode,
-      district: this.currentUser.district,
-      state: this.currentUser.state
-    }
+    this.applicant = this.currentUser
   },
   methods: {
     finalize() {
