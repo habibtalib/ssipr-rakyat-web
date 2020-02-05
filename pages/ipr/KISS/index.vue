@@ -157,7 +157,7 @@
             <div class="columns">
               <div class="column is-4">
                 <b-field label="Jumlah Pendapatan">
-                  <b-input v-model="spouse.income" required></b-input>
+                  <b-input v-model="spouse_income" required></b-input>
                 </b-field>
               </div>
             </div>
@@ -334,16 +334,7 @@
               <div class="columns">
                 <div class="column is-4">
                   <b-field label="Jumlah Pendapatan (RM)">
-                    <b-input
-                      v-model="income.total_income"
-                      :value="
-                        fixedTwoDecimal(
-                          parseFloat(applicant.income) +
-                            parseFloat(spouse.income)
-                        )
-                      "
-                      disabled
-                    ></b-input>
+                    <b-input v-model="income.total_income" disabled></b-input>
                   </b-field>
                 </div>
               </div>
@@ -458,6 +449,7 @@ export default {
     return {
       setuju1: null,
       setuju2: null,
+      spouse_income: null,
       dun: [
         'SUNGAI AIR TAWAR',
         'SABAK',
@@ -550,6 +542,15 @@ export default {
       districts: 'lookup/districts',
       countryStates: 'lookup/countryStates'
     })
+  },
+  watch: {
+    spouse_income: function() {
+      console.log(this.spouse)
+      this.spouse.income = parseFloat(this.spouse_income || 0)
+      this.income.total_income = this.fixedTwoDecimal(
+        parseFloat(this.applicant.income) + parseFloat(this.spouse_income || 0)
+      )
+    }
   },
   fetch({ store, params }) {
     return store.dispatch('applicant/setCurrentUser')
