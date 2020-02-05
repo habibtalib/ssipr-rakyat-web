@@ -20,7 +20,13 @@
                 >
                   <!-- <b-input v-model="spouse.employment_type"></b-input> -->
                   <b-select v-model="adun">
-                    <option value="Hulu Langat">Hulu Langat</option>
+                    <option
+                      v-for="(state, index) in dun"
+                      :key="index"
+                      :value="state"
+                    >
+                      {{ state }}
+                    </option>
                   </b-select>
                 </b-field>
               </div>
@@ -452,6 +458,64 @@ export default {
     return {
       setuju1: null,
       setuju2: null,
+      dun: [
+        'SUNGAI AIR TAWAR',
+        'SABAK',
+        'SUNGAI PANJANG',
+        'SEKINCHAN',
+        'HULU BERNAM',
+        'KUALA KUBU BAHARU',
+        'BATANG KALI',
+        'SUNGAI BURONG',
+        'PERMATANG',
+        'BUKIT MELAWATI',
+        'IJOK',
+        'JERAM',
+        'KUANG',
+        'RAWANG',
+        'TAMAN TEMPLER',
+        'SUNGAI TUA',
+        'GOMBAK SETIA',
+        'HULU KELANG',
+        'BUKIT ANTARABANGSA',
+        'LEMBAH JAYA',
+        'PANDAN INDAH',
+        'TERATAI',
+        'DUSUN TUA',
+        'SEMENYIH',
+        'KAJANG',
+        'SUNGAI RAMAL',
+        'BALAKONG',
+        'SERI KEMBANGAN',
+        'SERI SERDANG',
+        'KINRARA',
+        'SUBANG JAYA',
+        'SERI SETIA',
+        'TAMAN MEDAN',
+        'BUKIT GASING',
+        'KAMPUNG TUNKU',
+        'BANDAR UTAMA',
+        'BUKIT LANJAN',
+        'PAYA JARAS',
+        'KOTA DAMANSARA',
+        'KOTA ANGGERIK',
+        'BATU TIGA',
+        'MERU',
+        'SEMENTA',
+        'SELAT KLANG',
+        'BANDAR BARU KLANG',
+        'PELABUHAN KLANG',
+        'PANDAMARAN',
+        'SENTOSA',
+        'SUNGAI KANDIS',
+        'KOTA KEMUNING',
+        'SIJANGKANG',
+        'BANTING',
+        'MORIB',
+        'TANJUNG SEPAT',
+        'DENGKIL',
+        'SUNGAI PELEK'
+      ],
       adun: null,
       spouse: {
         employer_name: null,

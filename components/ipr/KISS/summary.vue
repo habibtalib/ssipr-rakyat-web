@@ -35,6 +35,14 @@
               <b-field :label="$t('f.email')">
                 {{ currentUser.email }}
               </b-field>
+
+              <b-field :label="$t('f.email')">
+                {{ currentUser.dob }}
+              </b-field>
+
+              <b-field :label="$t('f.email')">
+                {{ currentUser.pob }}
+              </b-field>
             </div>
             <div class="column is-half">
               <b-field :label="$t('f.maritalStatus')">

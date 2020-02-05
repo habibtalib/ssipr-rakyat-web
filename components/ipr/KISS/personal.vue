@@ -134,7 +134,7 @@ export default {
   },
   data() {
     return {
-      dob: new Date(this.currentUser.dob)
+      dob: null
     }
   }
 }
