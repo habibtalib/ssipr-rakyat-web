@@ -35,21 +35,23 @@
         </article>
 
         <personal-fields
-          :current-user="applicant"
+          :current-user="currentUser"
+          :applicant="applicant"
           :residence="residence"
           :reset-value="resetValue"
         ></personal-fields>
 
         <spouses-fields
-          v-if="applicant.marital_status == 'Berkahwin'"
-          :current-user="applicant"
+          v-if="currentUser.marital_status == 'Berkahwin'"
+          :current-user="currentUser"
+          :applicant="applicant"
           :residence="residence"
         ></spouses-fields>
 
         <residence-fields
-          :current-user="applicant"
-          :residence="residence"
+          :current-user="currentUser"
           :applicant="applicant"
+          :residence="residence"
         ></residence-fields>
 
         <article class="message is-dark">
@@ -518,7 +520,9 @@ export default {
         employer_name: null
       },
       childrens: [],
-      applicant: {},
+      applicant: {
+        spouse: {}
+      },
       residence: {
         individual_meter_acc_no: null,
         ownership_status: null,
@@ -556,7 +560,7 @@ export default {
     return store.dispatch('applicant/setCurrentUser')
   },
   created() {
-    this.applicant = this.currentUser
+    // this.applicant = this.currentUser
   },
   methods: {
     finalize() {

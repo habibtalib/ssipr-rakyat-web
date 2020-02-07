@@ -13,10 +13,10 @@
 
             <b-field label="Jantina">
               <div class="block">
-                <b-radio v-model="currentUser.gender" native-value="lelaki">
+                <b-radio :value="currentUser.gender" native-value="lelaki">
                   Lelaki
                 </b-radio>
-                <b-radio v-model="currentUser.gender" native-value="perempuan">
+                <b-radio :value="currentUser.gender" native-value="perempuan">
                   Perempuan
                 </b-radio>
               </div>
@@ -30,7 +30,11 @@
               <b-input :value="currentUser.email" disabled></b-input>
             </b-field>
             <b-field label="Tarikh Lahir">
-              <b-datepicker v-model="dob" icon="calendar-today"></b-datepicker>
+              <b-datepicker
+                :value="dob"
+                icon="calendar-today"
+                disabled
+              ></b-datepicker>
             </b-field>
 
             <b-field label="Tempat Lahir">
@@ -40,19 +44,22 @@
           <div class="column is-half">
             <b-field label="Warganegara">
               <!-- <b-input v-model="currentUser.citizen"></b-input> -->
-              <b-select model="currentUser.citizen" required>
+              <b-select v-model="applicant.citizen" required>
                 <option value="Ya">Ya</option>
                 <option value="Tidak">Tidak</option>
               </b-select>
             </b-field>
             <b-field label="Bangsa">
               <!-- <b-input v-model="spouse.race"></b-input> -->
-              <b-select model="currentUser.race" required>
+              <b-select v-model="applicant.race" required>
                 <option value="Melayu">Melayu</option>
                 <option value="Cina">Cina</option>
                 <option value="India">India</option>
                 <option value="Others">Lain-lain</option>
               </b-select>
+            </b-field>
+            <b-field v-show="applicant.race === 'Others'" label="Sila nyatakan">
+              <b-input v-model="applicant.race" value=""></b-input>
             </b-field>
             <b-field :label="$t('f.maritalStatus')">
               <b-input :value="currentUser.marital_status" disabled></b-input>
@@ -119,6 +126,10 @@ export default {
     $validator: '$validator'
   },
   props: {
+    applicant: {
+      type: Object,
+      required: true
+    },
     currentUser: {
       type: Object,
       required: true
@@ -136,6 +147,9 @@ export default {
     return {
       dob: null
     }
+  },
+  created() {
+    this.dob = new Date(this.currentUser.dob)
   }
 }
 </script>
