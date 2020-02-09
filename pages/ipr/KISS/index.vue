@@ -203,7 +203,7 @@
                       >
                         <b-input
                           v-model="children.name"
-                          v-validate="'required|alpha_num'"
+                          v-validate="'required'"
                           :name="`Nama Penuh ${children.idx}`"
                         ></b-input>
                       </b-field>
