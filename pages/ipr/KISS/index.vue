@@ -102,7 +102,7 @@
                 <b-field label="Jumlah Pendapatan Pemohon">
                   <b-input
                     disabled
-                    :value="fixedTwoDecimal(parseFloat(applicant.income))"
+                    :value="fixedTwoDecimal(parseFloat(currentUser.income))"
                   ></b-input>
                 </b-field>
               </div>
@@ -111,7 +111,7 @@
         </article>
 
         <article
-          v-if="applicant.marital_status == 'Berkahwin'"
+          v-if="currentUser.marital_status == 'Berkahwin'"
           class="message is-dark"
         >
           <div class="message-header">
@@ -365,7 +365,7 @@
                   :total-spouses-salaries="spouse.income"
                   :total-salaries="
                     fixedTwoDecimal(
-                      parseFloat(applicant.income) + parseFloat(spouse.income)
+                      parseFloat(currentUser.income) + parseFloat(spouse.income)
                     )
                   "
                 ></form-summary>
@@ -552,7 +552,8 @@ export default {
       console.log(this.spouse)
       this.spouse.income = parseFloat(this.spouse_income || 0)
       this.income.total_income = this.fixedTwoDecimal(
-        parseFloat(this.applicant.income) + parseFloat(this.spouse_income || 0)
+        parseFloat(this.currentUser.income) +
+          parseFloat(this.spouse_income || 0)
       )
     }
   },
