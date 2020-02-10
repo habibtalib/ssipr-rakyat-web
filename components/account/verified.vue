@@ -168,6 +168,42 @@
           </div>
           <br />
         </div>
+        <div v-if="tawas">
+          <div class="card" aria-id="contentIdForA11y3">
+            <div class="card-header" role="button">
+              <p class="card-header-title level">
+                <span class="level-left"
+                  >Tabung Warisan Anak Selangor (TAWAS)</span
+                ><span class="tag is-info level-right">{{
+                  tawas.status_proses
+                }}</span>
+              </p>
+            </div>
+          </div>
+          <br />
+        </div>
+        <div v-if="skw">
+          <div class="card" aria-id="contentIdForA11y3">
+            <div class="card-header" role="button">
+              <p class="card-header-title level">
+                <span class="level-left">Skim Kesihatan Wanita (Mammosel)</span>
+                <span class="tag is-info level-right">Dalam Diproses</span>
+              </p>
+            </div>
+          </div>
+          <br />
+        </div>
+        <div v-if="emas">
+          <div class="card" aria-id="contentIdForA11y3">
+            <div class="card-header" role="button">
+              <p class="card-header-title level">
+                <span class="level-left">Skim Mesra Usia Emas (SMUE)</span>
+                <span class="tag is-info level-right">Dalam Diproses</span>
+              </p>
+            </div>
+          </div>
+          <br />
+        </div>
       </div>
     </div>
   </div>
@@ -175,6 +211,7 @@
 
 <script>
 import { Dialog } from 'buefy/dist/components/dialog'
+import axios from 'axios'
 export default {
   props: {
     currentUser: {
@@ -187,6 +224,9 @@ export default {
       isCardModalActive: false,
       submittedApplications: this.currentUser.dockets,
       activeIPR: null,
+      tawas: null,
+      emas: null,
+      skw: null,
       iprList: [
         {
           id: 'AIR_SELANGOR',
@@ -407,7 +447,59 @@ export default {
       ]
     }
   },
+  created() {
+    this.checkTawas()
+  },
   methods: {
+    checkTawas() {
+      axios
+        .get(
+          `http://ssipr-yawas-api-dev.ap-southeast-1.elasticbeanstalk.com/pawas/${this.currentUser.ic}`
+        )
+        .then(res => {
+          if (res.status === 200) {
+            this.tawas = res.data
+          }
+        })
+        .catch(function(error) {
+          // handle error
+          console.log(error)
+        })
+
+      return false
+    },
+    checkSkw() {
+      axios
+        .get(
+          `http://ssipr-yawas-api-dev.ap-southeast-1.elasticbeanstalk.com/skw/${this.currentUser.ic}`
+        )
+        .then(res => {
+          if (res.status === 200) {
+            this.skw = res.data
+          }
+        })
+        .catch(function(error) {
+          // handle error
+          console.log(error)
+        })
+      return false
+    },
+    checkEmas() {
+      axios
+        .get(
+          `http://ssipr-yawas-api-dev.ap-southeast-1.elasticbeanstalk.com/emas/${this.currentUser.ic}`
+        )
+        .then(res => {
+          if (res.status === 200) {
+            this.skw = res.data
+          }
+        })
+        .catch(function(error) {
+          // handle error
+          console.log(error)
+        })
+      return false
+    },
     apply(item) {
       if (item.requireForm) {
         this.$router.push(item.formRoute)
