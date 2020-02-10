@@ -453,6 +453,7 @@ export default {
       setuju2: null,
       spouse_income: null,
       dun: [
+        'ADUN SSIPR TEST',
         'SUNGAI AIR TAWAR',
         'SABAK',
         'SUNGAI PANJANG',
