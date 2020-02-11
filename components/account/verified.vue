@@ -112,6 +112,36 @@
                   src="~assets/img/SADE_banner.jpg"
                   alt="Image"
                 />
+                <img
+                  v-if="activeIPR && activeIPR.id === 'BSS'"
+                  src="~assets/img/BantuanSihat.png"
+                  alt="Image"
+                />
+                <img
+                  v-if="activeIPR && activeIPR.id === 'SRS'"
+                  src="~assets/img/RumahSelangorku.png"
+                  alt="Image"
+                />
+                <img
+                  v-if="activeIPR && activeIPR.id === 'MAMMOSEL'"
+                  src="~assets/img/SKW.png"
+                  alt="Image"
+                />
+                <img
+                  v-if="activeIPR && activeIPR.id === 'TAWAS'"
+                  src="~assets/img/TAWAS.png"
+                  alt="Image"
+                />
+                <img
+                  v-if="activeIPR && activeIPR.id === 'KISS'"
+                  src="~assets/img/KISS.png"
+                  alt="Image"
+                />
+                <img
+                  v-if="activeIPR && activeIPR.id === 'SMUE'"
+                  src="~assets/img/EMAS.png"
+                  alt="Image"
+                />
               </figure>
             </div>
             <div v-if="activeIPR" class="card-content">
