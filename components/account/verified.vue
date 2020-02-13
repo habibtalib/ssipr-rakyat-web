@@ -134,7 +134,7 @@
                 />
                 <img
                   v-if="activeIPR && activeIPR.id === 'KISS'"
-                  src="~assets/img/KISS.png"
+                  src="~assets/img/Kiss.png"
                   alt="Image"
                 />
                 <img
