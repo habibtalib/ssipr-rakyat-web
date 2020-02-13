@@ -8,7 +8,7 @@
       </b-field>
 
       <p class="control loginbtn">
-        <b-button type="is-primary is-fullwidth" outlined @click="login()"
+        <b-button type="is-primary is-fullwidth" outlined @click="check()"
           >Semak
         </b-button>
       </p>
@@ -40,6 +40,18 @@ export default {
     ])
   },
   methods: {
+    check() {
+      this.setIsLoading(true)
+      this.setIsLoading(false)
+      Dialog.alert({
+        message: 'Maaf, Maklumat anda tiadak dalam Rekod Kami',
+        type: 'is-danger',
+        hasIcon: true,
+        icon: 'times-circle',
+        iconPack: 'fa'
+      })
+      this.setIsLoading(false)
+    },
     login() {
       this.setIsLoading(true)
       this.$store
