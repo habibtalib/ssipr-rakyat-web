@@ -12,12 +12,6 @@
           >Semak
         </b-button>
       </p>
-      <div class="is-divider" :data-content="$t('l.or')"></div>
-      <p>
-        <nuxt-link class="button is-fullwidth is-outlined" to="register">{{
-          $t('l.registerAcc')
-        }}</nuxt-link>
-      </p>
     </form>
   </div>
 </template>
