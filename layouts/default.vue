@@ -34,7 +34,7 @@
     </section>
     <footer class="footer footpad has-text-centered">
       <div class="content">
-        <p>© 2019 <strong>SSIPR</strong> {{ $t('l.copyright') }}</p>
+        <p>© 2020 <strong>SSIPR</strong> {{ $t('l.copyright') }}</p>
       </div>
     </footer>
   </div>
