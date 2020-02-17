@@ -5,11 +5,9 @@
         <div class="card">
           <div class="card-content dashb">
             <div class="content has-text-centered">
-              <b-icon icon="hands" pack="fas" size="is-medium"> </b-icon>
+              <b-icon icon="hands" pack="fas" size="is-medium"></b-icon>
               <hr />
-              <h4 class="dashb has-text-weight-light">
-                8 IPR Ditawarkan
-              </h4>
+              <h4 class="dashb has-text-weight-light">8 IPR Ditawarkan</h4>
             </div>
           </div>
         </div>
@@ -18,7 +16,7 @@
         <div class="card">
           <div class="card-content dashb">
             <div class="content has-text-centered">
-              <b-icon icon="pen-fancy" pack="fas" size="is-medium"> </b-icon>
+              <b-icon icon="pen-fancy" pack="fas" size="is-medium"></b-icon>
               <hr />
               <h4 class="dashb has-text-weight-light">
                 {{ submittedApplications.length }} IPR Dimohon
@@ -31,7 +29,7 @@
         <div class="card">
           <div class="card-content dashb">
             <div class="content has-text-centered">
-              <b-icon icon="smile" pack="fas" size="is-medium"> </b-icon>
+              <b-icon icon="smile" pack="fas" size="is-medium"></b-icon>
               <hr />
               <h4 class="dashb has-text-weight-light">0 IPR Lulus</h4>
             </div>
@@ -42,11 +40,9 @@
         <div class="card">
           <div class="card-content dashb">
             <div class="content has-text-centered">
-              <b-icon icon="frown" pack="fas" size="is-medium"> </b-icon>
+              <b-icon icon="frown" pack="fas" size="is-medium"></b-icon>
               <hr />
-              <h4 class="dashb has-text-weight-light">
-                0 IPR Ditolak
-              </h4>
+              <h4 class="dashb has-text-weight-light">0 IPR Ditolak</h4>
             </div>
           </div>
         </div>
@@ -55,11 +51,9 @@
         <div class="card">
           <div class="card-content dashb">
             <div class="content has-text-centered">
-              <b-icon icon="bell" pack="fas" size="is-medium"> </b-icon>
+              <b-icon icon="bell" pack="fas" size="is-medium"></b-icon>
               <hr />
-              <h4 class="dashb has-text-weight-light">
-                0 Notifikasi
-              </h4>
+              <h4 class="dashb has-text-weight-light">0 Notifikasi</h4>
             </div>
           </div>
         </div>
@@ -67,14 +61,10 @@
     </div>
     <div class="columns">
       <div class="column">
-        <h1 class="has-text-weight-semibold">
-          Senarai Program Layak Dimohon
-        </h1>
+        <h1 class="has-text-weight-semibold">Senarai Program Layak Dimohon</h1>
       </div>
       <div class="column">
-        <h1 class="has-text-weight-semibold">
-          Senarai Program Dimohon
-        </h1>
+        <h1 class="has-text-weight-semibold">Senarai Program Dimohon</h1>
       </div>
     </div>
     <div class="columns">
@@ -86,18 +76,14 @@
           >
             <div class="card" aria-id="contentIdForA11y3">
               <div class="card-header" role="button">
-                <p class="card-header-title">
-                  {{ ipr.name }}
-                </p>
+                <p class="card-header-title">{{ ipr.name }}</p>
               </div>
             </div>
           </div>
           <div v-else>
             <div class="card test" aria-id="contentIdForA11y3">
               <div class="card-header" role="button">
-                <p class="card-header-title">
-                  {{ ipr.name }}
-                </p>
+                <p class="card-header-title">{{ ipr.name }}</p>
               </div>
             </div>
           </div>
@@ -160,7 +146,7 @@
                 class="card-footer-item"
                 to="/ipr/SADE"
               >
-              </nuxt-link> -->
+              </nuxt-link>-->
               <a
                 v-if="activeIPR && activeIPR.available"
                 class="card-footer-item"
@@ -178,9 +164,7 @@
           aria-id="contentIdForA11y3"
         >
           <div class="card-header" role="button">
-            <p class="card-header-title">
-              Tiada
-            </p>
+            <p class="card-header-title">Tiada</p>
           </div>
         </div>
         <div v-for="ipr in submittedApplications" :key="ipr">
@@ -188,47 +172,76 @@
             <div class="card-header" role="button">
               <p class="card-header-title level">
                 <span class="level-left">
-                  {{
-                    iprList.find(item => ipr.ipr_code === item.id).name
-                  }}</span
-                >
+                  {{ iprList.find(item => ipr.ipr_code === item.id).name }}
+                </span>
                 <span class="tag is-info level-right">Dalam Proses</span>
               </p>
             </div>
           </div>
           <br />
         </div>
-        <div v-if="tawas">
+        <div>
           <div class="card" aria-id="contentIdForA11y3">
+            <b-loading
+              :is-full-page="false"
+              :active.sync="tawasLoading"
+              :can-cancel="true"
+            ></b-loading>
             <div class="card-header" role="button">
               <p class="card-header-title level">
                 <span class="level-left"
                   >Tabung Warisan Anak Selangor (TAWAS)</span
-                ><span class="tag is-info level-right">{{
-                  tawas.status_proses
-                }}</span>
+                >
+                <span
+                  v-if="tawas && tawas.status_proses"
+                  class="tag is-info level-right"
+                >
+                  {{ tawas.status_proses }}
+                </span>
               </p>
             </div>
           </div>
           <br />
         </div>
-        <div v-if="skw">
+        <div>
           <div class="card" aria-id="contentIdForA11y3">
+            <b-loading
+              :is-full-page="false"
+              :active.sync="skwLoading"
+              :can-cancel="true"
+            ></b-loading>
             <div class="card-header" role="button">
               <p class="card-header-title level">
                 <span class="level-left">Skim Kesihatan Wanita (Mammosel)</span>
-                <span class="tag is-info level-right">Dalam Diproses</span>
+                <span v-if="skw" class="tag is-info level-right"
+                  >Dalam Proses</span
+                >
+                <span v-else class="tag is-danger level-right"
+                  >Tiada Rekod</span
+                >
               </p>
             </div>
           </div>
           <br />
         </div>
-        <div v-if="emas">
+        <div>
           <div class="card" aria-id="contentIdForA11y3">
+            <b-loading
+              :is-full-page="false"
+              :active.sync="emasLoading"
+              :can-cancel="true"
+            ></b-loading>
             <div class="card-header" role="button">
               <p class="card-header-title level">
                 <span class="level-left">Skim Mesra Usia Emas (SMUE)</span>
-                <span class="tag is-info level-right">Dalam Diproses</span>
+                <span
+                  v-if="emas && emas.profile"
+                  class="tag is-info level-right"
+                  >Dalam Proses</span
+                >
+                <span v-else class="tag is-danger level-right"
+                  >Tiada Rekod</span
+                >
               </p>
             </div>
           </div>
@@ -257,6 +270,9 @@ export default {
       tawas: null,
       emas: null,
       skw: null,
+      tawasLoading: true,
+      emasLoading: true,
+      skwLoading: true,
       iprList: [
         {
           id: 'AIR_SELANGOR',
@@ -479,6 +495,8 @@ export default {
   },
   created() {
     this.checkTawas()
+    this.checkSkw()
+    this.checkEmas()
   },
   methods: {
     checkTawas() {
@@ -489,6 +507,7 @@ export default {
         .then(res => {
           if (res.status === 200) {
             this.tawas = res.data
+            this.tawasLoading = false
           }
         })
         .catch(function(error) {
@@ -506,6 +525,7 @@ export default {
         .then(res => {
           if (res.status === 200) {
             this.skw = res.data
+            this.skwLoading = false
           }
         })
         .catch(function(error) {
@@ -521,7 +541,8 @@ export default {
         )
         .then(res => {
           if (res.status === 200) {
-            this.skw = res.data
+            this.emas = res.data
+            this.emasLoading = false
           }
         })
         .catch(function(error) {
