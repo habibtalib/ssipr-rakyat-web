@@ -198,6 +198,9 @@
                 >
                   {{ tawas.status_proses }}
                 </span>
+                <span v-else class="tag is-danger level-right"
+                  >Tiada Rekod</span
+                >
               </p>
             </div>
           </div>

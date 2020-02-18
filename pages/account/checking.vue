@@ -1,14 +1,14 @@
 <template>
   <div class="column is-half is-offset-one-quarter">
-    <form>
+    <form @submit.prevent="check()">
       <div class="is-divider" data-content="Semak Permohonan"></div>
 
       <b-field :label="$t('f.all_id_wo_passport')">
-        <b-input v-model="ic"></b-input>
+        <b-input v-model="ic" required></b-input>
       </b-field>
 
       <p class="control loginbtn">
-        <b-button type="is-primary is-fullwidth" outlined @click="check()"
+        <b-button native-type="submit" type="is-primary is-fullwidth" outlined
           >Semak
         </b-button>
       </p>
@@ -18,13 +18,17 @@
 
 <script>
 import { Dialog } from 'buefy/dist/components/dialog'
-
+import axios from 'axios'
 export default {
   layout: 'auth',
   data() {
     return {
       ic: null,
-      password: null
+      tawas: null,
+      emas: null,
+      skw: null,
+      isCardModalActive: true,
+      result: false
     }
   },
   created() {
@@ -36,46 +40,85 @@ export default {
   methods: {
     check() {
       this.setIsLoading(true)
-      this.setIsLoading(false)
-      Dialog.alert({
-        message: 'Maaf, Maklumat anda tiadak dalam Rekod Kami',
-        type: 'is-danger',
-        hasIcon: true,
-        icon: 'times-circle',
-        iconPack: 'fa'
-      })
-      this.setIsLoading(false)
-    },
-    login() {
-      this.setIsLoading(true)
-      this.$store
-        .dispatch('applicant/login', {
-          ic: this.ic.toUpperCase(),
-          password: this.password
-        })
+      axios
+        .get(
+          `http://ssipr-yawas-api-dev.ap-southeast-1.elasticbeanstalk.com/pawas/${this.ic}`
+        )
         .then(res => {
           this.setIsLoading(false)
-
-          if (res.error) {
-            const errors = []
-
-            for (const k in res.errors) {
-              if ({}.hasOwnProperty.call(res.errors, k)) {
-                errors.push(k + ' ' + res.errors[k].join(', '))
-              }
-            }
-
+          if (res.status === 200 && res.data && res.data.tarikhmohon) {
+            this.tawas = res.data
             Dialog.alert({
-              message: errors.join(', '),
-              type: 'is-danger',
+              message: `Status permohonan TAWAS: ${this.tawas.status_proses}`,
+              type: 'is-info',
               hasIcon: true,
               icon: 'times-circle',
               iconPack: 'fa'
             })
           } else {
-            this.$router.push('/account')
+            Dialog.alert({
+              message: 'Maaf, Maklumat anda tiadak dalam Rekod Kami',
+              type: 'is-danger',
+              hasIcon: true,
+              icon: 'times-circle',
+              iconPack: 'fa'
+            })
           }
         })
+        .catch(function(error) {
+          // handle error
+          console.log(error)
+        })
+      // this.setIsLoading(false)
+    },
+    checkTawas() {
+      axios
+        .get(
+          `http://ssipr-yawas-api-dev.ap-southeast-1.elasticbeanstalk.com/pawas/${this.ic}`
+        )
+        .then(res => {
+          if (res.status === 200) {
+            this.tawas = res.data
+          }
+        })
+        .catch(function(error) {
+          // handle error
+          console.log(error)
+        })
+
+      return false
+    },
+    checkSkw() {
+      axios
+        .get(
+          `http://ssipr-yawas-api-dev.ap-southeast-1.elasticbeanstalk.com/skw/${this.ic}`
+        )
+        .then(res => {
+          if (res.status === 200) {
+            this.skw = res.data
+          }
+        })
+        .catch(function(error) {
+          // handle error
+          console.log(error)
+        })
+      return false
+    },
+    checkEmas() {
+      axios
+        .get(
+          `http://ssipr-yawas-api-dev.ap-southeast-1.elasticbeanstalk.com/emas/${this.ic}`
+        )
+        .then(res => {
+          if (res.status === 200) {
+            this.emas = res.data
+          }
+        })
+        .catch(function(error) {
+          // handle error
+          console.log(error)
+        })
+      return false
     },
     setIsLoading(status) {
       this.$store.dispatch('loader/setIsLoading', status)
