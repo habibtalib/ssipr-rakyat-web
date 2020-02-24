@@ -193,7 +193,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="(children, i) in childrens" :key="children.idx">
+                  <tr v-for="children in childrens" :key="children.idx">
                     <td>
                       <b-field
                         :type="{
@@ -281,7 +281,7 @@
                     </td>
                     <td class="has-text-centered">
                       <a
-                        v-if="i != 0"
+                        v-if="children.idx != 0"
                         class="button is-warning"
                         @click="removeChild(children)"
                       >
