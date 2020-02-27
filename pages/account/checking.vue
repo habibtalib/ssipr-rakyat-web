@@ -8,8 +8,8 @@
       </b-field>
 
       <p class="control loginbtn">
-        <b-button native-type="submit" type="is-primary is-fullwidth" outlined
-          >Semak
+        <b-button native-type="submit" type="is-primary is-fullwidth" outlined>
+          Semak
         </b-button>
       </p>
     </form>
@@ -27,6 +27,7 @@ export default {
       tawas: null,
       emas: null,
       skw: null,
+      status: 'Dalam Proses',
       isCardModalActive: true,
       result: false
     }
@@ -44,10 +45,10 @@ export default {
         .dispatch('ipr_application/checkTawas', this.ic)
         .then(res => {
           this.setIsLoading(false)
-          if (res.status === 200 && res.data && res.data.tarikhmohon) {
-            this.tawas = res.data
+          if (res.status === 200 && res.data) {
+            this.sade = res.data
             Dialog.alert({
-              message: `Status permohonan TAWAS: ${this.tawas.status_proses}`,
+              message: `Status permohonan Air Selangor: ${this.status}`,
               type: 'is-info',
               hasIcon: true,
               icon: 'times-circle',

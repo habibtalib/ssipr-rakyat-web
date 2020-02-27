@@ -178,6 +178,12 @@
                 <a class="button is-primary is-pulled-right" @click="addChild()"
                   >Tambah</a
                 >
+                <a
+                  class="button is-primary is-pulled-left"
+                  @click="calculateTotalIncome"
+                >
+                  Kira Jumlah Pendapatan
+                </a>
               </div>
             </div>
             <fieldset v-if="childrens.length > 0">
@@ -193,7 +199,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="(children, i) in childrens" :key="children.idx">
+                  <tr v-for="children in childrens" :key="children.idx">
                     <td>
                       <b-field
                         :type="{
@@ -281,7 +287,7 @@
                     </td>
                     <td class="has-text-centered">
                       <a
-                        v-if="i != 0"
+                        v-if="children.idx != 0"
                         class="button is-warning"
                         @click="removeChild(children)"
                       >
@@ -554,7 +560,8 @@ export default {
       this.spouse.income = parseFloat(this.spouse_income || 0)
       this.income.total_income = this.fixedTwoDecimal(
         parseFloat(this.currentUser.income) +
-          parseFloat(this.spouse_income || 0)
+          parseFloat(this.spouse_income || 0) +
+          this.sumSpousesSalaries(this.childrens, 'income')
       )
     }
   },
@@ -565,6 +572,14 @@ export default {
     // this.applicant = this.currentUser
   },
   methods: {
+    calculateTotalIncome() {
+      this.spouse.income = parseFloat(this.spouse_income || 0)
+      this.income.total_income = this.fixedTwoDecimal(
+        parseFloat(this.currentUser.income) +
+          parseFloat(this.spouse_income || 0) +
+          this.sumSpousesSalaries(this.childrens, 'income')
+      )
+    },
     finalize() {
       this.$validator.validateAll().then(result => {
         if (result) {
