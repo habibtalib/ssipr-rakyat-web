@@ -40,10 +40,8 @@ export default {
   methods: {
     check() {
       this.setIsLoading(true)
-      axios
-        .get(
-          `http://ssipr-yawas-api-dev.ap-southeast-1.elasticbeanstalk.com/pawas/${this.ic}`
-        )
+      this.$store
+        .dispatch('ipr_application/checkTawas', this.ic)
         .then(res => {
           this.setIsLoading(false)
           if (res.status === 200 && res.data && res.data.tarikhmohon) {

@@ -81,7 +81,7 @@
             </div>
           </div>
           <div v-else>
-            <div class="card test" aria-id="contentIdForA11y3">
+            <div class="card disabled" aria-id="contentIdForA11y3">
               <div class="card-header" role="button">
                 <p class="card-header-title">{{ ipr.name }}</p>
               </div>
@@ -156,6 +156,27 @@
             </footer>
           </div>
         </b-modal>
+        <b-modal :active.sync="isModalActive" :width="640" scroll="keep">
+          <div class="card">
+            <div class="card-header">Tabung Warisan Anak Selangor (TAWAS)</div>
+            <div class="card-content">
+              <table>
+                <tr
+                  v-for="(item, propertyName, index) in selectedIPR"
+                  :key="index"
+                >
+                  <td>
+                    {{ propertyName }}
+                  </td>
+                  <td>
+                    {{ item }}
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <footer class="card-footer"></footer>
+          </div>
+        </b-modal>
       </div>
       <div class="column">
         <div
@@ -195,6 +216,7 @@
                 <span
                   v-if="tawas && tawas.status_proses"
                   class="tag is-info level-right"
+                  @click="openDetail(tawas)"
                 >
                   {{ tawas.status_proses }}
                 </span>
@@ -268,8 +290,10 @@ export default {
   data() {
     return {
       isCardModalActive: false,
+      isModalActive: false,
       submittedApplications: this.currentUser.dockets,
       activeIPR: null,
+      selectedIPR: null,
       tawas: null,
       emas: null,
       skw: null,
@@ -566,6 +590,16 @@ export default {
       this.activeIPR = item
       this.isCardModalActive = true
     },
+    openDetail(item) {
+      // const ipr = []
+      // for (const k in item) {
+      //   if ({}.hasOwnProperty.call(item, k)) {
+      //     ipr.push(k + ' ' + item[k].join(', '))
+      //   }
+      // }
+      this.selectedIPR = item
+      this.isModalActive = true
+    },
     checkApplication(ipr, submittedApplications) {
       return submittedApplications.find(item => {
         return ipr.id === item.ipr_code
@@ -641,7 +675,7 @@ export default {
 h4.dashb {
   margin-bottom: 0;
 }
-.test {
+.disabled {
   opacity: 0.6;
   filter: alpha(opacity=50); /* For IE8 and earlier */
 }
