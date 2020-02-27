@@ -74,9 +74,9 @@ export const actions = {
   async checkAirSelangor({ commit, dispatch }, params) {
     try {
       const { data } = await this.$axios.get(
-        `http://ssipr-yawas-api-dev.ap-southeast-1.elasticbeanstalk.com/emas/${params}`
+        `http://ssipr-yawas-api-dev.ap-southeast-1.elasticbeanstalk.com/sade/${params}`
       )
-      commit('setAirSelangor', data.data)
+      commit('setAirSelangor', data)
 
       return { error: false }
     } catch (err) {

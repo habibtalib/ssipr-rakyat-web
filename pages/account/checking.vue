@@ -18,6 +18,7 @@
 
 <script>
 import { Dialog } from 'buefy/dist/components/dialog'
+import { mapGetters } from 'vuex'
 import axios from 'axios'
 export default {
   layout: 'auth',
@@ -32,6 +33,11 @@ export default {
       result: false
     }
   },
+  computed: {
+    ...mapGetters({
+      airSelangor: 'ipr_application/airSelangor'
+    })
+  },
   created() {
     this.$store.dispatch('auth_layout/setAuthBtn', [
       this.$t('l.registerAcc'),
@@ -42,13 +48,15 @@ export default {
     check() {
       this.setIsLoading(true)
       this.$store
-        .dispatch('ipr_application/checkTawas', this.ic)
+        .dispatch('ipr_application/checkAirSelangor', this.ic)
         .then(res => {
           this.setIsLoading(false)
-          if (res.status === 200 && res.data) {
-            this.sade = res.data
+
+          if (!res.error) {
+            const status =
+              this.airSelangor.status === 1 ? 'Lulus' : 'Dalam Proses'
             Dialog.alert({
-              message: `Status permohonan Air Selangor: ${this.status}`,
+              message: `Status permohonan Air Selangor: ${status}`,
               type: 'is-info',
               hasIcon: true,
               icon: 'times-circle',
