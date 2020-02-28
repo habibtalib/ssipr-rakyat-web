@@ -156,11 +156,82 @@
             </footer>
           </div>
         </b-modal>
-        <b-modal :active.sync="isModalActive" :width="640" scroll="keep">
+        <b-modal :active.sync="isModalActive" :width="1800" scroll="keep">
           <div class="card">
-            <div class="card-header">Tabung Warisan Anak Selangor (TAWAS)</div>
+            <div class="card-header">
+              <h2 class="panel-title">Tabung Warisan Anak Selangor (TAWAS)</h2>
+            </div>
             <div class="card-content">
-              <table>
+              <table
+                v-if="selectedIPR && selectedIPR.namaAnak"
+                class="table table-bordered table-striped table-condensed mb-none"
+              >
+                <tr>
+                  <td colspan="4" bgcolor="#ccc"><b>Maklumat Ahli</b></td>
+                </tr>
+                <tr>
+                  <td><b>Nama</b></td>
+                  <td colspan="3">{{ selectedIPR.namaAnak }}</td>
+                </tr>
+                <tr>
+                  <td><b>No Kp</b></td>
+                  <td>{{ selectedIPR.noMyKid }}</td>
+                  <td><b>Tarikh Lahir</b></td>
+                  <td>{{ selectedIPR.tarikhLahir }}</td>
+                </tr>
+                <tr>
+                  <td><b>Nama Bapa</b></td>
+                  <td>{{ selectedIPR.b_nama }}</td>
+                  <td><b>No Kp Bapa</b></td>
+                  <td>{{ selectedIPR.b_kpBaru }}</td>
+                </tr>
+                <tr>
+                  <td><b>Nama Ibu</b></td>
+                  <td>{{ selectedIPR.i_nama }}</td>
+                  <td><b>No Kp Ibu</b></td>
+                  <td>{{ selectedIPR.i_kpBaru }}</td>
+                </tr>
+                <tr>
+                  <td><b>Status Permohonan</b></td>
+                  <td>{{ selectedIPR.status_mohon }}</td>
+                  <td><b>Dun</b></td>
+                  <td>{{ selectedIPR.NAMA_DUN }}</td>
+                </tr>
+                <tr>
+                  <td><b>Status Kad</b></td>
+                  <td>Belum Diambil</td>
+                  <td><b>Diambil Oleh</b></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td colspan="4" bgcolor="#ccc">
+                    <b>Maklumat Untuk Dihubungi</b>
+                  </td>
+                </tr>
+                <tr>
+                  <td><b>Alamat</b></td>
+                  <td colspan="3">{{ selectedIPR.t_alamat1 }}</td>
+                </tr>
+                <tr>
+                  <td><b>No Telefon</b></td>
+                  <td>{{ selectedIPR.i_telMobile }}</td>
+                  <td><b></b></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td colspan="4" bgcolor="#ccc">
+                    <b>Kawasan Program Pilihan</b>
+                  </td>
+                </tr>
+                <tr>
+                  <td><b>Dun</b></td>
+                  <td>{{ selectedIPR.PKD }}</td>
+                  <td><b>Alamat Dun</b></td>
+                  <td>{{ selectedIPR.ALAMATPKD }}</td>
+                </tr>
+              </table>
+
+              <table v-else>
                 <tr
                   v-for="(item, propertyName, index) in selectedIPR"
                   :key="index"
