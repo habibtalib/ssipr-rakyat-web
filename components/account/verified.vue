@@ -158,9 +158,7 @@
         </b-modal>
         <b-modal :active.sync="isModalActive" :width="1800" scroll="keep">
           <div class="card">
-            <div class="card-header">
-              <h2 class="panel-title">Tabung Warisan Anak Selangor (TAWAS)</h2>
-            </div>
+            <div class="card-header">{{ selectedIPRTitle }}</div>
             <div class="card-content">
               <table
                 v-if="selectedIPR && selectedIPR.namaAnak"
@@ -287,7 +285,9 @@
                 <span
                   v-if="tawas && tawas.status_proses"
                   class="tag is-info level-right"
-                  @click="openDetail(tawas)"
+                  @click="
+                    openDetail(tawas, 'Tabung Warisan Anak Selangor (TAWAS)')
+                  "
                 >
                   {{ tawas.status_proses }}
                 </span>
@@ -309,7 +309,10 @@
             <div class="card-header" role="button">
               <p class="card-header-title level">
                 <span class="level-left">Skim Kesihatan Wanita (Mammosel)</span>
-                <span v-if="skw" class="tag is-info level-right"
+                <span
+                  v-if="skw"
+                  class="tag is-info level-right"
+                  @click="openDetail(skw, 'Skim Kesihatan Wanita (Mammosel)')"
                   >Dalam Proses</span
                 >
                 <span v-else class="tag is-danger level-right"
@@ -333,6 +336,7 @@
                 <span
                   v-if="emas && emas.profile"
                   class="tag is-info level-right"
+                  @click="openDetail(emas, 'Skim Mesra Usia Emas (SMUE)')"
                   >Dalam Proses</span
                 >
                 <span v-else class="tag is-danger level-right"
@@ -364,6 +368,7 @@ export default {
       isModalActive: false,
       submittedApplications: this.currentUser.dockets,
       activeIPR: null,
+      selectedIPRTitle: null,
       selectedIPR: null,
       tawas: null,
       emas: null,
@@ -661,13 +666,14 @@ export default {
       this.activeIPR = item
       this.isCardModalActive = true
     },
-    openDetail(item) {
+    openDetail(item, title) {
       // const ipr = []
       // for (const k in item) {
       //   if ({}.hasOwnProperty.call(item, k)) {
       //     ipr.push(k + ' ' + item[k].join(', '))
       //   }
       // }
+      this.selectedIPRTitle = title
       this.selectedIPR = item
       this.isModalActive = true
     },
