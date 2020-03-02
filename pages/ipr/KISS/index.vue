@@ -179,6 +179,7 @@
                   >Tambah</a
                 >
                 <a
+                  v-if="childrens.length > 0"
                   class="button is-primary is-pulled-left"
                   @click="calculateTotalIncome"
                 >
