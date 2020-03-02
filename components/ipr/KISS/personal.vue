@@ -70,7 +70,10 @@
             </b-field>
 
             <b-field :label="$t('f.pNo')">
-              <b-input :value="currentUser.phone_no" disabled></b-input>
+              <b-input
+                :value="currentUser.phone_no"
+                :disabled="currentUser.phone_no"
+              ></b-input>
             </b-field>
             <b-field label="No Telefon Rumah">
               <b-input :value="currentUser.home_no" disabled></b-input>

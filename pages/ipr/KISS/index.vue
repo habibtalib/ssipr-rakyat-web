@@ -351,6 +351,47 @@
           </div>
         </article>
 
+        <article class="message is-dark">
+          <div class="message-header">
+            <p>SENARAI SEMAK DOKUMEN</p>
+          </div>
+          <div class="message-body has-background-white">
+            <fieldset>
+              <div class="columns">
+                <div class="column is-full">
+                  <!-- <a
+                    class="button is-primary is-pulled-right"
+                    @click="addDocument()"
+                    >Tambah</a
+                  > -->
+                </div>
+              </div>
+              <fieldset>
+                <table class="table is-fullwidth is-bordered">
+                  <thead>
+                    <tr>
+                      <th>Dokumen</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="(document, index) in documents" :key="index">
+                      <td>{{ document.name }}</td>
+                      <td>
+                        <input
+                          :id="document.id"
+                          type="file"
+                          :name="document.id"
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </fieldset>
+            </fieldset>
+          </div>
+        </article>
+
         <hr />
 
         <button
@@ -459,6 +500,30 @@ export default {
       setuju1: null,
       setuju2: null,
       spouse_income: null,
+      documents: [
+        { id: 'applicant_nric', name: 'Salinan Kad Pengenalan' },
+        {
+          id: 'children_nric',
+          name: 'Salinan Kad Pengenalan, MyKid atau Surat Kelahiran'
+        },
+        {
+          id: 'payment_slip',
+          name: 'Salinan Slip Gaji/Pencen (untuk penjawat awam/pesara)'
+        },
+        {
+          id: 'epf',
+          name: 'Salinan Penyata EA* atau KWSP* (untuk pekerja swasta)'
+        },
+        {
+          id: 'divorce_death',
+          name: 'Salinan Sijil Kematian/Bercerai (untuk ibu tunggal)'
+        },
+        {
+          id: 'bsh_prof',
+          name:
+            'Bukti penerima BSH bagi kategori pendapatan bawah RM2,000.00 atau bukti tersenarai sebagai golongan miskin/miskin tegar dalam pengkalan dataeKasih'
+        }
+      ],
       dun: [
         'ADUN SSIPR TEST',
         'SUNGAI AIR TAWAR',
