@@ -14,7 +14,7 @@
               <b-input :value="spouse.ic" disabled></b-input>
             </b-field>
             <b-field label="Emel">
-              <b-input :value="spouse.email" disabled></b-input>
+              <b-input :value="spouse.email" :disabled="spouse.email"></b-input>
             </b-field>
             <b-field label="No Telefon Bimbit">
               <b-input :value="spouse.tele_no" disabled></b-input>

@@ -158,7 +158,7 @@
             </div>
             <div class="columns">
               <div class="column is-4">
-                <b-field label="Jumlah Pendapatan">
+                <b-field label="Jumlah Pendapatan (RM)">
                   <b-input v-model="spouse_income" required></b-input>
                 </b-field>
               </div>

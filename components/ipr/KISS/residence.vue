@@ -4,7 +4,7 @@
       <p>MAKLUMAT TEMPAT TINGGAL</p>
     </div>
     <div class="message-body has-background-white">
-      <fieldset disabled>
+      <fieldset>
         <div class="columns">
           <div class="column is-half">
             <b-field
