@@ -382,7 +382,7 @@
               <p class="card-header-title level">
                 <span class="level-left">Bantuan Sihat Selangor</span>
                 <span
-                  v-if="bantuanSihat"
+                  v-if="bantuanSihat && bantuanSihat.length > 0"
                   class="tag is-info level-right"
                   @click="openDetail(bantuanSihat, 'Bantuan Sihat Selangor')"
                   >Dalam Proses</span
