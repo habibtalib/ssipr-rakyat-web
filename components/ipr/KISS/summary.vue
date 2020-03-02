@@ -139,7 +139,40 @@
             data-content="MAKLUMAT ANAK-ANAK/TANGGUNGAN (berumur kurang daripada 21 Tahun)"
           ></div>
           <div class="columns">
-            <div class="column is-full"></div>
+            <div class="column is-full">
+              <fieldset v-if="childrens.length > 0">
+                <table class="table is-fullwidth is-bordered">
+                  <thead>
+                    <tr>
+                      <th>Nama Penuh</th>
+                      <th>No KP/Sijil Kelahiran</th>
+                      <th>Hubungan</th>
+                      <th>Umur</th>
+                      <th>Pendapatan Bulanan (RM)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="children in childrens" :key="children.idx">
+                      <td>
+                        {{ children.name }}
+                      </td>
+                      <td>
+                        {{ children.ic }}
+                      </td>
+                      <td>
+                        {{ children.relationship }}
+                      </td>
+                      <td>
+                        {{ children.age }}
+                      </td>
+                      <td>
+                        {{ children.income }}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </fieldset>
+            </div>
           </div>
         </div>
       </div>
@@ -277,6 +310,10 @@ export default {
     },
     spouseIncome: {
       type: Number,
+      required: true
+    },
+    childrens: {
+      type: Object,
       required: true
     }
   },

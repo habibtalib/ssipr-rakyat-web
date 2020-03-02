@@ -243,7 +243,7 @@
                         :message="errors.first(`Hubungan ${children.idx}`)"
                       >
                         <b-input
-                          v-model="children.email"
+                          v-model="children.relationship"
                           v-validate="{
                             required: true,
                             regex: /^[ A-Za-z@'/-]*$/
@@ -260,7 +260,7 @@
                         :message="errors.first(`Umur ${children.idx}`)"
                       >
                         <b-input
-                          v-model="children.tele_no"
+                          v-model="children.age"
                           v-validate="'numeric'"
                           :name="`Umur ${children.idx}`"
                           placeholder="18"
@@ -408,6 +408,7 @@
                 <form-summary
                   :current-user="currentUser"
                   :applicant="applicant"
+                  :childrens="childrens"
                   :jmb-confirmation="jmb_confirmation"
                   :residence="residence"
                   :spouse-income="spouse_income"
@@ -596,7 +597,8 @@ export default {
       childrens: [],
       applicant: {
         spouse: {},
-        income: {}
+        income: {},
+        childrens: []
       },
       residence: {
         individual_meter_acc_no: null,
@@ -677,6 +679,7 @@ export default {
     },
     removeChild(child) {
       this.childrens.splice(this.childrens.indexOf(child), 1)
+      idx--
     },
     create() {
       this.setIsLoading(true)
