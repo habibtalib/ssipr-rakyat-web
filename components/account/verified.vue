@@ -258,6 +258,30 @@
           <div class="card" aria-id="contentIdForA11y3">
             <b-loading
               :is-full-page="false"
+              :active.sync="srsLoading"
+              :can-cancel="true"
+            ></b-loading>
+            <div class="card-header" role="button">
+              <p class="card-header-title level">
+                <span class="level-left">SKim Rumah Selangorku</span>
+                <span
+                  v-if="srs && srs.STATUS"
+                  class="tag is-info level-right"
+                  @click="openDetail(sts, 'Skim Rumah Selangorku')"
+                  >{{ srs.STATUS }}</span
+                >
+                <span v-else class="tag is-danger level-right"
+                  >Tiada Rekod</span
+                >
+              </p>
+            </div>
+          </div>
+          <br />
+        </div>
+        <div>
+          <div class="card" aria-id="contentIdForA11y3">
+            <b-loading
+              :is-full-page="false"
               :active.sync="emasLoading"
               :can-cancel="true"
             ></b-loading>
@@ -268,6 +292,30 @@
                   v-if="emas && emas.profile"
                   class="tag is-info level-right"
                   @click="openDetail(emas, 'Skim Mesra Usia Emas (SMUE)')"
+                  >Dalam Proses</span
+                >
+                <span v-else class="tag is-danger level-right"
+                  >Tiada Rekod</span
+                >
+              </p>
+            </div>
+          </div>
+          <br />
+        </div>
+        <div>
+          <div class="card" aria-id="contentIdForA11y3">
+            <b-loading
+              :is-full-page="false"
+              :active.sync="bantuanSihatLoading"
+              :can-cancel="true"
+            ></b-loading>
+            <div class="card-header" role="button">
+              <p class="card-header-title level">
+                <span class="level-left">Bantuan Sihat Selangor</span>
+                <span
+                  v-if="bantuanSihat"
+                  class="tag is-info level-right"
+                  @click="openDetail(bantuanSihat, 'Bantuan Sihat Selangor')"
                   >Dalam Proses</span
                 >
                 <span v-else class="tag is-danger level-right"
@@ -304,9 +352,13 @@ export default {
       tawas: null,
       emas: null,
       skw: null,
+      srs: null,
+      bantuanSihat: null,
       tawasLoading: true,
       emasLoading: true,
       skwLoading: true,
+      srsLoading: true,
+      bantuanSihatLoading: true,
       iprList: [
         {
           id: 'AIR_SELANGOR',
@@ -531,8 +583,44 @@ export default {
     this.checkTawas()
     this.checkSkw()
     this.checkEmas()
+    this.checkBantuanSihat()
+    this.checkSRS()
   },
   methods: {
+    checkSRS() {
+      axios
+        .get(
+          `http://ssipr-yawas-api-dev.ap-southeast-1.elasticbeanstalk.com/srs/${this.currentUser.ic}`
+        )
+        .then(res => {
+          if (res.status === 200) {
+            this.srs = res.data
+            this.srsLoading = false
+          }
+        })
+        .catch(function(error) {
+          // handle error
+          console.log(error)
+        })
+      return false
+    },
+    checkBantuanSihat() {
+      axios
+        .get(
+          `http://ssipr-yawas-api-dev.ap-southeast-1.elasticbeanstalk.com/bs/${this.currentUser.ic}`
+        )
+        .then(res => {
+          if (res.status === 200) {
+            this.bantuanSihat = res.data
+            this.bantuanSihatLoading = false
+          }
+        })
+        .catch(function(error) {
+          // handle error
+          console.log(error)
+        })
+      return false
+    },
     checkTawas() {
       axios
         .get(
