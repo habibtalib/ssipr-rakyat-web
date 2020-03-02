@@ -406,7 +406,7 @@
             <div class="card-content">
               <div class="content">
                 <form-summary
-                  :current-user="applicant"
+                  :current-user="currentUser"
                   :applicant="applicant"
                   :jmb-confirmation="jmb_confirmation"
                   :residence="residence"

@@ -36,11 +36,11 @@
                 {{ currentUser.email }}
               </b-field>
 
-              <b-field :label="$t('f.email')">
+              <b-field label="Tarikh Lahir">
                 {{ currentUser.dob }}
               </b-field>
 
-              <b-field :label="$t('f.email')">
+              <b-field label="Rempat Lahir">
                 {{ currentUser.pob }}
               </b-field>
             </div>
