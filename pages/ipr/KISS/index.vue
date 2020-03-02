@@ -10,7 +10,7 @@
       <form @submit.prevent="finalize()">
         <article class="message is-dark">
           <div class="message-header">
-            <p>Maklumat ADUN</p>
+            <p>MAKLUMAT ADUN</p>
           </div>
           <div class="message-body has-background-white">
             <div class="columns">
@@ -19,7 +19,7 @@
                   label="Pejabat Ahli Dewan Negeri atau Pejabat Penyelaras Ahli Dewan Negeri"
                 >
                   <!-- <b-input v-model="spouse.employment_type"></b-input> -->
-                  <b-select v-model="adun">
+                  <b-select v-model="applicant.adun">
                     <option
                       v-for="(state, index) in dun"
                       :key="index"
@@ -63,7 +63,7 @@
               <div class="column is-4">
                 <b-field label="Jenis Pekerjaan">
                   <!-- <b-input v-model="income.employment_type"></b-input> -->
-                  <b-select v-model="income.employment_type">
+                  <b-select v-model="applicant.income.employment_type">
                     <option value="Sektor Kerajaan">Sektor Kerajaan</option>
                     <option value="Sektor Swasta">Sektor Swasta</option>
                     <option value="Bekerja Sendiri">Bekerja Sendiri</option>
@@ -75,7 +75,7 @@
               <div class="column is-4">
                 <b-field label="Nama Majikan">
                   <b-input
-                    v-model="income.employer_name"
+                    v-model="applicant.income.employer_name"
                     :disabled="
                       income.employment_type === 'Tidak Bekerja' ||
                         income.employment_type === 'Pesara' ||
@@ -87,7 +87,7 @@
               <div class="column is-4">
                 <b-field label="No Telefon Majikan">
                   <b-input
-                    v-model="income.employer_phone"
+                    v-model="applicant.income.employer_phone"
                     :disabled="
                       income.employment_type === 'Tidak Bekerja' ||
                         income.employment_type === 'Pesara' ||
@@ -122,7 +122,7 @@
               <div class="column is-4">
                 <b-field label="Jenis Pekerjaan">
                   <!-- <b-input v-model="spouse.employment_type"></b-input> -->
-                  <b-select v-model="spouse.employment_type">
+                  <b-select v-model="applicant.spouse.employment_type">
                     <option value="Sektor Kerajaan">Sektor Kerajaan</option>
                     <option value="Sektor Swasta">Sektor Swasta</option>
                     <option value="Bekerja Sendiri">Bekerja Sendiri</option>
@@ -134,7 +134,7 @@
               <div class="column is-4">
                 <b-field label="Nama Majikan">
                   <b-input
-                    v-model="spouse.employer_name"
+                    v-model="applicant.spouse.employer_name"
                     :disabled="
                       spouse.employment_type === 'Tidak Bekerja' ||
                         spouse.employment_type === 'Pesara' ||
@@ -146,7 +146,7 @@
               <div class="column is-4">
                 <b-field label="No Telefon Majikan">
                   <b-input
-                    v-model="spouse.employer_phone"
+                    v-model="applicant.spouse.employer_phone"
                     :disabled="
                       spouse.employment_type === 'Tidak Bekerja' ||
                         spouse.employment_type === 'Pesara' ||
@@ -410,6 +410,7 @@
                   :applicant="applicant"
                   :jmb-confirmation="jmb_confirmation"
                   :residence="residence"
+                  :spouse-income="spouse_income"
                   :total-spouses-salaries="spouse.income"
                   :total-salaries="
                     fixedTwoDecimal(
@@ -594,7 +595,8 @@ export default {
       },
       childrens: [],
       applicant: {
-        spouse: {}
+        spouse: {},
+        income: {}
       },
       residence: {
         individual_meter_acc_no: null,

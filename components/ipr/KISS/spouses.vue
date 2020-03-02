@@ -22,12 +22,15 @@
           </div>
           <div class="column is-half">
             <b-field label="Tarikh Lahir">
-              <b-datepicker :value="spouse.dob" icon="calendar-today">
+              <b-datepicker
+                v-model="applicant.spouse.dob"
+                icon="calendar-today"
+              >
               </b-datepicker>
             </b-field>
             <b-field label="Negeri Kelahiran/Tempat Lahir">
               <b-select
-                :value="spouse.pob"
+                v-model="applicant.spouse.pob"
                 :placeholder="$t('l.choose')"
                 name="spousePOB"
               >
@@ -40,11 +43,11 @@
               </b-select>
             </b-field>
             <b-field label="Tempoh Menetap di Selangor">
-              <b-input :value="spouse.tempoh_tinggal"></b-input>
+              <b-input v-model="applicant.spouse.tempoh_tinggal"></b-input>
             </b-field>
             <b-field label="Warganegara">
               <!-- <b-input v-model="spouse.citizen"></b-input> -->
-              <b-select :value="spouse.citizen">
+              <b-select v-model="applicant.spouse.citizen">
                 <option value="Ya">Ya</option>
                 <option value="Tidak">Tidak</option>
               </b-select>
