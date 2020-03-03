@@ -460,6 +460,73 @@
             <footer class="card-footer"></footer>
           </div>
         </b-modal>
+        <b-modal :active.sync="isSKWModalActive" :width="640" scroll="keep">
+          <div class="card">
+            <div class="card-header">Skim Kesihatan Wanita (Mammosel)</div>
+            <div class="card-content">
+              <table
+                v-if="skw"
+                class="table table-bordered table-striped table-condensed mb-none"
+              >
+                <tr>
+                  <td colspan="4" bgcolor="#ccc"><b>Maklumat Ahli</b></td>
+                </tr>
+                <tr>
+                  <td><b>Nama</b></td>
+                  <td colspan="3">{{ skw.Nama }}</td>
+                </tr>
+                <tr>
+                  <td><b>No Kp</b></td>
+                  <td>{{ skw.NoKPBaru }}</td>
+                  <td><b>No Kp Lama</b></td>
+                  <td>{{ skw.NoKPLama }}</td>
+                </tr>
+                <tr>
+                  <td><b>No. Tel</b></td>
+                  <td>{{ skw.NoTel }}</td>
+                  <td><b>Pekerjaan</b></td>
+                  <td>{{ skw.Pekerjaan }}</td>
+                </tr>
+                <tr>
+                  <td><b>Kaum</b></td>
+                  <td>{{ skw.Kaum }}</td>
+                  <td><b>Agama</b></td>
+                  <td>{{ skw.Agama }}</td>
+                </tr>
+                <tr>
+                  <td><b>Alamat</b></td>
+                  <td colspan="3">{{ skw.Alamat1 }}</td>
+                </tr>
+                <tr>
+                  <td><b></b></td>
+                  <td colspan="3">{{ skw.Alamat2 }}</td>
+                </tr>
+                <tr>
+                  <td><b>Poskod</b></td>
+                  <td>{{ skw.Poskod }}</td>
+                  <td><b>Bandar</b></td>
+                  <td>{{ skw.Bandar }}</td>
+                </tr>
+                <tr>
+                  <td><b>Daerah</b></td>
+                  <td>{{ skw.Daerah }}</td>
+                </tr>
+                <tr>
+                  <td colspan="4" bgcolor="#ccc">
+                    <b>Maklumat Pemeriksaan</b>
+                  </td>
+                </tr>
+                <tr>
+                  <td><b>No.</b></td>
+                  <td><b>Operator</b></td>
+                  <td><b>Tarikh Pemeriksaan</b></td>
+                  <td><b>Jenis Pemeriksan</b></td>
+                </tr>
+              </table>
+            </div>
+            <footer class="card-footer"></footer>
+          </div>
+        </b-modal>
       </div>
       <div class="column">
         <div
@@ -526,7 +593,7 @@
                 <span
                   v-if="skw"
                   class="tag is-info level-right"
-                  @click="openDetail(skw, 'Skim Kesihatan Wanita (Mammosel)')"
+                  @click="openSKWDetail()"
                   >Dalam Proses</span
                 >
                 <span v-else class="tag is-danger level-right"
@@ -629,6 +696,7 @@ export default {
       isCardModalActive: false,
       isModalActive: false,
       isSMUEModalActive: false,
+      isSKWModalActive: false,
       submittedApplications: this.currentUser.dockets,
       activeIPR: null,
       selectedIPRTitle: null,
@@ -982,6 +1050,9 @@ export default {
     },
     openSMUEDetail() {
       this.isSMUEModalActive = true
+    },
+    openSKWDetail() {
+      this.isSKWModalActive = true
     },
     checkApplication(ipr, submittedApplications) {
       return submittedApplications.find(item => {
