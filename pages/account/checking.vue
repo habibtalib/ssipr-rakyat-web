@@ -25,7 +25,7 @@
             <p class="card-header-title level">
               <span class="level-left">Skim Air Selangor (SADE)</span>
               <span
-                v-if="skw"
+                v-if="sade"
                 class="tag is-info level-right"
                 @click="openSADEDetail()"
                 >Dalam Proses</span
@@ -522,6 +522,34 @@
         <footer class="card-footer"></footer>
       </div>
     </b-modal>
+    <b-modal :active.sync="isSADEModalActive" :width="640" scroll="keep">
+      <div class="card">
+        <div class="card-header">Skim Air Selangor (SADE)</div>
+        <div class="card-content">
+          <table
+            v-if="sade"
+            class="table table-bordered table-striped table-condensed mb-none"
+          >
+            <tr>
+              <td colspan="4" bgcolor="#ccc"><b>Maklumat Ahli</b></td>
+            </tr>
+            <tr>
+              <td><b>Nama</b></td>
+              <td></td>
+              <td><b>No. Kad Pengenalan / No. Polis / No. Tentera</b></td>
+              <td>{{ sade.id_pemohon }}</td>
+            </tr>
+            <tr>
+              <td><b>Status Permohonan</b></td>
+              <td>{{ sade.status === 0 ? 'Dalam Proses' : 'Lulus' }}</td>
+              <td><b>Tarikh Daftar</b></td>
+              <td>{{ sade.inserted_at }}</td>
+            </tr>
+          </table>
+        </div>
+        <footer class="card-footer"></footer>
+      </div>
+    </b-modal>
   </div>
 </template>
 
@@ -537,15 +565,18 @@ export default {
       tawas: null,
       emas: null,
       skw: null,
+      sade: null,
       status: 'Dalam Proses',
       isCardModalActive: false,
       isModalActive: false,
       isSMUEModalActive: false,
       isSKWModalActive: false,
+      isSADEModalActive: false,
       activeIPR: null,
       selectedIPRTitle: null,
       selectedIPR: null,
       result: false,
+      sadeLoading: true,
       tawasLoading: true,
       emasLoading: true,
       skwLoading: true,
@@ -567,41 +598,42 @@ export default {
   methods: {
     check() {
       this.checked = true
-      this.setIsLoading(true)
+      // this.setIsLoading(true)
       this.checkSRS()
       this.checkTawas()
       this.checkSkw()
       this.checkEmas()
       this.checkBantuanSihat()
-      this.$store
-        .dispatch('ipr_application/checkAirSelangor', this.ic)
-        .then(res => {
-          this.setIsLoading(false)
+      this.checkSADE()
+      // this.$store
+      //   .dispatch('ipr_application/checkAirSelangor', this.ic)
+      //   .then(res => {
+      //     this.setIsLoading(false)
 
-          if (!res.error) {
-            // const status =
-            //   this.airSelangor.status === 1 ? 'Lulus' : 'Dalam Proses'
-            // Dialog.alert({
-            //   message: `Status permohonan Air Selangor: ${status}`,
-            //   type: 'is-info',
-            //   hasIcon: true,
-            //   icon: 'times-circle',
-            //   iconPack: 'fa'
-            // })
-          } else {
-            // Dialog.alert({
-            //   message: 'Maaf, Maklumat anda tiadak dalam Rekod Kami',
-            //   type: 'is-danger',
-            //   hasIcon: true,
-            //   icon: 'times-circle',
-            //   iconPack: 'fa'
-            // })
-          }
-        })
-        .catch(function(error) {
-          // handle error
-          console.log(error)
-        })
+      //     if (!res.error) {
+      //       const status =
+      //         this.airSelangor.status === 1 ? 'Lulus' : 'Dalam Proses'
+      //       Dialog.alert({
+      //         message: `Status permohonan Air Selangor: ${status}`,
+      //         type: 'is-info',
+      //         hasIcon: true,
+      //         icon: 'times-circle',
+      //         iconPack: 'fa'
+      //       })
+      //     } else {
+      //       Dialog.alert({
+      //         message: 'Maaf, Maklumat anda tiadak dalam Rekod Kami',
+      //         type: 'is-danger',
+      //         hasIcon: true,
+      //         icon: 'times-circle',
+      //         iconPack: 'fa'
+      //       })
+      //     }
+      //   })
+      //   .catch(function(error) {
+      //     // handle error
+      //     console.log(error)
+      //   })
       // this.setIsLoading(false)
     },
     checkSRS() {
@@ -656,6 +688,23 @@ export default {
 
       return false
     },
+    checkSADE() {
+      axios
+        .get(
+          `http://ssipr-yawas-api-dev.ap-southeast-1.elasticbeanstalk.com/sade/${this.ic}`
+        )
+        .then(res => {
+          if (res.status === 200) {
+            this.sade = res.data
+            this.sadeLoading = false
+          }
+        })
+        .catch(function(error) {
+          // handle error
+          console.log(error)
+        })
+      return false
+    },
     checkSkw() {
       axios
         .get(
@@ -703,6 +752,9 @@ export default {
     },
     openSMUEDetail() {
       this.isSMUEModalActive = true
+    },
+    openSADEDetail() {
+      this.isSADEModalActive = true
     },
     openSKWDetail() {
       this.isSKWModalActive = true
