@@ -36,7 +36,7 @@
         </div>
         <br />
       </div>
-      <div>
+      <!-- <div>
         <div class="card" aria-id="contentIdForA11y3">
           <b-loading
             :is-full-page="false"
@@ -62,9 +62,9 @@
           </div>
         </div>
         <br />
-      </div>
+      </div> -->
 
-      <div>
+      <!-- <div>
         <div class="card" aria-id="contentIdForA11y3">
           <b-loading
             :is-full-page="false"
@@ -85,8 +85,8 @@
           </div>
         </div>
         <br />
-      </div>
-      <div>
+      </div> -->
+      <!-- <div>
         <div class="card" aria-id="contentIdForA11y3">
           <b-loading
             :is-full-page="false"
@@ -107,8 +107,8 @@
           </div>
         </div>
         <br />
-      </div>
-      <div>
+      </div> -->
+      <!-- <div>
         <div class="card" aria-id="contentIdForA11y3">
           <b-loading
             :is-full-page="false"
@@ -129,8 +129,8 @@
           </div>
         </div>
         <br />
-      </div>
-      <div>
+      </div> -->
+      <!-- <div>
         <div class="card" aria-id="contentIdForA11y3">
           <b-loading
             :is-full-page="false"
@@ -151,7 +151,7 @@
           </div>
         </div>
         <br />
-      </div>
+      </div> -->
     </div>
 
     <b-modal :active.sync="isModalActive" :width="1800" scroll="keep">
