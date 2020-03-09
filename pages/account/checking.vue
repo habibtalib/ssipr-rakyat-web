@@ -7,6 +7,10 @@
         <b-input v-model="ic" required></b-input>
       </b-field>
 
+      <b-field label="No Meter Air">
+        <b-input v-model="meter"></b-input>
+      </b-field>
+
       <p class="control loginbtn">
         <b-button native-type="submit" type="is-primary is-fullwidth" outlined>
           Semak
