@@ -157,7 +157,45 @@
         <br />
       </div> -->
     </div>
-
+    <b-modal :active.sync="isSADEModalActive" :width="640" scroll="keep">
+      <div class="card">
+        <div class="card-header">Skim Air Selangor (SADE)</div>
+        <div class="card-content">
+          <table
+            v-if="sade"
+            class="table table-bordered table-striped table-condensed mb-none"
+          >
+            <tr>
+              <td colspan="4" bgcolor="#ccc"><b>Maklumat Ahli</b></td>
+            </tr>
+            <tr>
+              <td><b>Nama</b></td>
+              <td></td>
+              <td><b>No. Kad Pengenalan / No. Polis / No. Tentera</b></td>
+              <td>{{ sade.id_pemohon }}</td>
+            </tr>
+            <tr>
+              <td><b>Status Permohonan</b></td>
+              <td>{{ sade.status === 0 ? 'Dalam Proses' : 'Lulus' }}</td>
+              <td><b>Tarikh Daftar</b></td>
+              <td>{{ sade.inserted_at }}</td>
+            </tr>
+            <tr>
+              <td><b>Jenis Meter</b></td>
+              <td>{{ sade.jenis_meter }}</td>
+              <td><b>No Akaun</b></td>
+              <td v-if="sade.jenis_meter === 'individu'">
+                {{ sade.no_akaun_individu }}
+              </td>
+              <td v-else>
+                {{ sade.no_akaun_pukal }}
+              </td>
+            </tr>
+          </table>
+        </div>
+        <footer class="card-footer"></footer>
+      </div>
+    </b-modal>
     <b-modal :active.sync="isModalActive" :width="1800" scroll="keep">
       <div class="card">
         <div class="card-header">{{ selectedIPRTitle }}</div>
@@ -520,34 +558,6 @@
               <td><b>Operator</b></td>
               <td><b>Tarikh Pemeriksaan</b></td>
               <td><b>Jenis Pemeriksan</b></td>
-            </tr>
-          </table>
-        </div>
-        <footer class="card-footer"></footer>
-      </div>
-    </b-modal>
-    <b-modal :active.sync="isSADEModalActive" :width="640" scroll="keep">
-      <div class="card">
-        <div class="card-header">Skim Air Selangor (SADE)</div>
-        <div class="card-content">
-          <table
-            v-if="sade"
-            class="table table-bordered table-striped table-condensed mb-none"
-          >
-            <tr>
-              <td colspan="4" bgcolor="#ccc"><b>Maklumat Ahli</b></td>
-            </tr>
-            <tr>
-              <td><b>Nama</b></td>
-              <td></td>
-              <td><b>No. Kad Pengenalan / No. Polis / No. Tentera</b></td>
-              <td>{{ sade.id_pemohon }}</td>
-            </tr>
-            <tr>
-              <td><b>Status Permohonan</b></td>
-              <td>{{ sade.status === 0 ? 'Dalam Proses' : 'Lulus' }}</td>
-              <td><b>Tarikh Daftar</b></td>
-              <td>{{ sade.inserted_at }}</td>
             </tr>
           </table>
         </div>
