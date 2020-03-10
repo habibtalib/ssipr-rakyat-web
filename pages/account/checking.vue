@@ -755,7 +755,7 @@
 </template>
 
 <script>
-// import { Dialog } from 'buefy/dist/components/dialog'
+import { Dialog } from 'buefy/dist/components/dialog'
 import { mapGetters } from 'vuex'
 import axios from 'axios'
 export default {
@@ -893,17 +893,32 @@ export default {
     checkSADE() {
       axios
         .get(
-          `http://ssipr-yawas-api-dev.ap-southeast-1.elasticbeanstalk.com/sade/${this.ic}`
+          `http://ssipr-yawas-api-dev.ap-southeast-1.elasticbeanstalk.com/sade/${this.ic}?meter=${this.meter}`
         )
         .then(res => {
-          if (res.status === 200) {
+          if (res.status === 200 && res.data.id) {
             this.sade = res.data
             this.sadeLoading = false
             this.isSADEModalActive = true
+          } else {
+            Dialog.alert({
+              message: 'Maaf, Maklumat anda tiadak dalam Rekod Kami',
+              type: 'is-danger',
+              hasIcon: true,
+              icon: 'times-circle',
+              iconPack: 'fa'
+            })
           }
         })
         .catch(function(error) {
           // handle error
+          Dialog.alert({
+            message: 'Maaf, Maklumat anda tiadak dalam Rekod Kami',
+            type: 'is-danger',
+            hasIcon: true,
+            icon: 'times-circle',
+            iconPack: 'fa'
+          })
           console.log(error)
         })
       return false
