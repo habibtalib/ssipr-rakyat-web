@@ -177,11 +177,11 @@
               <td>
                 <b>Nama</b>
               </td>
-              <td></td>
+              <td>{{ sade.nama }}</td>
               <td>
                 <b>No. Kad Pengenalan / No. Polis / No. Tentera</b>
               </td>
-              <td>{{ sade.id_pemohon }}</td>
+              <td>{{ sade.ic }}</td>
             </tr>
             <tr>
               <td>
