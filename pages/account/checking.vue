@@ -7,7 +7,7 @@
         <b-input v-model="ic" required></b-input>
       </b-field>
 
-      <b-field label="No Meter Air">
+      <b-field label="No Akaun Air">
         <b-input v-model="meter" maxlength="10" required></b-input>
       </b-field>
 
