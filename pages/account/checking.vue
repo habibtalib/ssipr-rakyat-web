@@ -157,14 +157,12 @@
         <br />
       </div>-->
     </div>
-    <b-modal
-      :active.sync="isSADEModalActive"
-      :width="2500"
-      :height="1800"
-      scroll="keep"
-    >
-      <div class="card sade">
-        <div class="card-header">Skim Air Selangor (SADE)</div>
+    <b-modal :active.sync="isSADEModalActive" full-screen>
+      <p class="image is-4by3">
+        <img src="/semakan.jpg" />
+      </p>
+      <div class="card">
+        <!-- <div class="card-header">Skim Air Selangor (SADE)</div> -->
         <div class="card-content">
           <table
             v-if="sade"
@@ -1011,8 +1009,8 @@ export default {
 }
 .sade {
   background: url('/semakan.jpg');
-  background-position: center;
   background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
 }
 </style>
