@@ -822,7 +822,7 @@ export default {
       //       })
       //     } else {
       //       Dialog.alert({
-      //         message: 'Maaf, Maklumat anda tiadak dalam Rekod Kami',
+      //         message: 'Maaf, Maklumat anda tiada dalam Rekod Kami',
       //         type: 'is-danger',
       //         hasIcon: true,
       //         icon: 'times-circle',
@@ -900,7 +900,7 @@ export default {
             this.isSADEModalActive = true
           } else {
             Dialog.alert({
-              message: 'Maaf, Maklumat anda tiadak dalam Rekod Kami',
+              message: 'Maaf, Maklumat anda tiada dalam Rekod Kami',
               type: 'is-danger',
               hasIcon: true,
               icon: 'times-circle',
@@ -911,7 +911,7 @@ export default {
         .catch(function(error) {
           // handle error
           Dialog.alert({
-            message: 'Maaf, Maklumat anda tiadak dalam Rekod Kami',
+            message: 'Maaf, Maklumat anda tiada dalam Rekod Kami',
             type: 'is-danger',
             hasIcon: true,
             icon: 'times-circle',
