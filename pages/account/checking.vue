@@ -760,7 +760,7 @@ import { Dialog } from 'buefy/dist/components/dialog'
 import { mapGetters } from 'vuex'
 import axios from 'axios'
 export default {
-  layout: 'auth',
+  layout: 'checking',
   data() {
     return {
       ic: null,
