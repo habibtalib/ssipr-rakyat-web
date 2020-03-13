@@ -157,6 +157,9 @@
         <br />
       </div>-->
     </div>
+    <b-modal :active.sync="isModalLandingActive">
+      <p><img src="/modal.png" /></p>
+    </b-modal>
     <b-modal :active.sync="isSADEModalActive" full-screen>
       <p class="image is-4by3">
         <img src="/semakan.jpg" />
@@ -781,7 +784,8 @@ export default {
       emasLoading: true,
       skwLoading: true,
       srsLoading: true,
-      checked: false
+      checked: false,
+      isModalLandingActive: true
     }
   },
   computed: {
