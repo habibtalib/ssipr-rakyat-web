@@ -16,6 +16,17 @@
           >Semak</b-button
         >
       </p>
+      <p>
+        <b
+          >HEBAHAN BAGI PEMEGANG AKAUN METER PUKAL DALAM KATEGORI PANGSAPURI KOS
+          RENDAH</b
+        >
+      </p>
+
+      <p>
+        Pemegang akaun meter pukal dalam kategori pangsapuri kos rendah akan
+        terus menerima 20 meter padu air percuma di bawah initiatif SADE.
+      </p>
     </form>
     <div v-if="checked">
       <!-- <div>
@@ -157,14 +168,14 @@
         <br />
       </div>-->
     </div>
-    <b-modal :active.sync="isModalLandingActive">
+    <!-- <b-modal :active.sync="isModalLandingActive">
       <p><img src="/modal.png" /></p>
-    </b-modal>
+    </b-modal> -->
     <b-modal :active.sync="isSADEModalActive" full-screen>
       <p class="image is-4by3">
         <img src="/semakan.jpg" />
       </p>
-      <div class="card">
+      <div class="card result-search">
         <!-- <div class="card-header">Skim Air Selangor (SADE)</div> -->
         <div class="card-content">
           <table
@@ -1016,5 +1027,8 @@ export default {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+}
+.card-content .result-search {
+  margin-top: -250px;
 }
 </style>
