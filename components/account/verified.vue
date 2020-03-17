@@ -94,7 +94,6 @@
             <div class="card-image">
               <figure class="image">
                 <img
-<<<<<<< HEAD
                   v-if="activeIPR && activeIPR.id === 'AIR_SELANGOR'"
                   src="~assets/img/SADE_banner.jpg"
                   alt="Image"
@@ -127,10 +126,6 @@
                 <img
                   v-if="activeIPR && activeIPR.id === 'SMUE'"
                   src="~assets/img/EMAS.png"
-=======
-                  v-if="activeIPR && activeIPR.id === AIR_SELANGOR"
-                  src="~assets/img/PopupBanner_31.12.png"
->>>>>>> master
                   alt="Image"
                 />
               </figure>
@@ -688,10 +683,7 @@
 
 <script>
 import { Dialog } from 'buefy/dist/components/dialog'
-<<<<<<< HEAD
 import axios from 'axios'
-=======
->>>>>>> master
 export default {
   props: {
     currentUser: {
