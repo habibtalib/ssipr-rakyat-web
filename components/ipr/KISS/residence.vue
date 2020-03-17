@@ -1,10 +1,10 @@
 <template>
   <article class="message is-dark">
     <div class="message-header">
-      <p>Maklumat Tempat Tinggal</p>
+      <p>MAKLUMAT TEMPAT TINGGAL</p>
     </div>
     <div class="message-body has-background-white">
-      <fieldset disabled>
+      <fieldset>
         <div class="columns">
           <div class="column is-half">
             <b-field
@@ -13,7 +13,7 @@
               :message="errors.first('applicantAddress1')"
             >
               <b-input
-                v-model="applicant.address_1"
+                v-model="currentUser.address_1"
                 v-validate="'required|max:50'"
                 name="applicantAddress1"
               ></b-input>
@@ -24,7 +24,7 @@
               :message="errors.first('applicantAddress2')"
             >
               <b-input
-                v-model="applicant.address_2"
+                v-model="currentUser.address_2"
                 v-validate="'max:50'"
                 name="applicantAddress2"
               ></b-input>
@@ -35,7 +35,7 @@
               :message="errors.first('applicantAddress3')"
             >
               <b-input
-                v-model="applicant.address_3"
+                v-model="currentUser.address_3"
                 v-validate="'max:50'"
                 name="applicantAddress3"
                 max="10"
@@ -49,7 +49,7 @@
               :message="errors.first('applicantPostcode')"
             >
               <b-input
-                v-model="applicant.postcode"
+                v-model="currentUser.postcode"
                 v-validate="'required|numeric|max:5'"
                 name="applicantPostcode"
                 max="10"
@@ -62,7 +62,7 @@
               :message="errors.first('applicantState')"
             >
               <b-select
-                v-model="applicant.state"
+                v-model="currentUser.state"
                 v-validate="'required'"
                 :placeholder="$t('l.choose')"
                 name="applicantState"

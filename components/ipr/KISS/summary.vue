@@ -16,12 +16,31 @@
 
       <div class="columns">
         <div class="column is-full">
-          <div class="is-divider" data-content="Maklumat Peribadi"></div>
+          <div class="is-divider" data-content="MAKLUMAT ADUN"></div>
+          <div class="columns">
+            <div class="column is-full">
+              <b-field
+                label="Pejabat Ahli Dewan Negeri atau Pejabat Penyelaras Ahli Dewan Negeri"
+              >
+                {{ applicant.adun }}
+              </b-field>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="columns">
+        <div class="column is-full">
+          <div class="is-divider" data-content="MAKLUMAT PEMOHON"></div>
 
           <div class="columns">
             <div class="column is-half">
               <b-field :label="$t('f.name')">
                 {{ currentUser.name }}
+              </b-field>
+
+              <b-field label="Jantina">
+                {{ currentUser.gender }}
               </b-field>
 
               <b-field :label="$t('f.all_id')">
@@ -32,18 +51,23 @@
                 {{ currentUser.email }}
               </b-field>
 
-              <b-field :label="$t('f.meterType')">
-                {{ residence.meter_type }}
+              <b-field label="Tarikh Lahir">
+                {{ currentUser.dob }}
               </b-field>
 
-              <b-field
-                v-if="residence.meter_type == 'individu'"
-                :label="$t('f.waterAccNo')"
-              >
-                {{ residence.individual_meter_acc_no }}
+              <b-field label="Tempat Lahir">
+                {{ currentUser.pob }}
               </b-field>
             </div>
             <div class="column is-half">
+              <b-field label="Warganegara">
+                {{ applicant.citizen }}
+              </b-field>
+
+              <b-field label="Bangsa">
+                {{ applicant.race }}
+              </b-field>
+
               <b-field :label="$t('f.maritalStatus')">
                 {{ currentUser.marital_status }}
               </b-field>
@@ -55,6 +79,10 @@
               <b-field :label="$t('f.pNo')">
                 {{ currentUser.phone_no }}
               </b-field>
+
+              <b-field :label="$t('f.hNo')">
+                {{ currentUser.home_no }}
+              </b-field>
             </div>
           </div>
         </div>
@@ -62,50 +90,43 @@
 
       <div v-if="currentUser.marital_status == 'Berkahwin'" class="columns">
         <div class="column is-full">
-          <div class="is-divider" data-content="Maklumat Pasangan"></div>
+          <div class="is-divider" data-content="MAKLUMAT SUAMI"></div>
 
-          <div class="columns">
-            <div class="column is-full">
-              <table class="table is-fullwidth is-bordered">
-                <thead>
-                  <tr>
-                    <th>{{ $t('f.all_id') }}</th>
-                    <th>{{ $t('f.name') }}</th>
-                    <th>{{ $t('f.email') }}</th>
-                    <th>{{ $t('f.pNo') }}</th>
-                    <th>{{ $t('f.income') }}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="spouse in currentUser.spouses" :key="spouse.ic">
-                    <td>
-                      <b-field>
-                        {{ spouse.ic }}
-                      </b-field>
-                    </td>
-                    <td>
-                      <b-field>
-                        {{ spouse.name }}
-                      </b-field>
-                    </td>
-                    <td>
-                      <b-field>
-                        {{ spouse.email }}
-                      </b-field>
-                    </td>
-                    <td>
-                      <b-field>
-                        {{ spouse.tele_no }}
-                      </b-field>
-                    </td>
-                    <td>
-                      <b-field>
-                        {{ spouse.income }}
-                      </b-field>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+          <div
+            v-for="spouse in currentUser.spouses"
+            :key="spouse.idx"
+            class="columns"
+          >
+            <div class="column is-half">
+              <b-field label="Nama">
+                {{ spouse.name }}
+              </b-field>
+              <b-field label="No. Kad Pengenalan / No. Polis / No. Tentera">
+                {{ spouse.ic }}
+              </b-field>
+              <b-field label="Emel">
+                {{ spouse.email }}
+              </b-field>
+              <b-field label="No Telefon Bimbit">
+                {{ spouse.tele_no }}
+              </b-field>
+            </div>
+            <div class="column is-half">
+              <b-field label="Tarikh Lahir">
+                {{ applicant.spouse.dob }}
+              </b-field>
+              <b-field label="Negeri Kelahiran/Tempat Lahir">
+                {{ applicant.spouse.pob }}
+              </b-field>
+              <b-field label="Tempoh Menetap di Selangor">
+                {{ applicant.spouse.tempoh_tinggal }}
+              </b-field>
+              <b-field label="Warganegara">
+                {{ applicant.spouse.citizen }}
+              </b-field>
+              <b-field label="Bangsa">
+                {{ applicant.spouse.race }}
+              </b-field>
             </div>
           </div>
         </div>
@@ -113,23 +134,115 @@
 
       <div class="columns">
         <div class="column is-full">
-          <div class="is-divider" data-content="Maklumat Pendapatan"></div>
-
+          <div
+            class="is-divider"
+            data-content="MAKLUMAT ANAK-ANAK/TANGGUNGAN (berumur kurang daripada 21 Tahun)"
+          ></div>
           <div class="columns">
             <div class="column is-full">
-              <b-field label="Jenis Pendapatan">
-                {{ totalSpousesSalaries }}
-              </b-field>
+              <fieldset v-if="childrens.length > 0">
+                <table class="table is-fullwidth is-bordered">
+                  <thead>
+                    <tr>
+                      <th>Nama Penuh</th>
+                      <th>No KP/Sijil Kelahiran</th>
+                      <th>Hubungan</th>
+                      <th>Umur</th>
+                      <th>Pendapatan Bulanan (RM)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="children in childrens" :key="children.idx">
+                      <td>
+                        {{ children.name }}
+                      </td>
+                      <td>
+                        {{ children.ic }}
+                      </td>
+                      <td>
+                        {{ children.relationship }}
+                      </td>
+                      <td>
+                        {{ children.age }}
+                      </td>
+                      <td>
+                        {{ children.income }}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </fieldset>
+            </div>
+          </div>
+        </div>
+      </div>
 
+      <div class="columns">
+        <div class="column is-full">
+          <div
+            class="is-divider"
+            data-content="MAKLUMAT PENDAPATAN PEMOHON"
+          ></div>
+
+          <div class="columns">
+            <div class="column is-half">
+              <b-field label="Jenis Pekerjaan">
+                {{ applicant.income.employment_type }}
+              </b-field>
+              <b-field label="Nama Majikan">
+                {{ applicant.income.employer_name }}
+              </b-field>
+              <b-field label="No Telefon Majikan">
+                {{ applicant.income.employer_phone }}
+              </b-field>
+            </div>
+            <div class="column is-half">
               <b-field label="Jumlah Pendapatan Pemohon">
                 {{ currentUser.income }}
               </b-field>
+            </div>
+          </div>
+        </div>
+      </div>
 
-              <b-field label="Jumlah Pendapatan Pasangan">
-                {{ totalSpousesSalaries }}
+      <div class="columns">
+        <div class="column is-full">
+          <div
+            class="is-divider"
+            data-content="MAKLUMAT PENDAPATAN SUAMI"
+          ></div>
+
+          <div class="columns">
+            <div class="column is-half">
+              <b-field label="Jenis Pekerjaan">
+                {{ applicant.spouse.employment_type }}
               </b-field>
+              <b-field label="Nama Majikan">
+                {{ applicant.spouse.employer_name }}
+              </b-field>
+              <b-field label="No Telefon Majikan">
+                {{ applicant.spouse.employer_phone }}
+              </b-field>
+            </div>
+            <div class="column is-half">
+              <b-field label="Jumlah Pendapatan Pasangan">
+                {{ spouseIncome }}
+              </b-field>
+            </div>
+          </div>
+        </div>
+      </div>
 
-              <b-field label="Jumlah Pendapatan Isi Rumah (RM)">
+      <div class="columns">
+        <div class="column is-full">
+          <div
+            class="is-divider"
+            data-content="JUMLAH PENDAPATAN KESELURUHAN ISI RUMAH (RM)"
+          ></div>
+
+          <div class="columns">
+            <div class="column is-half">
+              <b-field label="Jumlah Pendapatan (RM)">
                 {{ totalSalaries }}
               </b-field>
             </div>
@@ -139,14 +252,10 @@
 
       <div class="columns">
         <div class="column is-full">
-          <div class="is-divider" data-content="Maklumat Tempat Tinggal"></div>
+          <div class="is-divider" data-content="MAKLUMAT TEMPAT TINGGAL"></div>
 
           <div class="columns">
             <div class="column is-full">
-              <b-field :label="$t('f.premisOwnershipStatus')">
-                {{ residence.ownership_status }}
-              </b-field>
-
               <b-field :label="other_district">
                 {{
                   [
@@ -197,6 +306,14 @@ export default {
     },
     totalSalaries: {
       type: Number,
+      required: true
+    },
+    spouseIncome: {
+      type: Number,
+      required: true
+    },
+    childrens: {
+      type: Object,
       required: true
     }
   },

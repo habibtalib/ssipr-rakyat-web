@@ -104,12 +104,9 @@ export default {
 </script>
 <style scoped>
 .with-bg {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url('~assets/img/bgsel.png');
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  background: url('~assets/img/checking.png');
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 .footpad {
   padding: 1rem;

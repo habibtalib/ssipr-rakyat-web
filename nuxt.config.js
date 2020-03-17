@@ -45,6 +45,11 @@ export default {
           component: resolve(__dirname, 'pages/auth/index.vue')
         },
         {
+          name: 'checking',
+          path: '/semak',
+          component: resolve(__dirname, 'pages/account/checking.vue')
+        },
+        {
           name: 'register',
           path: '/register',
           component: resolve(__dirname, 'pages/auth/register.vue')

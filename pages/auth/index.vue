@@ -1,5 +1,8 @@
 <template>
   <div class="column is-half is-offset-one-quarter">
+    <b-modal :active.sync="isModalLandingActive">
+      <p><img src="/sade.jpg" /></p>
+    </b-modal>
     <form>
       <div class="is-divider" :data-content="$t('l.login')"></div>
 
@@ -12,9 +15,13 @@
       </b-field>
 
       <p class="control loginbtn">
-        <b-button type="is-primary is-fullwidth" outlined @click="login()">{{
-          $t('l.login')
-        }}</b-button>
+        <b-button
+          type="is-primary is-fullwidth"
+          outlined
+          disabled
+          @click="login()"
+          >{{ $t('l.login') }}</b-button
+        >
       </p>
       <p class="has-text-centered">
         <nuxt-link class="button is-text is-small" to="password">{{
@@ -42,7 +49,8 @@ export default {
   data() {
     return {
       ic: null,
-      password: null
+      password: null,
+      isModalLandingActive: true
     }
   },
   created() {

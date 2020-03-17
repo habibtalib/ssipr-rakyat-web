@@ -8,43 +8,92 @@
       <br />
 
       <form @submit.prevent="finalize()">
+        <article class="message is-dark">
+          <div class="message-header">
+            <p>MAKLUMAT ADUN</p>
+          </div>
+          <div class="message-body has-background-white">
+            <div class="columns">
+              <div class="column is-4">
+                <b-field
+                  label="Pejabat Ahli Dewan Negeri atau Pejabat Penyelaras Ahli Dewan Negeri"
+                >
+                  <!-- <b-input v-model="spouse.employment_type"></b-input> -->
+                  <b-select v-model="applicant.adun">
+                    <option
+                      v-for="(state, index) in dun"
+                      :key="index"
+                      :value="state"
+                    >
+                      {{ state }}
+                    </option>
+                  </b-select>
+                </b-field>
+              </div>
+            </div>
+          </div>
+        </article>
+
         <personal-fields
           :current-user="currentUser"
+          :applicant="applicant"
           :residence="residence"
           :reset-value="resetValue"
         ></personal-fields>
 
-        <residence-fields
-          :current-user="currentUser"
-          :residence="residence"
-          :applicant="applicant"
-        ></residence-fields>
-
         <spouses-fields
           v-if="currentUser.marital_status == 'Berkahwin'"
           :current-user="currentUser"
+          :applicant="applicant"
           :residence="residence"
         ></spouses-fields>
 
+        <residence-fields
+          :current-user="currentUser"
+          :applicant="applicant"
+          :residence="residence"
+        ></residence-fields>
+
         <article class="message is-dark">
           <div class="message-header">
-            <p>Maklumat Pendapatan</p>
+            <p>MAKLUMAT PENDAPATAN PEMOHON</p>
           </div>
           <div class="message-body has-background-white">
             <div class="columns">
               <div class="column is-4">
                 <b-field label="Jenis Pekerjaan">
-                  <b-inpu v-model="income.employment_type"></b-inpu>
+                  <!-- <b-input v-model="income.employment_type"></b-input> -->
+                  <b-select v-model="applicant.income.employment_type">
+                    <option value="Sektor Kerajaan">Sektor Kerajaan</option>
+                    <option value="Sektor Swasta">Sektor Swasta</option>
+                    <option value="Bekerja Sendiri">Bekerja Sendiri</option>
+                    <option value="Pesara">Pesara</option>
+                    <option value="Tidak Bekerja">Tidak Bekerja</option>
+                  </b-select>
                 </b-field>
               </div>
               <div class="column is-4">
                 <b-field label="Nama Majikan">
-                  <b-input v-model="income.employer_name"></b-input>
+                  <b-input
+                    v-model="applicant.income.employer_name"
+                    :disabled="
+                      income.employment_type === 'Tidak Bekerja' ||
+                        income.employment_type === 'Pesara' ||
+                        income.employment_type === 'Bekerja Sendiri'
+                    "
+                  ></b-input>
                 </b-field>
               </div>
               <div class="column is-4">
                 <b-field label="No Telefon Majikan">
-                  <b-input v-model="income.employer_phone"></b-input>
+                  <b-input
+                    v-model="applicant.income.employer_phone"
+                    :disabled="
+                      income.employment_type === 'Tidak Bekerja' ||
+                        income.employment_type === 'Pesara' ||
+                        income.employment_type === 'Bekerja Sendiri'
+                    "
+                  ></b-input>
                 </b-field>
               </div>
             </div>
@@ -61,39 +110,56 @@
           </div>
         </article>
 
-        <article class="message is-dark">
+        <article
+          v-if="currentUser.marital_status == 'Berkahwin'"
+          class="message is-dark"
+        >
           <div class="message-header">
-            <p>Maklumat Pendapatan Suami</p>
+            <p>MAKLUMAT PENDAPATAN SUAMI</p>
           </div>
           <div class="message-body has-background-white">
             <div class="columns">
               <div class="column is-4">
                 <b-field label="Jenis Pekerjaan">
-                  <b-input v-model="spouse.employment_type"></b-input>
+                  <!-- <b-input v-model="spouse.employment_type"></b-input> -->
+                  <b-select v-model="applicant.spouse.employment_type">
+                    <option value="Sektor Kerajaan">Sektor Kerajaan</option>
+                    <option value="Sektor Swasta">Sektor Swasta</option>
+                    <option value="Bekerja Sendiri">Bekerja Sendiri</option>
+                    <option value="Pesara">Pesara</option>
+                    <option value="Tidak Bekerja">Tidak Bekerja</option>
+                  </b-select>
                 </b-field>
               </div>
               <div class="column is-4">
                 <b-field label="Nama Majikan">
-                  <b-input v-model="spouse.employer_name"></b-input>
+                  <b-input
+                    v-model="applicant.spouse.employer_name"
+                    :disabled="
+                      spouse.employment_type === 'Tidak Bekerja' ||
+                        spouse.employment_type === 'Pesara' ||
+                        spouse.employment_type === 'Bekerja Sendiri'
+                    "
+                  ></b-input>
                 </b-field>
               </div>
               <div class="column is-4">
                 <b-field label="No Telefon Majikan">
-                  <b-input v-model="spouse.employer_phone"></b-input>
+                  <b-input
+                    v-model="applicant.spouse.employer_phone"
+                    :disabled="
+                      spouse.employment_type === 'Tidak Bekerja' ||
+                        spouse.employment_type === 'Pesara' ||
+                        spouse.employment_type === 'Bekerja Sendiri'
+                    "
+                  ></b-input>
                 </b-field>
               </div>
             </div>
             <div class="columns">
               <div class="column is-4">
-                <b-field label="Jumlah Pendapatan">
-                  <b-input
-                    disabled
-                    :value="
-                      fixedTwoDecimal(
-                        sumSpousesSalaries(currentUser.spouses, 'income')
-                      )
-                    "
-                  ></b-input>
+                <b-field label="Jumlah Pendapatan (RM)">
+                  <b-input v-model="spouse_income" required></b-input>
                 </b-field>
               </div>
             </div>
@@ -103,7 +169,7 @@
         <article class="message is-dark">
           <div class="message-header">
             <p>
-              MAKLUMAT ANAK-ANAK/TANGGUNGAN (berumur kurang daripada 21 tahun)
+              MAKLUMAT ANAK-ANAK/TANGGUNGAN (berumur kurang daripada 21 Tahun)
             </p>
           </div>
           <div class="message-body has-background-white">
@@ -112,10 +178,130 @@
                 <a class="button is-primary is-pulled-right" @click="addChild()"
                   >Tambah</a
                 >
+                <a
+                  v-if="childrens.length > 0"
+                  class="button is-primary is-pulled-left"
+                  @click="calculateTotalIncome"
+                >
+                  Kira Jumlah Pendapatan
+                </a>
               </div>
             </div>
-            <fieldset v-for="child in childrens" :key="child.idx">
-              <div class="columns">
+            <fieldset v-if="childrens.length > 0">
+              <table class="table is-fullwidth is-bordered">
+                <thead>
+                  <tr>
+                    <th>Nama Penuh</th>
+                    <th>No KP/Sijil Kelahiran</th>
+                    <th>Hubungan</th>
+                    <th>Umur</th>
+                    <th>Pendapatan Bulanan (RM) jika ada</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="children in childrens" :key="children.idx">
+                    <td>
+                      <b-field
+                        :type="{
+                          'is-danger': errors.has(`Nama Penuh ${children.idx}`)
+                        }"
+                        :message="errors.first(`Nama Penuh ${children.idx}`)"
+                      >
+                        <b-input
+                          v-model="children.name"
+                          v-validate="'required'"
+                          :name="`Nama Penuh ${children.idx}`"
+                        ></b-input>
+                      </b-field>
+                    </td>
+                    <td>
+                      <b-field
+                        :type="{
+                          'is-danger': errors.has(
+                            `No KP/Sijil Kelahir ${children.idx}`
+                          )
+                        }"
+                        :message="
+                          errors.first(`No KP/Sijil Kelahir ${children.idx}`)
+                        "
+                      >
+                        <b-input
+                          v-model="children.ic"
+                          v-validate="{
+                            required: true
+                          }"
+                          :name="`No KP/Sijil Kelahir ${children.idx}`"
+                        ></b-input>
+                      </b-field>
+                    </td>
+                    <td>
+                      <b-field
+                        :type="{
+                          'is-danger': errors.has(`Hubungan ${children.idx}`)
+                        }"
+                        :message="errors.first(`Hubungan ${children.idx}`)"
+                      >
+                        <b-input
+                          v-model="children.relationship"
+                          v-validate="{
+                            required: true,
+                            regex: /^[ A-Za-z@'/-]*$/
+                          }"
+                          :name="`Hubungan ${children.idx}`"
+                        ></b-input>
+                      </b-field>
+                    </td>
+                    <td>
+                      <b-field
+                        :type="{
+                          'is-danger': errors.has(`Umur ${children.idx}`)
+                        }"
+                        :message="errors.first(`Umur ${children.idx}`)"
+                      >
+                        <b-input
+                          v-model="children.age"
+                          v-validate="'numeric'"
+                          :name="`Umur ${children.idx}`"
+                          placeholder="18"
+                        ></b-input>
+                      </b-field>
+                    </td>
+                    <td>
+                      <b-field
+                        :type="{
+                          'is-danger': errors.has(`Pendapatan ${children.idx}`)
+                        }"
+                        :message="
+                          errors.first(`
+                          Pendapatan ${children.idx}`)
+                        "
+                      >
+                        <b-input
+                          v-model="children.income"
+                          v-validate="'required|decimal:2|min_value:0'"
+                          :name="`Pendapatan ${children.idx}`"
+                          step="0.01"
+                          type="number"
+                        ></b-input>
+                      </b-field>
+                    </td>
+                    <td class="has-text-centered">
+                      <a
+                        v-if="children.idx != 0"
+                        class="button is-warning"
+                        @click="removeChild(children)"
+                      >
+                        Padam
+                      </a>
+                      <a v-else class="button is-warning" disabled>
+                        Padam
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <!-- <div class="columns">
                 <div class="column is-4">
                   <b-field label="Nama Penuh">
                     <b-input v-model="child.name"></b-input>
@@ -143,6 +329,23 @@
                     <b-input v-model="child.income"></b-input>
                   </b-field>
                 </div>
+              </div> -->
+            </fieldset>
+          </div>
+        </article>
+
+        <article class="message is-dark">
+          <div class="message-header">
+            <p>JUMLAH PENDAPATAN KESELURUHAN ISI RUMAH (RM)</p>
+          </div>
+          <div class="message-body has-background-white">
+            <fieldset>
+              <div class="columns">
+                <div class="column is-4">
+                  <b-field label="Jumlah Pendapatan (RM)">
+                    <b-input v-model="income.total_income" disabled></b-input>
+                  </b-field>
+                </div>
               </div>
             </fieldset>
           </div>
@@ -150,26 +353,42 @@
 
         <article class="message is-dark">
           <div class="message-header">
-            <p>Jumlah Pendapatan Keseluruhan Isi Rumah</p>
+            <p>SENARAI SEMAK DOKUMEN</p>
           </div>
           <div class="message-body has-background-white">
-            <fieldse>
+            <fieldset>
               <div class="columns">
-                <div class="column is-4">
-                  <b-field label="Jumlah Pendapatan (RM)">
-                    <b-input
-                      v-model="income.total_income"
-                      :value="
-                        fixedTwoDecimal(
-                          parseFloat(currentUser.income) +
-                            sumSpousesSalaries(currentUser.spouses, 'income')
-                        )
-                      "
-                    ></b-input>
-                  </b-field>
+                <div class="column is-full">
+                  <!-- <a
+                    class="button is-primary is-pulled-right"
+                    @click="addDocument()"
+                    >Tambah</a
+                  > -->
                 </div>
               </div>
-            </fieldse>
+              <fieldset>
+                <table class="table is-fullwidth is-bordered">
+                  <thead>
+                    <tr>
+                      <th>Dokumen</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="(document, index) in documents" :key="index">
+                      <td>{{ document.name }}</td>
+                      <td>
+                        <input
+                          :id="document.id"
+                          type="file"
+                          :name="document.id"
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </fieldset>
+            </fieldset>
           </div>
         </article>
 
@@ -189,17 +408,14 @@
                 <form-summary
                   :current-user="currentUser"
                   :applicant="applicant"
+                  :childrens="childrens"
                   :jmb-confirmation="jmb_confirmation"
                   :residence="residence"
-                  :total-spouses-salaries="
-                    fixedTwoDecimal(
-                      sumSpousesSalaries(currentUser.spouses, 'income')
-                    )
-                  "
+                  :spouse-income="spouse_income"
+                  :total-spouses-salaries="spouse.income"
                   :total-salaries="
                     fixedTwoDecimal(
-                      parseFloat(currentUser.income) +
-                        sumSpousesSalaries(currentUser.spouses, 'income')
+                      parseFloat(currentUser.income) + parseFloat(spouse.income)
                     )
                   "
                 ></form-summary>
@@ -285,21 +501,104 @@ export default {
     return {
       setuju1: null,
       setuju2: null,
+      spouse_income: null,
+      documents: [
+        { id: 'applicant_nric', name: 'Salinan Kad Pengenalan' },
+        {
+          id: 'children_nric',
+          name: 'Salinan Kad Pengenalan, MyKid atau Surat Kelahiran'
+        },
+        {
+          id: 'payment_slip',
+          name: 'Salinan Slip Gaji/Pencen (untuk penjawat awam/pesara)'
+        },
+        {
+          id: 'epf',
+          name: 'Salinan Penyata EA* atau KWSP* (untuk pekerja swasta)'
+        },
+        {
+          id: 'divorce_death',
+          name: 'Salinan Sijil Kematian/Bercerai (untuk ibu tunggal)'
+        },
+        {
+          id: 'bsh_prof',
+          name:
+            'Bukti penerima BSH bagi kategori pendapatan bawah RM2,000.00 atau bukti tersenarai sebagai golongan miskin/miskin tegar dalam pengkalan dataeKasih'
+        }
+      ],
+      dun: [
+        'ADUN SSIPR TEST',
+        'SUNGAI AIR TAWAR',
+        'SABAK',
+        'SUNGAI PANJANG',
+        'SEKINCHAN',
+        'HULU BERNAM',
+        'KUALA KUBU BAHARU',
+        'BATANG KALI',
+        'SUNGAI BURONG',
+        'PERMATANG',
+        'BUKIT MELAWATI',
+        'IJOK',
+        'JERAM',
+        'KUANG',
+        'RAWANG',
+        'TAMAN TEMPLER',
+        'SUNGAI TUA',
+        'GOMBAK SETIA',
+        'HULU KELANG',
+        'BUKIT ANTARABANGSA',
+        'LEMBAH JAYA',
+        'PANDAN INDAH',
+        'TERATAI',
+        'DUSUN TUA',
+        'SEMENYIH',
+        'KAJANG',
+        'SUNGAI RAMAL',
+        'BALAKONG',
+        'SERI KEMBANGAN',
+        'SERI SERDANG',
+        'KINRARA',
+        'SUBANG JAYA',
+        'SERI SETIA',
+        'TAMAN MEDAN',
+        'BUKIT GASING',
+        'KAMPUNG TUNKU',
+        'BANDAR UTAMA',
+        'BUKIT LANJAN',
+        'PAYA JARAS',
+        'KOTA DAMANSARA',
+        'KOTA ANGGERIK',
+        'BATU TIGA',
+        'MERU',
+        'SEMENTA',
+        'SELAT KLANG',
+        'BANDAR BARU KLANG',
+        'PELABUHAN KLANG',
+        'PANDAMARAN',
+        'SENTOSA',
+        'SUNGAI KANDIS',
+        'KOTA KEMUNING',
+        'SIJANGKANG',
+        'BANTING',
+        'MORIB',
+        'TANJUNG SEPAT',
+        'DENGKIL',
+        'SUNGAI PELEK'
+      ],
+      adun: null,
       spouse: {
         employer_name: null,
-        employment_type: null
+        employment_type: null,
+        income: null
       },
       income: {
         employer_name: null
       },
       childrens: [],
       applicant: {
-        address_1: null,
-        address_2: null,
-        address_3: null,
-        postcode: null,
-        district: null,
-        state: null
+        spouse: {},
+        income: {},
+        childrens: []
       },
       residence: {
         individual_meter_acc_no: null,
@@ -325,20 +624,32 @@ export default {
       countryStates: 'lookup/countryStates'
     })
   },
+  watch: {
+    spouse_income: function() {
+      console.log(this.spouse)
+      this.spouse.income = parseFloat(this.spouse_income || 0)
+      this.income.total_income = this.fixedTwoDecimal(
+        parseFloat(this.currentUser.income) +
+          parseFloat(this.spouse_income || 0) +
+          this.sumSpousesSalaries(this.childrens, 'income')
+      )
+    }
+  },
   fetch({ store, params }) {
     return store.dispatch('applicant/setCurrentUser')
   },
   created() {
-    this.applicant = {
-      address_1: this.currentUser.address_1,
-      address_2: this.currentUser.address_2,
-      address_3: this.currentUser.address_3,
-      postcode: this.currentUser.postcode,
-      district: this.currentUser.district,
-      state: this.currentUser.state
-    }
+    // this.applicant = this.currentUser
   },
   methods: {
+    calculateTotalIncome() {
+      this.spouse.income = parseFloat(this.spouse_income || 0)
+      this.income.total_income = this.fixedTwoDecimal(
+        parseFloat(this.currentUser.income) +
+          parseFloat(this.spouse_income || 0) +
+          this.sumSpousesSalaries(this.childrens, 'income')
+      )
+    },
     finalize() {
       this.$validator.validateAll().then(result => {
         if (result) {
@@ -368,6 +679,7 @@ export default {
     },
     removeChild(child) {
       this.childrens.splice(this.childrens.indexOf(child), 1)
+      idx--
     },
     create() {
       this.setIsLoading(true)
