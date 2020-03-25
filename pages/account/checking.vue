@@ -1,13 +1,13 @@
 <template>
-  <div class="column is-fourth-quater">
+  <div class="column is-fourth-quater semakan-wrap">
     <form @submit.prevent="check()">
-      <div class="is-divider" data-content="Semak Permohonan"></div>
+      <div class="is-divider" data-content="SEMAK STATUS PERMOHONAN"></div>
 
-      <b-field :label="$t('f.all_id_wo_passport')">
+      <b-field label="No Identiti">
         <b-input v-model="ic" required></b-input>
       </b-field>
 
-      <b-field label="No Akaun Air">
+      <b-field label="No Akaun Air Selangor">
         <b-input v-model="meter" maxlength="10" required></b-input>
       </b-field>
 
@@ -16,17 +16,16 @@
           >Semak</b-button
         >
       </p>
-      <p>
-        <b
-          >HEBAHAN BAGI PEMEGANG AKAUN METER PUKAL DALAM KATEGORI PANGSAPURI KOS
-          RENDAH</b
-        >
-      </p>
-
-      <p>
-        Pemegang akaun meter pukal dalam kategori pangsapuri kos rendah akan
-        terus menerima 20 meter padu air percuma di bawah initiatif SADE.
-      </p>
+      <div class="sade-notice">
+        <p class="heading-strong">
+          PENGUMUMAN BAGI PEMEGANG AKAUN METER PUKAL DALAM KATEGORI PANGSAPURI
+          RENDAH
+        </p>
+        <p>
+          Pemegang akaun meter pukal dalam kategori pangsapuri kos rendah akan
+          terus menerima 20 meter padu air percuma di bawah initiatif SADE.
+        </p>
+      </div>
     </form>
     <div v-if="checked">
       <!-- <div>
@@ -172,57 +171,56 @@
       <p><img src="/modal.png" /></p>
     </b-modal> -->
     <b-modal :active.sync="isSADEModalActive" full-screen>
-      <p class="image is-4by3">
-        <img src="/semakan.jpg" />
-      </p>
-      <div class="card result-search">
-        <!-- <div class="card-header">Skim Air Selangor (SADE)</div> -->
-        <div class="card-content">
-          <table
-            v-if="sade"
-            class="table table-bordered table-striped table-condensed mb-none"
-          >
-            <tr>
-              <td colspan="4" bgcolor="#ccc">
-                <b>Maklumat Ahli</b>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <b>Nama</b>
-              </td>
-              <td>{{ sade.nama }}</td>
-              <td>
-                <b>No. Kad Pengenalan / No. Polis / No. Tentera</b>
-              </td>
-              <td>{{ sade.ic }}</td>
-            </tr>
-            <tr>
-              <td>
-                <b>Status Permohonan</b>
-              </td>
-              <td>{{ sade.status === 0 ? 'Dalam Proses' : 'Lulus' }}</td>
-              <td>
-                <b>Tarikh Daftar</b>
-              </td>
-              <td>{{ sade.inserted_at }}</td>
-            </tr>
-            <tr>
-              <td>
-                <b>Jenis Meter</b>
-              </td>
-              <td>{{ sade.jenis_meter }}</td>
-              <td>
-                <b>No Akaun</b>
-              </td>
-              <td v-if="sade.jenis_meter === 'individu'">
-                {{ sade.no_akaun_individu }}
-              </td>
-              <td v-else>{{ sade.no_akaun_pukal }}</td>
-            </tr>
-          </table>
+      <div class="image result-sade-wrap">
+        <div class="card result-search">
+          <!-- <div class="card-header">Skim Air Selangor (SADE)</div> -->
+          <div class="card-content">
+            <table
+              v-if="sade"
+              class="table table-bordered table-striped table-condensed mb-none"
+            >
+              <tr>
+                <td colspan="4" bgcolor="#ccc">
+                  <b>Maklumat Ahli</b>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <b>Nama</b>
+                </td>
+                <td>{{ sade.nama }}</td>
+                <td>
+                  <b>No Identiti</b>
+                </td>
+                <td>{{ sade.ic }}</td>
+              </tr>
+              <tr>
+                <td>
+                  <b>Status Permohonan</b>
+                </td>
+                <td>{{ sade.status === 0 ? 'Dalam Proses' : 'Lulus' }}</td>
+                <td>
+                  <b>Tarikh Daftar</b>
+                </td>
+                <td>{{ sade.inserted_at }}</td>
+              </tr>
+              <tr>
+                <td>
+                  <b>Jenis Meter</b>
+                </td>
+                <td class="jenis-meter">{{ sade.jenis_meter }}</td>
+                <td>
+                  <b>No Akaun Air Selangor</b>
+                </td>
+                <td v-if="sade.jenis_meter === 'individu'">
+                  {{ sade.no_akaun_individu }}
+                </td>
+                <td v-else>{{ sade.no_akaun_pukal }}</td>
+              </tr>
+            </table>
+          </div>
+          <footer class="card-footer"></footer>
         </div>
-        <footer class="card-footer"></footer>
       </div>
     </b-modal>
     <b-modal :active.sync="isModalActive" :width="1800" scroll="keep">
@@ -1030,5 +1028,32 @@ export default {
 }
 .card-content .result-search {
   margin-top: -250px;
+}
+.is-divider[data-content]::after {
+  color: #000;
+  font-size: 1rem;
+  font-weight: bold;
+}
+.sade-notice {
+  margin-top: 25px;
+  text-align: center;
+}
+.heading-strong {
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.semakan-bg {
+  height: auto !important;
+}
+
+.result-sade-wrap {
+  background: url('/semakan.jpg');
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: contain;
+  padding-top: 60%;
+}
+.jenis-meter {
+  text-transform: capitalize;
 }
 </style>
