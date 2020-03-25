@@ -68,21 +68,10 @@
         </div>
 
         <div class="notice-wrap">
-          <div class="notice-icon">
-            <ul>
-              <li>
-                <img src="~assets/img/logo-chrome.png" alt="Logo Chrome" />
-              </li>
-              <li>
-                <img src="~assets/img/logo-firefox.png" alt="Logo Firefox" />
-              </li>
-            </ul>
-          </div>
           <div class="notice-reso">
-            Paparan Terbaik dengan resolusi, 1200 x 1024
-          </div>
-          <div class="notice-sub">
-            Dibangun & diselenggara oleh UNIT PENGURUSAN MAKLUMAT
+            Paparan terbaik menggunakan Google Chrome 79 dan Mozilla Firefox 72
+            <br />
+            dengan resolusi melebihi 1200 x 1024.
           </div>
           <div class="notice-update">
             KEMASKINI TERAKHIR: <b>26 MARCH 2020</b>
@@ -178,5 +167,15 @@ export default {
 }
 .card.result-search .card-footer {
   display: none;
+}
+.notice-reso {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.modal.is-full-screen > .animation-content {
+  width: 50%;
+  height: auto;
+  max-height: initial;
+  background: #fff;
 }
 </style>

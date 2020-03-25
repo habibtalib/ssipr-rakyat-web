@@ -3,11 +3,11 @@
     <form @submit.prevent="check()">
       <div class="is-divider" data-content="SEMAK STATUS PERMOHONAN"></div>
 
-      <b-field label="No Identiti">
+      <b-field label="No. Identiti">
         <b-input v-model="ic" required></b-input>
       </b-field>
 
-      <b-field label="No Akaun Air Selangor">
+      <b-field label="No. Akaun Air Selangor">
         <b-input v-model="meter" maxlength="10" required></b-input>
       </b-field>
 
@@ -23,7 +23,7 @@
         </p>
         <p>
           Pemegang akaun meter pukal dalam kategori pangsapuri kos rendah akan
-          terus menerima 20 meter padu air percuma di bawah initiatif SADE.
+          terus menerima 20 meter padu air percuma di bawah inisiatif SADE.
         </p>
       </div>
     </form>
@@ -170,18 +170,18 @@
     <!-- <b-modal :active.sync="isModalLandingActive">
       <p><img src="/modal.png" /></p>
     </b-modal> -->
-    <b-modal :active.sync="isSADEModalActive" full-screen>
+    <b-modal :active.sync="isSADEModalActive">
       <div class="image result-sade-wrap">
         <div class="card result-search">
           <!-- <div class="card-header">Skim Air Selangor (SADE)</div> -->
           <div class="card-content">
             <table
               v-if="sade"
-              class="table table-bordered table-striped table-condensed mb-none"
+              class="table table-bordered table-striped table-condensed mb-none sade-result"
             >
               <tr>
                 <td colspan="4" bgcolor="#ccc">
-                  <b>Maklumat Ahli</b>
+                  <b>Maklumat Pemohon</b>
                 </td>
               </tr>
               <tr>
@@ -190,7 +190,7 @@
                 </td>
                 <td>{{ sade.nama }}</td>
                 <td>
-                  <b>No Identiti</b>
+                  <b>No. Identiti</b>
                 </td>
                 <td>{{ sade.ic }}</td>
               </tr>
@@ -210,7 +210,7 @@
                 </td>
                 <td class="jenis-meter">{{ sade.jenis_meter }}</td>
                 <td>
-                  <b>No Akaun Air Selangor</b>
+                  <b>No. Akaun Air Selangor</b>
                 </td>
                 <td v-if="sade.jenis_meter === 'individu'">
                   {{ sade.no_akaun_individu }}
@@ -1036,7 +1036,7 @@ export default {
 }
 .sade-notice {
   margin-top: 25px;
-  text-align: center;
+  text-align: left;
 }
 .heading-strong {
   font-weight: bold;
@@ -1047,13 +1047,16 @@ export default {
 }
 
 .result-sade-wrap {
-  background: url('/semakan.jpg');
+  background: #ffffff url('/popup-semakan-sade.png');
   background-repeat: no-repeat;
   background-position: top center;
-  background-size: contain;
+  background-size: 100%;
   padding-top: 60%;
 }
 .jenis-meter {
   text-transform: capitalize;
+}
+.sade-result {
+  width: 100%;
 }
 </style>
