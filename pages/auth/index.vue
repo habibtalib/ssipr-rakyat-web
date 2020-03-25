@@ -15,13 +15,9 @@
       </b-field>
 
       <p class="control loginbtn">
-        <b-button
-          type="is-primary is-fullwidth"
-          outlined
-          disabled
-          @click="login()"
-          >{{ $t('l.login') }}</b-button
-        >
+        <b-button type="is-primary is-fullwidth" outlined @click="login()">{{
+          $t('l.login')
+        }}</b-button>
       </p>
       <p class="has-text-centered">
         <nuxt-link class="button is-text is-small" to="password">{{
