@@ -19,11 +19,16 @@
       <div class="sade-notice">
         <p class="heading-strong">
           PENGUMUMAN BAGI PEMEGANG AKAUN METER PUKAL DALAM KATEGORI PANGSAPURI
-          RENDAH
+          KOS RENDAH
         </p>
         <p>
-          Pemegang akaun meter pukal dalam kategori pangsapuri kos rendah akan
-          terus menerima 20 meter padu air percuma di bawah inisiatif SADE.
+          Pengguna akaun meter pukal dalam kategori pangsapuri kos rendah akan
+          terus menerima 20 meter padu air percuma di bawah Skim Air Darul Ehsan
+          secara automatik sehingga 31 Disember 2021 mengikut kaedah sedia ada
+          yang melibatkan JMB/MC serta Lembaga Perumahan Hartanah Selangor
+          (LPHS). Namun demikian, migrasi meter pukal kepada meter individu bagi
+          kediaman bertingkat tinggi & komuniti berpagar hendaklah dilaksanakan
+          seperti digariskan oleh SPAN selewat-lewatnya sebelum akhir 2021.
         </p>
       </div>
     </form>
@@ -181,7 +186,7 @@
             >
               <tr>
                 <td colspan="4" bgcolor="#ccc">
-                  <b>Maklumat Pemohon</b>
+                  <b>MAKLUMAT PEMOHON</b>
                 </td>
               </tr>
               <tr>
@@ -1058,5 +1063,11 @@ export default {
 }
 .sade-result {
   width: 100%;
+}
+@media only screen and (max-width: 768px) {
+  .result-search table td {
+    display: block;
+    border: none;
+  }
 }
 </style>

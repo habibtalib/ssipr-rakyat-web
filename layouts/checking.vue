@@ -178,4 +178,12 @@ export default {
   max-height: initial;
   background: #fff;
 }
+@media only screen and (max-width: 768px) {
+  .semakan-wrap {
+    padding: 20px;
+  }
+  .navbar-item img {
+    max-height: 50px !important;
+  }
+}
 </style>
