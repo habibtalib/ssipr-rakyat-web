@@ -6,7 +6,7 @@ export default {
     logout: 'Log Keluar',
     forgotPass: 'Terlupa Kata Laluan?',
     requestVerification: 'Hantar E-mel Pengesahan',
-    copyright: 'Hak Cipta Terpelihara',
+    copyright: 'Hak Cipta Terpelihara Kerajaan Negeri Selangor',
     submit: 'Hantar',
     language: 'Bahasa',
     my: 'Bahasa Melayu',
