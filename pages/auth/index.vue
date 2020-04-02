@@ -15,7 +15,7 @@
       </b-field>
 
       <p class="control loginbtn">
-        <b-button type="is-primary is-fullwidth" outlined disabled>{{
+        <b-button type="is-primary is-fullwidth" outlined>{{
           $t('l.login')
         }}</b-button>
       </p>
