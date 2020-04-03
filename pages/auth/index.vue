@@ -15,7 +15,7 @@
       </b-field>
 
       <p class="control loginbtn">
-        <b-button type="is-primary is-fullwidth" outlined>{{
+        <b-button type="is-primary is-fullwidth" outlined @click="login()">{{
           $t('l.login')
         }}</b-button>
       </p>
@@ -46,7 +46,7 @@ export default {
     return {
       ic: null,
       password: null,
-      isModalLandingActive: true
+      isModalLandingActive: false
     }
   },
   created() {
