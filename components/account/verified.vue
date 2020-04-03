@@ -743,191 +743,191 @@ export default {
             '    </li>' +
             '  </ul>',
           img: '_nuxt/assets/img/SADE_banner.jpg'
-        },
-        {
-          id: 'SPS',
-          name: 'Skim Peduli Sihat (SPS)',
-          requireForm: false,
-          url: 'https://www.pedulisihat.com/pendaftaran.html',
-          available: true,
-          body:
-            '<p class="title is-5">Syarat Permohonan</p>' +
-            '  <ul>' +
-            '    <li>' +
-            '      Warganegara Malaysia.' +
-            '    </li>' +
-            '    <li>' +
-            '      Lahir di Negeri Selangor atau telah mentap di Selangor melebihi 10 tahun.' +
-            '    </li>' +
-            '    <li>' +
-            '      Pendapatan bulanan isi rumah tidak melebehi RM2,000.00 (Keluarga) atau RM1,500.00 (Individu).' +
-            '    </li>' +
-            '    <li>' +
-            '      Telah berdaftar dengan eKasih dan Bantuan Sara Hidup.' +
-            '    </li>' +
-            '  </ul>'
-        },
-        {
-          id: 'SRS',
-          name: 'Skim Rumah Selangorku',
-          url: ' https://ehartanah.lphs.gov.my/index.php?opt=newuser_new',
-          requireForm: false,
-          available: true,
-          body:
-            '<p class="title is-5">Syarat Permohonan</p>' +
-            '  <ul>' +
-            '    <li>' +
-            '      Warga Selangor yang layak boleh memohon untuk memiliki sebuah rumah sendiri bernilai tidak melebihi RM250,000 melalui Skim Rumah Selangorku.' +
-            '    </li>' +
-            '    <li>' +
-            '      Warganegara Malaysia berumur 18 tahun ke atas' +
-            '    </li>' +
-            '    <li>' +
-            '      Pendapatan minimum bagi permohonan Rumah Selangorku Jenis B, C dan D ditetapkan RM3001.00 sebulan' +
-            '    </li>' +
-            '    <li>' +
-            '      Pendapatan isi rumah (suami dan isteri):' +
-            '      <ul>' +
-            '       <li>' +
-            '         Tidak melebihi RM3,000 sebulan dibenarkan permohonan Jenis A' +
-            '       </li>' +
-            '       <li>' +
-            '         Pendapatan isi rumah diantara RM3,001 sehingga RM10,000 sebulan dibenarkan permohonan Jenis B, C dan D ' +
-            '       </li>' +
-            '       <li>' +
-            '         Sekiranya pendapatan isi rumah tidak melebihi RM3,000 sebulan adalah dibenarkan juga membuat pilihan Jenis ' +
-            '         B, C atau D. Bagi pendapatan isi rumah melebihi RM 3,001 sebulan, permohonan Jenis A tidak dibenarkan ' +
-            '       </li>' +
-            '      </ul>' +
-            '    </li>' +
-            '    <li>' +
-            '      Pemohon hanya dibenarkan membuat pilihan 1 jenis rumah sahaja sama ada jenis A, B, C, atau D semasa membuat permohonan' +
-            '    </li>' +
-            '    <li>' +
-            '      Pemohon atau pasangan belum memiliki rumah sama ada melalui projek kerajaan atau swasta di Selangor' +
-            '    </li>' +
-            '    <li>' +
-            '      Permohonan pindah-milik hanya dibenarkan memohon selepas 5 tahun dari Perjanjian Jual-Beli dengan kebenaran Pihak Berkuasa Negeri' +
-            '    </li>' +
-            '    <li>' +
-            '      Pembelian rumah untuk didiami dan bukan untuk disewa' +
-            '    </li>' +
-            '    <li>' +
-            '      Tempoh sah laku bagi setiap permohonan yang didaftarkan adalah selama 2 tahun. Selepas tempoh tersebut data permohonan yang masih didalam SENARAI MENUNGGU akan dikeluarkan ' +
-            '      dari sistem dan pemohon perlu membuat permohonan baru sekiranya masih berminat untuk memohon' +
-            '    </li>' +
-            '  </ul>'
-        },
-        {
-          id: 'BSS',
-          name: 'Bantuan Sihat Selangor',
-          requireForm: false,
-          available: true,
-          url: 'http://bantuansihat.selangor.gov.my/',
-          body:
-            '<p class="title is-5">Syarat Permohonan</p>' +
-            '  <ul>' +
-            '    <li>' +
-            '      Rakyat Negeri Selangor ATAU ' +
-            '    </li>' +
-            '    <li>' +
-            '      Bermastautin di Negeri Selangor melebihi 10 tahun dengan pengesahan ' +
-            '       daripada Ahli Parlimen/ADUN/Penghulu/Ketua Kampung/ ' +
-            '       JKKK Kampung/Ketua Penduduk/Ketua Komuniti ' +
-            '    </li>' +
-            '    <li>' +
-            '      Pendapatan isi rumah RM3,000.00 ke bawah' +
-            '    </li>' +
-            '  </ul>'
-        },
-        {
-          id: 'MAMMOSEL',
-          name: 'Skim Kesihatan Wanita (Mammosel)',
-          requireForm: false,
-          available: false,
-          body:
-            '<p class="title is-5">Syarat Permohonan</p>' +
-            '  <ul>' +
-            '    <li>' +
-            '      Wanita yang layak adalah mereka berumur 35 tahun ke atas yang lahir' +
-            '      dan sedang menetap di Selangor.' +
-            '    </li>' +
-            '    <li>' +
-            '      Mereka yang bukan kelahiran Selangor mestilah telah menetap ' +
-            '      di Selangor sekurang-kurangnya 10 tahun.' +
-            '    </li>' +
-            '  </ul>'
-        },
-        {
-          id: 'SMUE',
-          name: 'Skim Mesra Usia Emas (SMUE)',
-          requireForm: false,
-          available: false,
-          body:
-            '<p class="title is-5">Syarat Permohonan</p>' +
-            '  <ul>' +
-            '    <li>' +
-            '      Warga emas yang layak mendaftar ialah :' +
-            '    </li>' +
-            '    <li>' +
-            '      Seorang warganegara Malaysia berumur 60 tahun dan ke atas.' +
-            '    </li>' +
-            '    <li>' +
-            '      Lahir di WP Kuala Lumpur sebelum 1 Februari 1974 dan sedang ' +
-            '      menetap negeri Selangor atau di WP Kuala Lumpur atau ' +
-            '    </li>' +
-            '    <li>' +
-            '      Bermastautin di Negeri Selangor secara sah sekurang-kurangnya 15 tahun.' +
-            '    </li>' +
-            '  </ul>'
-        },
-        {
-          id: 'TAWAS',
-          name: 'Tabung Warisan Anak Selangor (TAWAS)',
-          requireForm: false,
-          available: false,
-          body:
-            '<p class="title is-5">' +
-            'Permohonan baru TAWAS akan ditutup sepenuhnya ' +
-            'berkuatkuasa mulai 1 Februari 2019.  ' +
-            'Permohonan ini hanya tertakluk untuk anak di ' +
-            'bawah usia 3 tahun sahaja dan merujuk ' +
-            'kepada kelahiran sehingga tahun 2018 sahaja. ' +
-            'Untuk lebih lanjut layari laman web www.tawas.org.my' +
-            '  </p>'
-        },
-        {
-          id: 'KISS',
-          name: 'Kasih Ibu Smart Selangor (KISS)',
-          requireForm: true,
-          formRoute: '/ipr/KISS',
-          available: true,
-          body:
-            '<p class="title is-5">Syarat Permohonan</p>' +
-            '  <ul>' +
-            '    <li>' +
-            '      Warganegara Malaysia.' +
-            '    </li>' +
-            '    <li>' +
-            '      Lahir di Negeri Selangor atau telah ' +
-            '      menetap di Selangor melebihi 10 tahun.' +
-            '    </li>' +
-            '    <li>' +
-            '      Pemilih berdaftar di Negeri Selangor.' +
-            '    </li>' +
-            '    <li>' +
-            '      Wanita berkeluarga (berkahwin atau ibu tunggal) ' +
-            '      yang mempunyai anak/tanggungan di bawah umur 21 tahun.' +
-            '    </li>' +
-            '    <li>' +
-            '      Pendapatan bulanan isi rumah tidak melebihi RM2,000.00.' +
-            '    </li>' +
-            '    <li>' +
-            '      Berdaftar sebagai pemohon BSH di bawah kategori pendapatan bawah RM2,000.00' +
-            '      atau tersenarai sebagai golongan miskin atau miskin tegar di pengkalan data eKasih.' +
-            '    </li>' +
-            '  </ul>'
         }
+        // {
+        //   id: 'SPS',
+        //   name: 'Skim Peduli Sihat (SPS)',
+        //   requireForm: false,
+        //   url: 'https://www.pedulisihat.com/pendaftaran.html',
+        //   available: true,
+        //   body:
+        //     '<p class="title is-5">Syarat Permohonan</p>' +
+        //     '  <ul>' +
+        //     '    <li>' +
+        //     '      Warganegara Malaysia.' +
+        //     '    </li>' +
+        //     '    <li>' +
+        //     '      Lahir di Negeri Selangor atau telah mentap di Selangor melebihi 10 tahun.' +
+        //     '    </li>' +
+        //     '    <li>' +
+        //     '      Pendapatan bulanan isi rumah tidak melebehi RM2,000.00 (Keluarga) atau RM1,500.00 (Individu).' +
+        //     '    </li>' +
+        //     '    <li>' +
+        //     '      Telah berdaftar dengan eKasih dan Bantuan Sara Hidup.' +
+        //     '    </li>' +
+        //     '  </ul>'
+        // },
+        // {
+        //   id: 'SRS',
+        //   name: 'Skim Rumah Selangorku',
+        //   url: ' https://ehartanah.lphs.gov.my/index.php?opt=newuser_new',
+        //   requireForm: false,
+        //   available: true,
+        //   body:
+        //     '<p class="title is-5">Syarat Permohonan</p>' +
+        //     '  <ul>' +
+        //     '    <li>' +
+        //     '      Warga Selangor yang layak boleh memohon untuk memiliki sebuah rumah sendiri bernilai tidak melebihi RM250,000 melalui Skim Rumah Selangorku.' +
+        //     '    </li>' +
+        //     '    <li>' +
+        //     '      Warganegara Malaysia berumur 18 tahun ke atas' +
+        //     '    </li>' +
+        //     '    <li>' +
+        //     '      Pendapatan minimum bagi permohonan Rumah Selangorku Jenis B, C dan D ditetapkan RM3001.00 sebulan' +
+        //     '    </li>' +
+        //     '    <li>' +
+        //     '      Pendapatan isi rumah (suami dan isteri):' +
+        //     '      <ul>' +
+        //     '       <li>' +
+        //     '         Tidak melebihi RM3,000 sebulan dibenarkan permohonan Jenis A' +
+        //     '       </li>' +
+        //     '       <li>' +
+        //     '         Pendapatan isi rumah diantara RM3,001 sehingga RM10,000 sebulan dibenarkan permohonan Jenis B, C dan D ' +
+        //     '       </li>' +
+        //     '       <li>' +
+        //     '         Sekiranya pendapatan isi rumah tidak melebihi RM3,000 sebulan adalah dibenarkan juga membuat pilihan Jenis ' +
+        //     '         B, C atau D. Bagi pendapatan isi rumah melebihi RM 3,001 sebulan, permohonan Jenis A tidak dibenarkan ' +
+        //     '       </li>' +
+        //     '      </ul>' +
+        //     '    </li>' +
+        //     '    <li>' +
+        //     '      Pemohon hanya dibenarkan membuat pilihan 1 jenis rumah sahaja sama ada jenis A, B, C, atau D semasa membuat permohonan' +
+        //     '    </li>' +
+        //     '    <li>' +
+        //     '      Pemohon atau pasangan belum memiliki rumah sama ada melalui projek kerajaan atau swasta di Selangor' +
+        //     '    </li>' +
+        //     '    <li>' +
+        //     '      Permohonan pindah-milik hanya dibenarkan memohon selepas 5 tahun dari Perjanjian Jual-Beli dengan kebenaran Pihak Berkuasa Negeri' +
+        //     '    </li>' +
+        //     '    <li>' +
+        //     '      Pembelian rumah untuk didiami dan bukan untuk disewa' +
+        //     '    </li>' +
+        //     '    <li>' +
+        //     '      Tempoh sah laku bagi setiap permohonan yang didaftarkan adalah selama 2 tahun. Selepas tempoh tersebut data permohonan yang masih didalam SENARAI MENUNGGU akan dikeluarkan ' +
+        //     '      dari sistem dan pemohon perlu membuat permohonan baru sekiranya masih berminat untuk memohon' +
+        //     '    </li>' +
+        //     '  </ul>'
+        // },
+        // {
+        //   id: 'BSS',
+        //   name: 'Bantuan Sihat Selangor',
+        //   requireForm: false,
+        //   available: true,
+        //   url: 'http://bantuansihat.selangor.gov.my/',
+        //   body:
+        //     '<p class="title is-5">Syarat Permohonan</p>' +
+        //     '  <ul>' +
+        //     '    <li>' +
+        //     '      Rakyat Negeri Selangor ATAU ' +
+        //     '    </li>' +
+        //     '    <li>' +
+        //     '      Bermastautin di Negeri Selangor melebihi 10 tahun dengan pengesahan ' +
+        //     '       daripada Ahli Parlimen/ADUN/Penghulu/Ketua Kampung/ ' +
+        //     '       JKKK Kampung/Ketua Penduduk/Ketua Komuniti ' +
+        //     '    </li>' +
+        //     '    <li>' +
+        //     '      Pendapatan isi rumah RM3,000.00 ke bawah' +
+        //     '    </li>' +
+        //     '  </ul>'
+        // },
+        // {
+        //   id: 'MAMMOSEL',
+        //   name: 'Skim Kesihatan Wanita (Mammosel)',
+        //   requireForm: false,
+        //   available: false,
+        //   body:
+        //     '<p class="title is-5">Syarat Permohonan</p>' +
+        //     '  <ul>' +
+        //     '    <li>' +
+        //     '      Wanita yang layak adalah mereka berumur 35 tahun ke atas yang lahir' +
+        //     '      dan sedang menetap di Selangor.' +
+        //     '    </li>' +
+        //     '    <li>' +
+        //     '      Mereka yang bukan kelahiran Selangor mestilah telah menetap ' +
+        //     '      di Selangor sekurang-kurangnya 10 tahun.' +
+        //     '    </li>' +
+        //     '  </ul>'
+        // },
+        // {
+        //   id: 'SMUE',
+        //   name: 'Skim Mesra Usia Emas (SMUE)',
+        //   requireForm: false,
+        //   available: false,
+        //   body:
+        //     '<p class="title is-5">Syarat Permohonan</p>' +
+        //     '  <ul>' +
+        //     '    <li>' +
+        //     '      Warga emas yang layak mendaftar ialah :' +
+        //     '    </li>' +
+        //     '    <li>' +
+        //     '      Seorang warganegara Malaysia berumur 60 tahun dan ke atas.' +
+        //     '    </li>' +
+        //     '    <li>' +
+        //     '      Lahir di WP Kuala Lumpur sebelum 1 Februari 1974 dan sedang ' +
+        //     '      menetap negeri Selangor atau di WP Kuala Lumpur atau ' +
+        //     '    </li>' +
+        //     '    <li>' +
+        //     '      Bermastautin di Negeri Selangor secara sah sekurang-kurangnya 15 tahun.' +
+        //     '    </li>' +
+        //     '  </ul>'
+        // },
+        // {
+        //   id: 'TAWAS',
+        //   name: 'Tabung Warisan Anak Selangor (TAWAS)',
+        //   requireForm: false,
+        //   available: false,
+        //   body:
+        //     '<p class="title is-5">' +
+        //     'Permohonan baru TAWAS akan ditutup sepenuhnya ' +
+        //     'berkuatkuasa mulai 1 Februari 2019.  ' +
+        //     'Permohonan ini hanya tertakluk untuk anak di ' +
+        //     'bawah usia 3 tahun sahaja dan merujuk ' +
+        //     'kepada kelahiran sehingga tahun 2018 sahaja. ' +
+        //     'Untuk lebih lanjut layari laman web www.tawas.org.my' +
+        //     '  </p>'
+        // },
+        // {
+        //   id: 'KISS',
+        //   name: 'Kasih Ibu Smart Selangor (KISS)',
+        //   requireForm: true,
+        //   formRoute: '/ipr/KISS',
+        //   available: true,
+        //   body:
+        //     '<p class="title is-5">Syarat Permohonan</p>' +
+        //     '  <ul>' +
+        //     '    <li>' +
+        //     '      Warganegara Malaysia.' +
+        //     '    </li>' +
+        //     '    <li>' +
+        //     '      Lahir di Negeri Selangor atau telah ' +
+        //     '      menetap di Selangor melebihi 10 tahun.' +
+        //     '    </li>' +
+        //     '    <li>' +
+        //     '      Pemilih berdaftar di Negeri Selangor.' +
+        //     '    </li>' +
+        //     '    <li>' +
+        //     '      Wanita berkeluarga (berkahwin atau ibu tunggal) ' +
+        //     '      yang mempunyai anak/tanggungan di bawah umur 21 tahun.' +
+        //     '    </li>' +
+        //     '    <li>' +
+        //     '      Pendapatan bulanan isi rumah tidak melebihi RM2,000.00.' +
+        //     '    </li>' +
+        //     '    <li>' +
+        //     '      Berdaftar sebagai pemohon BSH di bawah kategori pendapatan bawah RM2,000.00' +
+        //     '      atau tersenarai sebagai golongan miskin atau miskin tegar di pengkalan data eKasih.' +
+        //     '    </li>' +
+        //     '  </ul>'
+        // }
       ]
     }
   },
