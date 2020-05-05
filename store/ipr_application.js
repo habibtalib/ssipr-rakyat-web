@@ -38,7 +38,7 @@ export const actions = {
   async checkTawas({ commit, dispatch }, params) {
     try {
       const { data } = await this.$axios.get(
-        `http://ssipr-yawas-api-dev.ap-southeast-1.elasticbeanstalk.com/pawas/${params}`
+        `https://yawas.ssipr.smarttechtank.com/pawas/${params}`
       )
       commit('setTawas', data.data)
 
@@ -50,7 +50,7 @@ export const actions = {
   async checkEmas({ commit, dispatch }, params) {
     try {
       const { data } = await this.$axios.get(
-        `http://ssipr-yawas-api-dev.ap-southeast-1.elasticbeanstalk.com/pawas/${params}`
+        `https://yawas.ssipr.smarttechtank.com/pawas/${params}`
       )
       commit('setEmas', data.data)
 
@@ -62,7 +62,7 @@ export const actions = {
   async checkSkw({ commit, dispatch }, params) {
     try {
       const { data } = await this.$axios.get(
-        `http://ssipr-yawas-api-dev.ap-southeast-1.elasticbeanstalk.com/skw/${params}`
+        `https://yawas.ssipr.smarttechtank.com/skw/${params}`
       )
       commit('setSkw', data.data)
 
@@ -74,7 +74,7 @@ export const actions = {
   async checkAirSelangor({ commit, dispatch }, params) {
     try {
       const { data } = await this.$axios.get(
-        `http://ssipr-yawas-api-dev.ap-southeast-1.elasticbeanstalk.com/sade/${params}`
+        `https://yawas.ssipr.smarttechtank.com/sade/${params}`
       )
       commit('setAirSelangor', data)
 

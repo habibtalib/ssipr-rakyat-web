@@ -856,9 +856,7 @@ export default {
     },
     checkSRS() {
       axios
-        .get(
-          `http://ssipr-yawas-api-dev.ap-southeast-1.elasticbeanstalk.com/srs/${this.ic}`
-        )
+        .get(`https://yawas.ssipr.smarttechtank.com/srs/${this.ic}`)
         .then(res => {
           if (res.status === 200) {
             this.srs = res.data
@@ -873,9 +871,7 @@ export default {
     },
     checkBantuanSihat() {
       axios
-        .get(
-          `http://ssipr-yawas-api-dev.ap-southeast-1.elasticbeanstalk.com/bs/${this.ic}`
-        )
+        .get(`https://yawas.ssipr.smarttechtank.com/bs/${this.ic}`)
         .then(res => {
           if (res.status === 200) {
             this.bantuanSihat = res.data
@@ -890,9 +886,7 @@ export default {
     },
     checkTawas() {
       axios
-        .get(
-          `http://ssipr-yawas-api-dev.ap-southeast-1.elasticbeanstalk.com/pawas/${this.ic}`
-        )
+        .get(`https://yawas.ssipr.smarttechtank.com/pawas/${this.ic}`)
         .then(res => {
           if (res.status === 200) {
             this.tawas = res.data
@@ -909,7 +903,7 @@ export default {
     checkSADE() {
       axios
         .get(
-          `http://ssipr-yawas-api-dev.ap-southeast-1.elasticbeanstalk.com/sade/${this.ic}?meter=${this.meter}`
+          `https://yawas.ssipr.smarttechtank.com/sade/${this.ic}?meter=${this.meter}`
         )
         .then(res => {
           if (res.status === 200 && res.data.id) {
@@ -941,9 +935,7 @@ export default {
     },
     checkSkw() {
       axios
-        .get(
-          `http://ssipr-yawas-api-dev.ap-southeast-1.elasticbeanstalk.com/skw/${this.ic}`
-        )
+        .get(`https://yawas.ssipr.smarttechtank.com/skw/${this.ic}`)
         .then(res => {
           if (res.status === 200) {
             this.skw = res.data
@@ -958,9 +950,7 @@ export default {
     },
     checkEmas() {
       axios
-        .get(
-          `http://ssipr-yawas-api-dev.ap-southeast-1.elasticbeanstalk.com/emas/${this.ic}`
-        )
+        .get(`https://yawas.ssipr.smarttechtank.com/emas/${this.ic}`)
         .then(res => {
           if (res.status === 200) {
             this.emas = res.data

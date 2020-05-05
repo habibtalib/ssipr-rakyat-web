@@ -941,9 +941,7 @@ export default {
   methods: {
     checkSRS() {
       axios
-        .get(
-          `http://ssipr-yawas-api-dev.ap-southeast-1.elasticbeanstalk.com/srs/${this.currentUser.ic}`
-        )
+        .get(`https://yawas.ssipr.smarttechtank.com/srs/${this.currentUser.ic}`)
         .then(res => {
           if (res.status === 200) {
             this.srs = res.data
@@ -958,9 +956,7 @@ export default {
     },
     checkBantuanSihat() {
       axios
-        .get(
-          `http://ssipr-yawas-api-dev.ap-southeast-1.elasticbeanstalk.com/bs/${this.currentUser.ic}`
-        )
+        .get(`https://yawas.ssipr.smarttechtank.com/bs/${this.currentUser.ic}`)
         .then(res => {
           if (res.status === 200) {
             this.bantuanSihat = res.data
@@ -976,7 +972,7 @@ export default {
     checkTawas() {
       axios
         .get(
-          `http://ssipr-yawas-api-dev.ap-southeast-1.elasticbeanstalk.com/pawas/${this.currentUser.ic}`
+          `https://yawas.ssipr.smarttechtank.com/pawas/${this.currentUser.ic}`
         )
         .then(res => {
           if (res.status === 200) {
@@ -993,9 +989,7 @@ export default {
     },
     checkSkw() {
       axios
-        .get(
-          `http://ssipr-yawas-api-dev.ap-southeast-1.elasticbeanstalk.com/skw/${this.currentUser.ic}`
-        )
+        .get(`https://yawas.ssipr.smarttechtank.com/skw/${this.currentUser.ic}`)
         .then(res => {
           if (res.status === 200) {
             this.skw = res.data
@@ -1011,7 +1005,7 @@ export default {
     checkEmas() {
       axios
         .get(
-          `http://ssipr-yawas-api-dev.ap-southeast-1.elasticbeanstalk.com/emas/${this.currentUser.ic}`
+          `https://yawas.ssipr.smarttechtank.com/emas/${this.currentUser.ic}`
         )
         .then(res => {
           if (res.status === 200) {
